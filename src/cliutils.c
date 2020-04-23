@@ -667,7 +667,7 @@ arraylist *get_command_to_exec(arraylist *commands, int *argc,
 						found = 1;
 						cmd_list = cmd->sub_commands;
 						arraylist_add(cmd_names, cli_str_clone(cmd->name));
-						printf("found command %s\n", cmd->name);
+						//printf("found command %s\n", cmd->name);
 						cmd_to_exec = cmd;
 						arraylist_add(cmds_to_exec, cmd);
 						break;
