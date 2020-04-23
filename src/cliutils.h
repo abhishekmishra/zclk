@@ -11,6 +11,13 @@
 #include <arraylist.h>
 #include <lua.h>
 #include <lauxlib.h>
+#include "cli_table.h"
+#include "cli_dict.h"
+#include "cli_progress.h"
+
+#ifdef __cplusplus  
+extern "C" {
+#endif
 
 #define CLI_OPTION_HELP_LONG "help"
 #define CLI_OPTION_HELP_SHORT "h"
@@ -55,9 +62,9 @@ typedef struct cli_val_t
 	char* str_value;
 } cli_val;
 
-int cli_val_to_lua(lua_State *L, cli_val* val);
+MODULE_API int cli_val_to_lua(lua_State *L, cli_val* val);
 
-cli_val* create_cli_val(cli_type type, int bool_val, int int_val, double dbl_val, char* str);
+MODULE_API cli_val* create_cli_val(cli_type type, int bool_val, int int_val, double dbl_val, char* str);
 
 #define CLI_VAL_FLAG(v) create_cli_val(CLI_TYPE_FLAG, v, 0, 0, NULL)
 #define CLI_VAL_BOOLEAN(v) create_cli_val(CLI_TYPE_BOOLEAN, v, 0, 0, NULL)
@@ -74,8 +81,8 @@ typedef struct cli_option_t
 	char* description;
 } cli_option;
 
-int cli_option_to_lua(lua_State *L, cli_option* option);
-void arraylist_cli_option_to_lua(lua_State *L, int index, void *data);
+MODULE_API int cli_option_to_lua(lua_State *L, cli_option* option);
+MODULE_API void arraylist_cli_option_to_lua(lua_State *L, int index, void *data);
 
 typedef struct cli_argument_t
 {
@@ -86,10 +93,10 @@ typedef struct cli_argument_t
 	int optional;
 } cli_argument;
 
-int cli_argument_to_lua(lua_State *L, cli_argument* arg);
-void arraylist_cli_argument_to_lua(lua_State *L, int index, void *data);
+MODULE_API int cli_argument_to_lua(lua_State *L, cli_argument* arg);
+MODULE_API void arraylist_cli_argument_to_lua(lua_State *L, int index, void *data);
 
-void cli_fill_options_in_list(arraylist* optlist, cli_option* options[]);
+MODULE_API void cli_fill_options_in_list(arraylist* optlist, cli_option* options[]);
 
 typedef cli_cmd_err(*cli_command_output_handler)(cli_cmd_err result_flag,
 	cli_result_type result_type, void* result);
@@ -117,17 +124,17 @@ typedef struct cli_command_t
  * \param type
  * \return error code
  */
-cli_cmd_err make_cli_val(cli_val** val, cli_type type);
+MODULE_API cli_cmd_err make_cli_val(cli_val** val, cli_type type);
 
 /**
  * Free the created value
  */
-void free_cli_val(cli_val* val);
+MODULE_API void free_cli_val(cli_val* val);
 
 /**
  * Reset values to system defaults.
  */
-void clear_cli_val(cli_val* val);
+MODULE_API void clear_cli_val(cli_val* val);
 
 /**
  * Copy values from 'from' to 'to'.
@@ -136,7 +143,7 @@ void clear_cli_val(cli_val* val);
  * \param to val to set
  * \param from val to read from
  */
-void copy_cli_val(cli_val* to, cli_val* from);
+MODULE_API void copy_cli_val(cli_val* to, cli_val* from);
 
 /**
  * Parse the input and read the value of the type of the val object.
@@ -147,7 +154,7 @@ void copy_cli_val(cli_val* to, cli_val* from);
  * \param input string input
  * \return error code
  */
-cli_cmd_err parse_cli_val(cli_val* val, char* input);
+MODULE_API cli_cmd_err parse_cli_val(cli_val* val, char* input);
 
 /**
  * Create a new option given a name and type.
@@ -160,17 +167,17 @@ cli_cmd_err parse_cli_val(cli_val* val, char* input);
  * \param description
  * \return error code
  */
-cli_cmd_err make_option(cli_option** option, char* name, char* short_name,
+MODULE_API cli_cmd_err make_option(cli_option** option, char* name, char* short_name,
     cli_val* val, cli_val* default_val, char* description);
 
-cli_option* create_option(char* name, char* short_name, cli_val* val, cli_val* default_val, char* desc);
+MODULE_API cli_option* create_option(char* name, char* short_name, cli_val* val, cli_val* default_val, char* desc);
 
 /**
  * Free resources used by option
  */
-void free_option(cli_option* option);
+MODULE_API void free_option(cli_option* option);
 
-cli_option* get_option_by_name(arraylist* options, char* name);
+MODULE_API cli_option* get_option_by_name(arraylist* options, char* name);
 
 /**
  * Create a new argument given a name and type.
@@ -181,13 +188,13 @@ cli_option* get_option_by_name(arraylist* options, char* name);
  * \param description
  * \return error code
  */
-cli_cmd_err make_argument(cli_argument** arg, char* name, cli_val* val, cli_val* default_val, char* desc);
-cli_argument* create_argument(char* name, cli_val* val, cli_val* default_val, char* desc);
+MODULE_API cli_cmd_err make_argument(cli_argument** arg, char* name, cli_val* val, cli_val* default_val, char* desc);
+MODULE_API cli_argument* create_argument(char* name, cli_val* val, cli_val* default_val, char* desc);
 
 /**
  * Free resources used by argument
  */
-void free_argument(cli_argument* arg);
+MODULE_API void free_argument(cli_argument* arg);
 
 /**
  * Create a new command with the given name and handler
@@ -202,23 +209,23 @@ void free_argument(cli_argument* arg);
  * \param handler function ptr to handler
  * \return error code
  */
-cli_cmd_err make_command(cli_command** command, char* name, char* short_name,
+MODULE_API cli_cmd_err make_command(cli_command** command, char* name, char* short_name,
 	char* description, cli_command_handler handler);
 
-cli_command* create_command(char* name, char* short_name,
+MODULE_API cli_command* create_command(char* name, char* short_name,
     char* description, cli_command_handler handler);
 
 /**
  * Free a command object
  */
-void free_command(cli_command* command);
+MODULE_API void free_command(cli_command* command);
 
 /**
 * Get help for a command
 * \param cmds_to_exec the list of commands and subcommands parsed
 * \return string with command help
 */
-char* get_help_for_command(arraylist* cmds_to_exec);
+MODULE_API char* get_help_for_command(arraylist* cmds_to_exec);
 
 /**
  * Run the help command for all commands or single command
@@ -230,7 +237,7 @@ char* get_help_for_command(arraylist* cmds_to_exec);
  * \param success_handler handle success results
  * \param error_handler handler error results
  */
-cli_cmd_err help_cmd_handler(arraylist* commands, void* handler_args,
+MODULE_API cli_cmd_err help_cmd_handler(arraylist* commands, void* handler_args,
 	int argc, char** argv, cli_command_output_handler success_handler,
 	cli_command_output_handler error_handler);
 
@@ -241,7 +248,7 @@ cli_cmd_err help_cmd_handler(arraylist* commands, void* handler_args,
  * \param arg_commands is a list of string
  * \return error code
  */
-cli_cmd_err get_help_for(char** help_str, arraylist* commands,
+MODULE_API cli_cmd_err get_help_for(char** help_str, arraylist* commands,
 	arraylist* arg_commands);
 
 /**
@@ -255,8 +262,17 @@ cli_cmd_err get_help_for(char** help_str, arraylist* commands,
  * \param success_handler handle success results
  * \param error_handler handler error results
  */
-cli_cmd_err exec_command(arraylist* commands, void* handler_args,
+MODULE_API cli_cmd_err exec_command(arraylist* commands, void* handler_args,
 	int argc, char** argv, cli_command_output_handler success_handler,
 	cli_command_output_handler error_handler);
+
+MODULE_API void print_table_result(void* result);
+
+MODULE_API cli_cmd_err print_handler(cli_cmd_err result_flag, cli_result_type res_type,
+    void* result);
+
+#ifdef __cplusplus 
+}
+#endif
 
 #endif /* SRC_CLI_COMMAND_H_ */

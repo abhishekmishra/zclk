@@ -1011,3 +1011,139 @@ cli_cmd_err exec_command(arraylist *commands, void *handler_args,
 	arraylist_free(all_args);
 	return err;
 }
+
+void print_table_result(void* result)
+{
+	cli_table* result_tbl = (cli_table*)result;
+	size_t* col_widths;
+	col_widths = (size_t*)calloc(result_tbl->num_cols, sizeof(size_t));
+	char** col_fmtspec;
+	col_fmtspec = (char**)calloc(result_tbl->num_cols, sizeof(char*));
+	char* header;
+	char* value;
+	int min_width = 4, max_width = 25;
+
+	//calculate column widths, and create format specifiers
+	for (int i = 0; i < result_tbl->num_cols; i++)
+	{
+		cli_table_get_header(&header, result_tbl, i);
+		size_t col_width = strlen(header);
+		for (int j = 0; j < result_tbl->num_rows; j++)
+		{
+			cli_table_get_row_val(&value, result_tbl, j, i);
+			if (value != NULL)
+			{
+				if (strlen(value) > col_width)
+				{
+					col_width = strlen(value);
+				}
+			}
+		}
+		if (col_width < min_width)
+		{
+			col_width = min_width;
+		}
+		if (col_width > max_width)
+		{
+			col_width = max_width;
+		}
+		char* fmtspec = (char*)calloc(16, sizeof(char));
+		sprintf(fmtspec, "%%-%d.%ds", (col_width + 1), col_width);
+		col_widths[i] = col_width;
+		col_fmtspec[i] = fmtspec;
+		//printf("%d and %s\n", col_width, fmtspec);
+	}
+
+	printf("\n");
+	for (int i = 0; i < result_tbl->num_cols; i++)
+	{
+		cli_table_get_header(&header, result_tbl, i);
+		printf(col_fmtspec[i], header);
+	}
+	printf("\n");
+	for (int i = 0; i < result_tbl->num_cols; i++)
+	{
+		for (int j = 0; j < col_widths[i] + 1; j++)
+		{
+			printf("-");
+		}
+	}
+	printf("\n");
+
+	for (int i = 0; i < result_tbl->num_rows; i++)
+	{
+		for (int j = 0; j < result_tbl->num_cols; j++)
+		{
+			cli_table_get_row_val(&value, result_tbl, i, j);
+			if (value == NULL)
+			{
+				printf(col_fmtspec[j], "");
+			}
+			else
+			{
+				printf(col_fmtspec[j], value);
+			}
+		}
+		printf("\n");
+	}
+	printf("\n");
+
+	for (int i = 0; i < result_tbl->num_cols; i++)
+	{
+		free(col_fmtspec[i]);
+	}
+}
+
+cli_cmd_err print_handler(cli_cmd_err result_flag, cli_result_type res_type,
+	void* result)
+{
+	if (res_type == CLI_RESULT_STRING)
+	{
+		if (result != NULL)
+		{
+			char* result_str = (char*)result;
+			printf("%s", result_str);
+		}
+	}
+	else if (res_type == CLI_RESULT_TABLE)
+	{
+		print_table_result(result);
+	}
+	else if (res_type == CLI_RESULT_DICT)
+	{
+		cli_dict* result_dict = (cli_dict*)result;
+		cli_dict_foreach(result_dict, k, v)
+		{
+			printf("%-26.25s: %s\n", k, v);
+		}
+		printf("\n");
+	}
+	else if (res_type == CLI_RESULT_PROGRESS)
+	{
+		cli_multi_progress* result_progress = (cli_multi_progress*)result;
+		if (result_progress->old_count > 0)
+		{
+			printf("\033[%dA", result_progress->old_count);
+			fflush(stdout);
+		}
+		size_t new_len = arraylist_length(result_progress->progress_ls);
+		//		printf("To remove %d, to write %d\n", result_progress->old_count, new_len);
+		for (size_t i = 0; i < new_len; i++)
+		{
+			cli_progress* p = (cli_progress*)arraylist_get(
+				result_progress->progress_ls, i);
+			printf("\033[K%s: %s", p->name, p->message);
+			char* progress = p->extra;
+			if (progress != NULL)
+			{
+				printf(" %s", progress);
+			}
+			printf("\n");
+		}
+	}
+	else
+	{
+		printf("This result type is not handled %d\n", res_type);
+	}
+	return CLI_COMMAND_SUCCESS;
+}
