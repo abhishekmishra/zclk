@@ -7,7 +7,7 @@
 
 #include "cli_common.h"
 
-char* str_clone(const char* from) {
+char* cli_str_clone(const char* from) {
 	char* to = NULL;
 	if ((from != NULL)) {
 		to = (char*) malloc((strlen(from) + 1) * sizeof(char));

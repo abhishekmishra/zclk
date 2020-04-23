@@ -31,7 +31,7 @@ extern "C" {
  * \param from string to clone from
  * \return cloned string, NULL if there is an error.
  */
-MODULE_API char* str_clone(const char* from);
+MODULE_API char* cli_str_clone(const char* from);
 
 #ifdef __cplusplus 
 }
