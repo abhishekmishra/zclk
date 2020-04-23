@@ -46,7 +46,7 @@ void free_cli_table(cli_table* table) {
 
 int cli_table_set_header(cli_table* table, size_t col_id, char* name) {
 	if (col_id >= 0 && col_id < table->num_cols) {
-		table->header[col_id] = str_clone(name);
+		table->header[col_id] = cli_str_clone(name);
 		return 0;
 	} else {
 		return -1;
@@ -56,7 +56,7 @@ int cli_table_set_header(cli_table* table, size_t col_id, char* name) {
 int cli_table_set_row_val(cli_table* table, size_t row_id, size_t col_id, char* value) {
 	if (col_id >= 0 && col_id < table->num_cols && row_id >= 0
 			&& row_id < table->num_rows) {
-		table->values[row_id][col_id] = str_clone(value);
+		table->values[row_id][col_id] = cli_str_clone(value);
 		return 0;
 	} else {
 		return -1;

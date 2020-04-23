@@ -6,6 +6,7 @@
  */
 
 #include "cli_common.h"
+#include <string.h>
 
 char* cli_str_clone(const char* from) {
 	char* to = NULL;

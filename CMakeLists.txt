@@ -1,6 +1,6 @@
 cmake_minimum_required ( VERSION 3.9 )
 
-include(CheckIncludeFile)
+include(FindLua)
 
 project ( cliutils C )
 
@@ -34,34 +34,25 @@ set( CLIUTILS_SOURCES
   src/cli_progress.h
 )
 
-include(FindLua)
-if (LUA_FOUND)
-  message("-- lua found at ${LUA_LIBRARIES} ${LUA_INCLUDE_DIR}")
-  message("-- lua version is ${LUA_VERSION_STRING}")
-  add_compile_definitions(LUA_ENABLED)
-else ()
-  message( FATAL_ERROR " -- ERROR: lua not found.")
-endif (LUA_FOUND)
-
 add_library( ${PROJECT_NAME} ${CLIUTILS_SOURCES} )
 target_include_directories(${PROJECT_NAME} PUBLIC src)
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD 11)
 
+if (LUA_FOUND)
+  message("-- lua found at ${LUA_LIBRARIES} ${LUA_INCLUDE_DIR}")
+  message("-- lua version is ${LUA_VERSION_STRING}")
+  add_compile_definitions(LUA_ENABLED)
+  target_include_directories(${PROJECT_NAME} PRIVATE ${LUA_INCLUDE_DIR})
+  target_link_libraries(${PROJECT_NAME} PRIVATE ${LUA_LIBRARIES})    
+else ()
+  message( FATAL_ERROR " -- ERROR: lua not found.")
+endif (LUA_FOUND)
+
 set(CMAKE_FIND_USE_PACKAGE_REGISTRY ON)
 
 find_package(coll CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PUBLIC coll::coll)
-
-check_include_file("getopt.h" HAVE_GETOPT)
-
-if(NOT HAVE_GETOPT)
-	# To find and use linenoise, as the vcpkg build does not have cmake config
-	find_path(GETOPT_INCLUDE_DIR getopt.h)
-	find_library(GETOPT_LIBRARY getopt)
-	include_directories(${GETOPT_INCLUDE_DIR})
-	target_link_libraries(${PROJECT_NAME} PUBLIC ${GETOPT_LIBRARY})
-endif (NOT HAVE_GETOPT)
 
 # Package Configuration
 export(TARGETS cliutils NAMESPACE cliutils:: FILE cliutilsConfig.cmake)
