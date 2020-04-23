@@ -1,5 +1,10 @@
 {
     "files.associations": {
-        "cliutils.h": "c"
-    }
+        "**/src/*.c": "c",
+        "**/src/*.h": "c",
+    },
+    "licenser.author": "Abhishek Mishra",
+    "licenser.license": "MIT",
+    "licenser.projectName": "cliutils",
+    "cmake.configureOnOpen": false
 }

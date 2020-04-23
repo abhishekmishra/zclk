@@ -20,7 +20,7 @@ void print_args(int argc, char **argv)
 {
 	for (int i = 0; i < argc; i++)
 	{
-		docker_log_debug("Arg%d = %s", i, argv[i]);
+		printf("Arg%d = %s", i, argv[i]);
 	}
 }
 
@@ -667,7 +667,7 @@ arraylist *get_command_to_exec(arraylist *commands, int *argc,
 						found = 1;
 						cmd_list = cmd->sub_commands;
 						arraylist_add(cmd_names, str_clone(cmd->name));
-						docker_log_debug("found command %s\n", cmd->name);
+						printf("found command %s\n", cmd->name);
 						cmd_to_exec = cmd;
 						arraylist_add(cmds_to_exec, cmd);
 						break;
@@ -818,7 +818,7 @@ cld_cmd_err parse_options(arraylist *options, int *argc, char **argv)
 					//read option value if it is not a flag
 					if (found->val->type == CLD_TYPE_FLAG)
 					{
-						found->val->bool_value = true;
+						found->val->bool_value = 1;
 					}
 					else
 					{
@@ -892,13 +892,13 @@ void print_options(arraylist *options)
 			switch (o->val->type)
 			{
 			case CLD_TYPE_BOOLEAN:
-				docker_log_debug("Options%d %s, %s = %d\n", i, o->name, o->short_name, o->val->bool_value);
+				printf("Options%d %s, %s = %d\n", i, o->name, o->short_name, o->val->bool_value);
 				break;
 			case CLD_TYPE_FLAG:
-				docker_log_debug("Options%d %s, %s = %d\n", i, o->name, o->short_name, o->val->bool_value);
+				printf("Options%d %s, %s = %d\n", i, o->name, o->short_name, o->val->bool_value);
 				break;
 			case CLD_TYPE_STRING:
-				docker_log_debug("Options%d %s, %s = %s\n", i, o->name, o->short_name, o->val->str_value);
+				printf("Options%d %s, %s = %s\n", i, o->name, o->short_name, o->val->str_value);
 				break;
 			}
 		}

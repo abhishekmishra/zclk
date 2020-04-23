@@ -1,0 +1,56 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "make-all",
+            "type": "shell",
+            "osx": {
+                "command": "cd build; make all; cd .."
+            },
+            "linux": {
+                "command": "cd build; make all; cd .."
+            },
+            "windows": {
+                "command": "./rebuild_win64.ps1",
+                "problemMatcher": [
+                    "$msCompile"
+                ]
+            },
+            "options": {
+                "cwd": "."
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "make-clean-all",
+            "type": "shell",
+            "osx": {
+                "command": "cd build; make clean all; cd .."
+            },
+            "linux": {
+                "command": "cd build; make clean all; cd .."
+            },
+            "windows": {
+                "command": "./build_win64.ps1",
+                "problemMatcher": [
+                    "$msCompile"
+                ]
+            },
+            "options": {
+                "cwd": "."
+            },
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        }
+    ]
+}

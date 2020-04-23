@@ -37,7 +37,7 @@ else ()
   message( FATAL_ERROR " -- ERROR: lua not found.")
 endif (LUA_FOUND)
 
-add_executable( ${PROJECT_NAME} ${CLIUTILS_SOURCES} )
+add_library( ${PROJECT_NAME} ${CLIUTILS_SOURCES} )
 target_include_directories(${PROJECT_NAME} PRIVATE ${YOUR_DIRECTORY})
 
 # see mustach documentation for this

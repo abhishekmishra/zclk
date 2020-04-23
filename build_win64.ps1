@@ -13,7 +13,7 @@ cmake .. -DCMAKE_TOOLCHAIN_FILE=d:\vcpkg\scripts\buildsystems\vcpkg.cmake -DVCPK
 # for finding msbuild using vswhere (and installing vswhere if does not exist)
 $msbuildExe = vswhere -latest -requires Microsoft.Component.MSBuild -find "MSBuild\**\Bin\MSBuild.exe"
 
-&$msbuildExe cld.sln
+&$msbuildExe cliutils.sln
 
 # go back to parent directory
 Set-Location ..
