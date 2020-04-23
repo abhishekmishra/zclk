@@ -6,6 +6,8 @@
 #ifndef SRC_CLI_COMMAND_H_
 #define SRC_CLI_COMMAND_H_
 
+#include "cli_common.h"
+
 #include <arraylist.h>
 #include <lua.h>
 #include <lauxlib.h>
