@@ -946,7 +946,7 @@ cli_cmd_err exec_command(arraylist *commands, void *handler_args,
 		}
 	}
 
-	print_args(argc, argv);
+	//print_args(argc, argv);
 
 	//Then read all options
 	err = parse_options(all_options, &argc, argv);
@@ -955,7 +955,7 @@ cli_cmd_err exec_command(arraylist *commands, void *handler_args,
 		return err;
 	}
 
-	print_options(all_options);
+	//print_options(all_options);
 
 	cli_option *help_option = get_option_by_name(all_options, CLI_OPTION_HELP_LONG);
 	if (help_option->val->bool_value)
