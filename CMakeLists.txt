@@ -1,7 +1,5 @@
 cmake_minimum_required ( VERSION 3.9 )
 
-include(FindLua)
-
 project ( cliutils C )
 
 # Set the project source dir (just convention)
@@ -39,6 +37,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC src)
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD 11)
 
+include(FindLua)
 if (LUA_FOUND)
   message("-- lua found at ${LUA_LIBRARIES} ${LUA_INCLUDE_DIR}")
   message("-- lua version is ${LUA_VERSION_STRING}")
