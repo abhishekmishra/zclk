@@ -40,9 +40,6 @@ endif (LUA_FOUND)
 add_library( ${PROJECT_NAME} ${CLIUTILS_SOURCES} )
 target_include_directories(${PROJECT_NAME} PRIVATE ${YOUR_DIRECTORY})
 
-# see mustach documentation for this
-add_definitions(-DNO_OPEN_MEMSTREAM)
-
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD 11)
 
 set(CMAKE_FIND_USE_PACKAGE_REGISTRY ON)
