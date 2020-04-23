@@ -38,7 +38,7 @@ else ()
 endif (LUA_FOUND)
 
 add_library( ${PROJECT_NAME} ${CLIUTILS_SOURCES} )
-target_include_directories(${PROJECT_NAME} PRIVATE ${YOUR_DIRECTORY})
+target_include_directories(${PROJECT_NAME} PUBLIC src)
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD 11)
 
@@ -56,3 +56,8 @@ if(NOT HAVE_GETOPT)
 	include_directories(${GETOPT_INCLUDE_DIR})
 	target_link_libraries(${PROJECT_NAME} PUBLIC ${GETOPT_LIBRARY})
 endif (NOT HAVE_GETOPT)
+
+# Package Configuration
+export(TARGETS cliutils NAMESPACE cliutils:: FILE cliutilsConfig.cmake)
+set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
+export(PACKAGE cliutils)
