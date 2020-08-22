@@ -32,7 +32,7 @@ set( CLIUTILS_SOURCES
   src/cli_progress.h
 )
 
-add_library( ${PROJECT_NAME} ${CLIUTILS_SOURCES} )
+add_library( ${PROJECT_NAME} SHARED ${CLIUTILS_SOURCES} )
 target_include_directories(${PROJECT_NAME} PUBLIC src)
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD 11)
