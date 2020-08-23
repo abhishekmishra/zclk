@@ -2,6 +2,10 @@ cmake_minimum_required ( VERSION 3.9 )
 
 project ( cliutils C )
 
+# Export all symbols for shared linking to work on windows
+# see https://stackoverflow.com/questions/37128555/getting-cmake-to-build-shared-library-for-msvc
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS 1)
+
 # Set the project source dir (just convention)
 set( CLIUTILS_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR} )
 set( CLIUTILS_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR} )
