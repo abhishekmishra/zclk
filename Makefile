@@ -31,17 +31,6 @@ delbuild:
 build:
 	cmake --build ./build
 
-run:
-ifeq ($(OSFLAG),WIN32)
-	./build/bin/Debug/cliutils 
-#uncomment the lines below to run macos bundles (if build produces one on macos)
-#else ifeq ($(OSFLAG),OSX)
-#	#open -n ./build/bin/cliutils.app --args 
-#	./build/bin/cliutils.app/Contents/MacOS/cliutils --args 
-else
-	./build/bin/cliutils 
-endif
-
 clean:
 	cmake --build ./build --target clean
 
@@ -65,7 +54,6 @@ help:
 		@echo ""
 		@echo "  all:      Runs the clean, build, and run targets."
 		@echo "  build:    Runs the cmake project build target."
-		@echo "  run:      Runs the debug executable."
 		@echo "  clean:    Runs the cmake project clean target."
 		@echo "  install:  Runs the cmake project install target."
 		@echo "  delbuild: Deletes the cmake build directory!"
