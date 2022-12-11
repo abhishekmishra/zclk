@@ -8,7 +8,7 @@
 
 #include "cli_common.h"
 
-#include <arraylist.h>
+#include <coll_arraylist.h>
 #include <lua.h>
 #include <lauxlib.h>
 #include "cli_table.h"

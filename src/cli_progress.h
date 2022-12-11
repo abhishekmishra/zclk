@@ -7,7 +7,7 @@
 #define SRC_CLI_PROGRESS_H_
 
 #include "cli_common.h"
-#include <arraylist.h>
+#include <coll_arraylist.h>
 
 #ifdef __cplusplus  
 extern "C" {
