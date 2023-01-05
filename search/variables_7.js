@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['optional_123',['optional',['../structcli__argument__t.html#acf07b53c8ac95e777ecfe8cf14f43cdb',1,'cli_argument_t']]],
-  ['options_124',['options',['../structcli__command__t.html#ab4d89be97bdb5cdba0d773a07ee41459',1,'cli_command_t']]]
+  ['short_5fname_117',['short_name',['../structcli__option__t.html#ab52da34454d4e1f6aaa61ebba291823f',1,'cli_option_t::short_name()'],['../structzclk__command__t.html#a92975ba4f4e87071a1d3d3366b90c76b',1,'zclk_command_t::short_name()']]],
+  ['str_5fvalue_118',['str_value',['../structcli__val__t.html#a686ff026c3073931f26e7296517f9043',1,'cli_val_t']]],
+  ['sub_5fcommands_119',['sub_commands',['../structzclk__command__t.html#a2417121c3797127e37b5b34c585f995c',1,'zclk_command_t']]]
 ];

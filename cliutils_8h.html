@@ -117,11 +117,8 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcli__argument__t.html">cli_argument_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">CLI Argument object.  <a href="structcli__argument__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcli__command__t.html">cli_command_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A CLI Command Ojbect.  <a href="structcli__command__t.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcli__app__t.html">cli_app_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the top-level CLI APP object.  <a href="structcli__app__t.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structzclk__command__t.html">zclk_command_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A CLI Command Ojbect.  <a href="structzclk__command__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -147,8 +144,6 @@ Macros</h2></td></tr>
 <tr class="memitem:aefc8ab64fe075106ee0a35fa7e0219f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#aefc8ab64fe075106ee0a35fa7e0219f8">CLI_VAL_STRING</a>(v)&#160;&#160;&#160;<a class="el" href="cliutils_8h.html#a90b9fc538b757ff8cddc6e4b7648aad0">create_cli_val</a>(CLI_TYPE_STRING, 0, 0, 0, v)</td></tr>
 <tr class="memdesc:aefc8ab64fe075106ee0a35fa7e0219f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new string cli value.  <a href="cliutils_8h.html#aefc8ab64fe075106ee0a35fa7e0219f8">More...</a><br /></td></tr>
 <tr class="separator:aefc8ab64fe075106ee0a35fa7e0219f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e4635cf2d72761894c8ecb4a4f9635f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a0e4635cf2d72761894c8ecb4a4f9635f">CLI_ROOT_COMMAND_NAME</a>&#160;&#160;&#160;__root__</td></tr>
-<tr class="separator:a0e4635cf2d72761894c8ecb4a4f9635f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -164,21 +159,18 @@ typedef struct <a class="el" href="structcli__option__t.html">cli_option_t</a>&#
 typedef struct <a class="el" href="structcli__argument__t.html">cli_argument_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a6c6d963e264001d384420d667e8b795b">cli_argument</a></td></tr>
 <tr class="memdesc:a6c6d963e264001d384420d667e8b795b"><td class="mdescLeft">&#160;</td><td class="mdescRight">CLI Argument object. <br /></td></tr>
 <tr class="separator:a6c6d963e264001d384420d667e8b795b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5aabec0cb8a58f9a9c2c46e16456feb4"><td class="memItemLeft" align="right" valign="top"><a id="a5aabec0cb8a58f9a9c2c46e16456feb4"></a>
-typedef <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a5aabec0cb8a58f9a9c2c46e16456feb4">cli_command_output_handler</a>) (<a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a> result_flag, <a class="el" href="cliutils_8h.html#a50be9a711bb0bd5dfed4a0b7b3082a8a">cli_result_type</a> result_type, void *result)</td></tr>
-<tr class="memdesc:a5aabec0cb8a58f9a9c2c46e16456feb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a function to handle command output. <br /></td></tr>
-<tr class="separator:a5aabec0cb8a58f9a9c2c46e16456feb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45ded9bbf541a877efc8fdf4fff4aed8"><td class="memItemLeft" align="right" valign="top"><a id="a45ded9bbf541a877efc8fdf4fff4aed8"></a>
-typedef <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a45ded9bbf541a877efc8fdf4fff4aed8">cli_command_handler</a>) (void *handler_args, arraylist *options, arraylist *args, <a class="el" href="cliutils_8h.html#a5aabec0cb8a58f9a9c2c46e16456feb4">cli_command_output_handler</a> success_handler, <a class="el" href="cliutils_8h.html#a5aabec0cb8a58f9a9c2c46e16456feb4">cli_command_output_handler</a> error_handler)</td></tr>
-<tr class="memdesc:a45ded9bbf541a877efc8fdf4fff4aed8"><td class="mdescLeft">&#160;</td><td class="mdescRight">defines a function to handle a command <br /></td></tr>
-<tr class="separator:a45ded9bbf541a877efc8fdf4fff4aed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86172d543128a1cd9d4aa2f70149ff09"><td class="memItemLeft" align="right" valign="top"><a id="a86172d543128a1cd9d4aa2f70149ff09"></a>
-typedef struct <a class="el" href="structcli__command__t.html">cli_command_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a86172d543128a1cd9d4aa2f70149ff09">cli_command</a></td></tr>
-<tr class="memdesc:a86172d543128a1cd9d4aa2f70149ff09"><td class="mdescLeft">&#160;</td><td class="mdescRight">A CLI Command Ojbect. <br /></td></tr>
-<tr class="separator:a86172d543128a1cd9d4aa2f70149ff09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae288ed5c176e1d82bedbf6d66f708f4c"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structcli__app__t.html">cli_app_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#ae288ed5c176e1d82bedbf6d66f708f4c">cli_app</a></td></tr>
-<tr class="memdesc:ae288ed5c176e1d82bedbf6d66f708f4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the top-level CLI APP object.  <a href="cliutils_8h.html#ae288ed5c176e1d82bedbf6d66f708f4c">More...</a><br /></td></tr>
-<tr class="separator:ae288ed5c176e1d82bedbf6d66f708f4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab354971619044d3086cb4bf62153f84"><td class="memItemLeft" align="right" valign="top"><a id="aab354971619044d3086cb4bf62153f84"></a>
+typedef <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#aab354971619044d3086cb4bf62153f84">zclk_command_output_handler</a>) (<a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a> result_flag, <a class="el" href="cliutils_8h.html#a50be9a711bb0bd5dfed4a0b7b3082a8a">cli_result_type</a> result_type, void *result)</td></tr>
+<tr class="memdesc:aab354971619044d3086cb4bf62153f84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a function to handle command output. <br /></td></tr>
+<tr class="separator:aab354971619044d3086cb4bf62153f84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8d360aa408e3d03b927466a7b976001"><td class="memItemLeft" align="right" valign="top"><a id="ad8d360aa408e3d03b927466a7b976001"></a>
+typedef <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#ad8d360aa408e3d03b927466a7b976001">zclk_command_handler</a>) (void *handler_args, arraylist *options, arraylist *args, <a class="el" href="cliutils_8h.html#aab354971619044d3086cb4bf62153f84">zclk_command_output_handler</a> success_handler, <a class="el" href="cliutils_8h.html#aab354971619044d3086cb4bf62153f84">zclk_command_output_handler</a> error_handler)</td></tr>
+<tr class="memdesc:ad8d360aa408e3d03b927466a7b976001"><td class="mdescLeft">&#160;</td><td class="mdescRight">defines a function to handle a command <br /></td></tr>
+<tr class="separator:ad8d360aa408e3d03b927466a7b976001"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb15e975d81227700ed1d84df15eaee6"><td class="memItemLeft" align="right" valign="top"><a id="afb15e975d81227700ed1d84df15eaee6"></a>
+typedef struct <a class="el" href="structzclk__command__t.html">zclk_command_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a></td></tr>
+<tr class="memdesc:afb15e975d81227700ed1d84df15eaee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">A CLI Command Ojbect. <br /></td></tr>
+<tr class="separator:afb15e975d81227700ed1d84df15eaee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -265,30 +257,39 @@ Functions</h2></td></tr>
 <tr class="separator:a6ec9ccbb763634eebe69a67b062eb26b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e9915f04a12011fa94f9bb5fc683c04"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a8e9915f04a12011fa94f9bb5fc683c04">free_argument</a> (<a class="el" href="cliutils_8h.html#a6c6d963e264001d384420d667e8b795b">cli_argument</a> *arg)</td></tr>
 <tr class="separator:a8e9915f04a12011fa94f9bb5fc683c04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9856755f84f975271f1dd343e9f81fe9"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a9856755f84f975271f1dd343e9f81fe9">make_command</a> (<a class="el" href="cliutils_8h.html#a86172d543128a1cd9d4aa2f70149ff09">cli_command</a> **command, char *name, char *short_name, char *description, <a class="el" href="cliutils_8h.html#a45ded9bbf541a877efc8fdf4fff4aed8">cli_command_handler</a> handler)</td></tr>
-<tr class="separator:a9856755f84f975271f1dd343e9f81fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae32b26625360152ccd68187665ff4b2b"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="cliutils_8h.html#a86172d543128a1cd9d4aa2f70149ff09">cli_command</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#ae32b26625360152ccd68187665ff4b2b">create_command</a> (char *name, char *short_name, char *description, <a class="el" href="cliutils_8h.html#a45ded9bbf541a877efc8fdf4fff4aed8">cli_command_handler</a> handler)</td></tr>
-<tr class="memdesc:ae32b26625360152ccd68187665ff4b2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Internal use only) Create a command object  <a href="cliutils_8h.html#ae32b26625360152ccd68187665ff4b2b">More...</a><br /></td></tr>
-<tr class="separator:ae32b26625360152ccd68187665ff4b2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3454ba68c7c8b7a29eacb52b879fd69"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#ad3454ba68c7c8b7a29eacb52b879fd69">free_command</a> (<a class="el" href="cliutils_8h.html#a86172d543128a1cd9d4aa2f70149ff09">cli_command</a> *command)</td></tr>
-<tr class="separator:ad3454ba68c7c8b7a29eacb52b879fd69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bd62c821d573279ca61428c40f8a157"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a0bd62c821d573279ca61428c40f8a157">make_command</a> (<a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> **command, char *name, char *short_name, char *description, <a class="el" href="cliutils_8h.html#ad8d360aa408e3d03b927466a7b976001">zclk_command_handler</a> handler)</td></tr>
+<tr class="separator:a0bd62c821d573279ca61428c40f8a157"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e1d6aa6b621e1a3b84552e7c6cb56ff"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a5e1d6aa6b621e1a3b84552e7c6cb56ff">zclk_command_new</a> (char *name, char *short_name, char *description, <a class="el" href="cliutils_8h.html#ad8d360aa408e3d03b927466a7b976001">zclk_command_handler</a> handler)</td></tr>
+<tr class="memdesc:a5e1d6aa6b621e1a3b84552e7c6cb56ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a command object with automatic error handling.  <a href="cliutils_8h.html#a5e1d6aa6b621e1a3b84552e7c6cb56ff">More...</a><br /></td></tr>
+<tr class="separator:a5e1d6aa6b621e1a3b84552e7c6cb56ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eb84c140c56af094d7f6d7aebcfb12e"><td class="memItemLeft" align="right" valign="top"><a id="a8eb84c140c56af094d7f6d7aebcfb12e"></a>
+MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_command_subcommand_add</b> (<a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, <a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *subcommand)</td></tr>
+<tr class="separator:a8eb84c140c56af094d7f6d7aebcfb12e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaaca3172e2062bb711cf51f0db66706"><td class="memItemLeft" align="right" valign="top"><a id="abaaca3172e2062bb711cf51f0db66706"></a>
+MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_command_option_add</b> ()</td></tr>
+<tr class="separator:abaaca3172e2062bb711cf51f0db66706"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1021e56da0229046d686f97f4cf663f2"><td class="memItemLeft" align="right" valign="top"><a id="a1021e56da0229046d686f97f4cf663f2"></a>
+MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_command_argument_add</b> ()</td></tr>
+<tr class="separator:a1021e56da0229046d686f97f4cf663f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e5a95fa4a40aedbf3b8b0975cbe272d"><td class="memItemLeft" align="right" valign="top"><a id="a9e5a95fa4a40aedbf3b8b0975cbe272d"></a>
+MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_command_exec</b> (<a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, int argc, char *argv[])</td></tr>
+<tr class="separator:a9e5a95fa4a40aedbf3b8b0975cbe272d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18986f2ce55690b003e4cde4c6b29892"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a18986f2ce55690b003e4cde4c6b29892">free_command</a> (<a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *command)</td></tr>
+<tr class="separator:a18986f2ce55690b003e4cde4c6b29892"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03e8dd3ab99294a9bacb3bbe886f04c2"><td class="memItemLeft" align="right" valign="top">MODULE_API char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a03e8dd3ab99294a9bacb3bbe886f04c2">get_help_for_command</a> (arraylist *cmds_to_exec)</td></tr>
 <tr class="separator:a03e8dd3ab99294a9bacb3bbe886f04c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95d34df9dca6c1426119d56e5f9314ef"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a95d34df9dca6c1426119d56e5f9314ef">help_cmd_handler</a> (arraylist *commands, void *handler_args, int argc, char **argv, <a class="el" href="cliutils_8h.html#a5aabec0cb8a58f9a9c2c46e16456feb4">cli_command_output_handler</a> success_handler, <a class="el" href="cliutils_8h.html#a5aabec0cb8a58f9a9c2c46e16456feb4">cli_command_output_handler</a> error_handler)</td></tr>
-<tr class="separator:a95d34df9dca6c1426119d56e5f9314ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a708b989dfa378d3421449cb300a9eff1"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a708b989dfa378d3421449cb300a9eff1">help_cmd_handler</a> (arraylist *commands, void *handler_args, int argc, char **argv, <a class="el" href="cliutils_8h.html#aab354971619044d3086cb4bf62153f84">zclk_command_output_handler</a> success_handler, <a class="el" href="cliutils_8h.html#aab354971619044d3086cb4bf62153f84">zclk_command_output_handler</a> error_handler)</td></tr>
+<tr class="separator:a708b989dfa378d3421449cb300a9eff1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad17b2ac375a79140f142d3317aa7860b"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#ad17b2ac375a79140f142d3317aa7860b">get_help_for</a> (char **help_str, arraylist *commands, arraylist *arg_commands)</td></tr>
 <tr class="separator:ad17b2ac375a79140f142d3317aa7860b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4b3bae62f859179050bdd18b4a274cf"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#ad4b3bae62f859179050bdd18b4a274cf">exec_command</a> (arraylist *commands, void *handler_args, int argc, char **argv, <a class="el" href="cliutils_8h.html#a5aabec0cb8a58f9a9c2c46e16456feb4">cli_command_output_handler</a> success_handler, <a class="el" href="cliutils_8h.html#a5aabec0cb8a58f9a9c2c46e16456feb4">cli_command_output_handler</a> error_handler)</td></tr>
-<tr class="separator:ad4b3bae62f859179050bdd18b4a274cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a572897137e03edd0d9c0a162ab4b9bcf"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a572897137e03edd0d9c0a162ab4b9bcf">exec_command</a> (arraylist *commands, void *handler_args, int argc, char **argv, <a class="el" href="cliutils_8h.html#aab354971619044d3086cb4bf62153f84">zclk_command_output_handler</a> success_handler, <a class="el" href="cliutils_8h.html#aab354971619044d3086cb4bf62153f84">zclk_command_output_handler</a> error_handler)</td></tr>
+<tr class="separator:a572897137e03edd0d9c0a162ab4b9bcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9caed1930c265ffb2e354ff0622cf0bf"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a9caed1930c265ffb2e354ff0622cf0bf">print_table_result</a> (void *result)</td></tr>
 <tr class="memdesc:a9caed1930c265ffb2e354ff0622cf0bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a tabular result object to the stdout.  <a href="cliutils_8h.html#a9caed1930c265ffb2e354ff0622cf0bf">More...</a><br /></td></tr>
 <tr class="separator:a9caed1930c265ffb2e354ff0622cf0bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4345df916abf8d371eca94b2e35856aa"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a4345df916abf8d371eca94b2e35856aa">print_handler</a> (<a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a> result_flag, <a class="el" href="cliutils_8h.html#a50be9a711bb0bd5dfed4a0b7b3082a8a">cli_result_type</a> res_type, void *result)</td></tr>
 <tr class="memdesc:a4345df916abf8d371eca94b2e35856aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Print handler prints the result of the command.  <a href="cliutils_8h.html#a4345df916abf8d371eca94b2e35856aa">More...</a><br /></td></tr>
 <tr class="separator:a4345df916abf8d371eca94b2e35856aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5693469c70c63ea2a212ffe44ed637e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a5693469c70c63ea2a212ffe44ed637e1">create_cli_app</a> (<a class="el" href="cliutils_8h.html#ae288ed5c176e1d82bedbf6d66f708f4c">cli_app</a> **app, char *name, char *description)</td></tr>
-<tr class="memdesc:a5693469c70c63ea2a212ffe44ed637e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a cli app object.  <a href="cliutils_8h.html#a5693469c70c63ea2a212ffe44ed637e1">More...</a><br /></td></tr>
-<tr class="separator:a5693469c70c63ea2a212ffe44ed637e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Cliutils main header file. Defines the Public API of cliutils. </p>
@@ -335,21 +336,6 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Help option short name </p>
-
-</div>
-</div>
-<a id="a0e4635cf2d72761894c8ecb4a4f9635f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e4635cf2d72761894c8ecb4a4f9635f">&#9670;&nbsp;</a></span>CLI_ROOT_COMMAND_NAME</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CLI_ROOT_COMMAND_NAME&#160;&#160;&#160;__root__</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Name of the root command in the CLI APP </p>
 
 </div>
 </div>
@@ -480,25 +466,6 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a id="ae288ed5c176e1d82bedbf6d66f708f4c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae288ed5c176e1d82bedbf6d66f708f4c">&#9670;&nbsp;</a></span>cli_app</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="structcli__app__t.html">cli_app_t</a> <a class="el" href="cliutils_8h.html#ae288ed5c176e1d82bedbf6d66f708f4c">cli_app</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Represents the top-level CLI APP object. </p>
-<p>The <b>cli</b> <b>app</b> contains all the commands available, and their associated handlers.</p>
-<p>By default it contains a command with the name :CLI_ROOT_COMMAND_NAME. The root command is activated with the options and arguments, if no other command name is matched. </p>
 
 </div>
 </div>
@@ -849,51 +816,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5693469c70c63ea2a212ffe44ed637e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5693469c70c63ea2a212ffe44ed637e1">&#9670;&nbsp;</a></span>create_cli_app()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a> create_cli_app </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="cliutils_8h.html#ae288ed5c176e1d82bedbf6d66f708f4c">cli_app</a> **&#160;</td>
-          <td class="paramname"><em>app</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>description</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Create a cli app object. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">app</td><td>applicaton object to create and return </td></tr>
-    <tr><td class="paramname">name</td><td>name of the application </td></tr>
-    <tr><td class="paramname">description</td><td>description of the application </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>cli_cmd_err error code (0 indicates success) </dd></dl>
-
-</div>
-</div>
 <a id="a90b9fc538b757ff8cddc6e4b7648aad0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a90b9fc538b757ff8cddc6e4b7648aad0">&#9670;&nbsp;</a></span>create_cli_val()</h2>
 
@@ -950,59 +872,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>MODULE_API* </dd></dl>
-
-</div>
-</div>
-<a id="ae32b26625360152ccd68187665ff4b2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae32b26625360152ccd68187665ff4b2b">&#9670;&nbsp;</a></span>create_command()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MODULE_API <a class="el" href="cliutils_8h.html#a86172d543128a1cd9d4aa2f70149ff09">cli_command</a>* create_command </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>short_name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>description</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="cliutils_8h.html#a45ded9bbf541a877efc8fdf4fff4aed8">cli_command_handler</a>&#160;</td>
-          <td class="paramname"><em>handler</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>(Internal use only) Create a command object </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="cliutils_8h.html#a9856755f84f975271f1dd343e9f81fe9">make_command</a></dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td></td></tr>
-    <tr><td class="paramname">short_name</td><td></td></tr>
-    <tr><td class="paramname">description</td><td></td></tr>
-    <tr><td class="paramname">handler</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>cli_command* created command object </dd></dl>
 
 </div>
 </div>
@@ -1065,8 +934,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad4b3bae62f859179050bdd18b4a274cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4b3bae62f859179050bdd18b4a274cf">&#9670;&nbsp;</a></span>exec_command()</h2>
+<a id="a572897137e03edd0d9c0a162ab4b9bcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a572897137e03edd0d9c0a162ab4b9bcf">&#9670;&nbsp;</a></span>exec_command()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1098,13 +967,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="cliutils_8h.html#a5aabec0cb8a58f9a9c2c46e16456feb4">cli_command_output_handler</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="cliutils_8h.html#aab354971619044d3086cb4bf62153f84">zclk_command_output_handler</a>&#160;</td>
           <td class="paramname"><em>success_handler</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="cliutils_8h.html#a5aabec0cb8a58f9a9c2c46e16456feb4">cli_command_output_handler</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="cliutils_8h.html#aab354971619044d3086cb4bf62153f84">zclk_command_output_handler</a>&#160;</td>
           <td class="paramname"><em>error_handler</em>&#160;</td>
         </tr>
         <tr>
@@ -1117,7 +986,7 @@ Functions</h2></td></tr>
 <p>Execute a single line containing one top-level command. All output is written to stdout, all errors to stderr</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">commands</td><td>the list of commands registered (this is a list of cli_command*) </td></tr>
+    <tr><td class="paramname">commands</td><td>the list of commands registered (this is a list of zclk_command*) </td></tr>
     <tr><td class="paramname">handler_args</td><td>an args value to be passed to the command handler </td></tr>
     <tr><td class="paramname">argc</td><td>the number of tokens in the line </td></tr>
     <tr><td class="paramname">argv</td><td>args as an array of strings </td></tr>
@@ -1167,8 +1036,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad3454ba68c7c8b7a29eacb52b879fd69"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad3454ba68c7c8b7a29eacb52b879fd69">&#9670;&nbsp;</a></span>free_command()</h2>
+<a id="a18986f2ce55690b003e4cde4c6b29892"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18986f2ce55690b003e4cde4c6b29892">&#9670;&nbsp;</a></span>free_command()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1176,7 +1045,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">MODULE_API void free_command </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="cliutils_8h.html#a86172d543128a1cd9d4aa2f70149ff09">cli_command</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *&#160;</td>
           <td class="paramname"><em>command</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1317,8 +1186,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a95d34df9dca6c1426119d56e5f9314ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a95d34df9dca6c1426119d56e5f9314ef">&#9670;&nbsp;</a></span>help_cmd_handler()</h2>
+<a id="a708b989dfa378d3421449cb300a9eff1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a708b989dfa378d3421449cb300a9eff1">&#9670;&nbsp;</a></span>help_cmd_handler()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1350,13 +1219,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="cliutils_8h.html#a5aabec0cb8a58f9a9c2c46e16456feb4">cli_command_output_handler</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="cliutils_8h.html#aab354971619044d3086cb4bf62153f84">zclk_command_output_handler</a>&#160;</td>
           <td class="paramname"><em>success_handler</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="cliutils_8h.html#a5aabec0cb8a58f9a9c2c46e16456feb4">cli_command_output_handler</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="cliutils_8h.html#aab354971619044d3086cb4bf62153f84">zclk_command_output_handler</a>&#160;</td>
           <td class="paramname"><em>error_handler</em>&#160;</td>
         </tr>
         <tr>
@@ -1369,7 +1238,7 @@ Functions</h2></td></tr>
 <p>Run the help command for all commands or single command</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">commands</td><td>the list of commands registered (this is a list of cli_command*) </td></tr>
+    <tr><td class="paramname">commands</td><td>the list of commands registered (this is a list of zclk_command*) </td></tr>
     <tr><td class="paramname">handler_args</td><td>an args value to be passed to the command handler </td></tr>
     <tr><td class="paramname">argc</td><td>the number of tokens in the line </td></tr>
     <tr><td class="paramname">argv</td><td>args as an array of strings </td></tr>
@@ -1476,8 +1345,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a9856755f84f975271f1dd343e9f81fe9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9856755f84f975271f1dd343e9f81fe9">&#9670;&nbsp;</a></span>make_command()</h2>
+<a id="a0bd62c821d573279ca61428c40f8a157"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bd62c821d573279ca61428c40f8a157">&#9670;&nbsp;</a></span>make_command()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1485,7 +1354,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a> make_command </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="cliutils_8h.html#a86172d543128a1cd9d4aa2f70149ff09">cli_command</a> **&#160;</td>
+          <td class="paramtype"><a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> **&#160;</td>
           <td class="paramname"><em>command</em>, </td>
         </tr>
         <tr>
@@ -1509,7 +1378,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="cliutils_8h.html#a45ded9bbf541a877efc8fdf4fff4aed8">cli_command_handler</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="cliutils_8h.html#ad8d360aa408e3d03b927466a7b976001">zclk_command_handler</a>&#160;</td>
           <td class="paramname"><em>handler</em>&#160;</td>
         </tr>
         <tr>
@@ -1704,6 +1573,59 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a5e1d6aa6b621e1a3b84552e7c6cb56ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e1d6aa6b621e1a3b84552e7c6cb56ff">&#9670;&nbsp;</a></span>zclk_command_new()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MODULE_API <a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a>* zclk_command_new </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>short_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>description</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="cliutils_8h.html#ad8d360aa408e3d03b927466a7b976001">zclk_command_handler</a>&#160;</td>
+          <td class="paramname"><em>handler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a command object with automatic error handling. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="cliutils_8h.html#a0bd62c821d573279ca61428c40f8a157">make_command</a></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td></td></tr>
+    <tr><td class="paramname">short_name</td><td></td></tr>
+    <tr><td class="paramname">description</td><td></td></tr>
+    <tr><td class="paramname">handler</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>zclk_command* created command object </dd></dl>
 
 </div>
 </div>
