@@ -370,13 +370,61 @@ MODULE_API cli_cmd_err make_command(zclk_command** command, char* name, char* sh
  * @param handler 
  * @return zclk_command* created command object
  */
-MODULE_API zclk_command* zclk_command_new(char* name, char* short_name,
-    char* description, zclk_command_handler handler);
+MODULE_API zclk_command* zclk_command_new(
+							char* name, 
+							char* short_name,
+    						char* description, 
+							zclk_command_handler handler
+						);
 
-MODULE_API cli_cmd_err zclk_command_subcommand_add(zclk_command *cmd, zclk_command *subcommand);
-MODULE_API cli_cmd_err zclk_command_option_add();
-MODULE_API cli_cmd_err zclk_command_argument_add();
-MODULE_API cli_cmd_err zclk_command_exec(zclk_command* cmd, int argc, char* argv[]);
+/**
+ * @brief Add a subcommand to the given command
+ * 
+ * @param cmd command
+ * @param subcommand subcommand to add
+ * @return error code
+ */
+MODULE_API cli_cmd_err zclk_command_subcommand_add(
+							zclk_command *cmd,
+							zclk_command *subcommand
+						);
+
+/**
+ * @brief Add an option to the given command
+ * 
+ * @param cmd command
+ * @param option option to add
+ * @return error code
+ */
+MODULE_API cli_cmd_err zclk_command_option_add(
+							zclk_command *cmd,
+							cli_option* option
+						);
+
+/**
+ * @brief Add an argument to the given command
+ * 
+ * @param cmd command
+ * @param arg argument to add
+ * @return error code
+ */
+MODULE_API cli_cmd_err zclk_command_argument_add(
+							zclk_command *cmd,
+							cli_argument* arg
+						);
+
+/**
+ * @brief Execute the command with the given args
+ * 
+ * @param cmd Command to execute
+ * @param argc arg count
+ * @param argv arg values
+ * @return error code
+ */
+MODULE_API cli_cmd_err zclk_command_exec(
+							zclk_command* cmd, 
+							int argc, char* argv[]
+						);
 
 /**
  * Free a command object

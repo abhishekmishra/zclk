@@ -345,6 +345,13 @@ cli_cmd_err make_command(zclk_command **command, char *name, char *short_name,
 	arraylist_new(&((*command)->sub_commands), (void (*)(void *)) & free_command);
 	arraylist_new(&((*command)->args), (void (*)(void *)) & free_argument);
 	set_lua_convertor((*command)->args, &arraylist_cli_argument_to_lua);
+
+	zclk_command_option_add(
+		(*command),
+		create_option(CLI_OPTION_HELP_LONG,
+					  CLI_OPTION_HELP_SHORT, CLI_VAL_FLAG(0),
+					  CLI_VAL_FLAG(0), CLI_OPTION_HELP_DESC));
+
 	return CLI_COMMAND_SUCCESS;
 }
 
@@ -355,6 +362,61 @@ zclk_command* zclk_command_new(char* name, char* short_name,
 		return cmd;
 	}
 	return NULL;
+}
+
+cli_cmd_err zclk_command_subcommand_add(zclk_command *cmd, 
+											zclk_command *subcommand)
+{
+	if(cmd == NULL || subcommand == NULL) 
+	{
+		return CLI_COMMAND_ERR_UNKNOWN;
+	}
+
+	arraylist_add(cmd->sub_commands, subcommand);
+	return CLI_COMMAND_SUCCESS;
+}
+
+cli_cmd_err zclk_command_option_add(
+							zclk_command *cmd,
+							cli_option* option
+						)
+{
+	if(cmd == NULL || option == NULL) 
+	{
+		return CLI_COMMAND_ERR_UNKNOWN;
+	}
+
+	arraylist_add(cmd->options, option);
+	return CLI_COMMAND_SUCCESS;
+}
+
+cli_cmd_err zclk_command_argument_add(
+							zclk_command *cmd,
+							cli_argument* arg
+						)
+{
+	if(cmd == NULL || arg == NULL) 
+	{
+		return CLI_COMMAND_ERR_UNKNOWN;
+	}
+
+	arraylist_add(cmd->args, arg);
+	return CLI_COMMAND_SUCCESS;
+}
+
+cli_cmd_err zclk_command_exec(zclk_command* cmd, int argc, char* argv[])
+{
+	arraylist *toplevel_commands;
+	arraylist_new(&toplevel_commands, NULL);
+	arraylist_add(toplevel_commands, cmd);
+	cli_cmd_err err = exec_command(toplevel_commands, 
+								NULL, argc,	argv, 
+								(zclk_command_output_handler)&print_handler,
+								(zclk_command_output_handler)&print_handler);
+	if (err != CLI_COMMAND_SUCCESS)
+	{
+		printf("Error: invalid command.\n");
+	}
 }
 
 void free_command(zclk_command *command)
