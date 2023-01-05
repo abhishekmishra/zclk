@@ -16,6 +16,9 @@ set ( CLIUTILS_VERSION_MAJOR 0 )
 set ( CLIUTILS_VERSION_MINOR 1 )
 set ( CLIUTILS_VERSION_PATCH 0 )
 
+# https://stackoverflow.com/a/47260387/9483968
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
 # Include Directories
 # In GCC, this will invoke the "-I" command
 include_directories( src )
