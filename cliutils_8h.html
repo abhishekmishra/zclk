@@ -120,6 +120,9 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcli__command__t.html">cli_command_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A CLI Command Ojbect.  <a href="structcli__command__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcli__app__t.html">cli_app_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the top-level CLI APP object.  <a href="structcli__app__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -144,6 +147,8 @@ Macros</h2></td></tr>
 <tr class="memitem:aefc8ab64fe075106ee0a35fa7e0219f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#aefc8ab64fe075106ee0a35fa7e0219f8">CLI_VAL_STRING</a>(v)&#160;&#160;&#160;<a class="el" href="cliutils_8h.html#a90b9fc538b757ff8cddc6e4b7648aad0">create_cli_val</a>(CLI_TYPE_STRING, 0, 0, 0, v)</td></tr>
 <tr class="memdesc:aefc8ab64fe075106ee0a35fa7e0219f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new string cli value.  <a href="cliutils_8h.html#aefc8ab64fe075106ee0a35fa7e0219f8">More...</a><br /></td></tr>
 <tr class="separator:aefc8ab64fe075106ee0a35fa7e0219f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e4635cf2d72761894c8ecb4a4f9635f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a0e4635cf2d72761894c8ecb4a4f9635f">CLI_ROOT_COMMAND_NAME</a>&#160;&#160;&#160;__root__</td></tr>
+<tr class="separator:a0e4635cf2d72761894c8ecb4a4f9635f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -171,6 +176,9 @@ typedef <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">
 typedef struct <a class="el" href="structcli__command__t.html">cli_command_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a86172d543128a1cd9d4aa2f70149ff09">cli_command</a></td></tr>
 <tr class="memdesc:a86172d543128a1cd9d4aa2f70149ff09"><td class="mdescLeft">&#160;</td><td class="mdescRight">A CLI Command Ojbect. <br /></td></tr>
 <tr class="separator:a86172d543128a1cd9d4aa2f70149ff09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae288ed5c176e1d82bedbf6d66f708f4c"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structcli__app__t.html">cli_app_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#ae288ed5c176e1d82bedbf6d66f708f4c">cli_app</a></td></tr>
+<tr class="memdesc:ae288ed5c176e1d82bedbf6d66f708f4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the top-level CLI APP object.  <a href="cliutils_8h.html#ae288ed5c176e1d82bedbf6d66f708f4c">More...</a><br /></td></tr>
+<tr class="separator:ae288ed5c176e1d82bedbf6d66f708f4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -278,6 +286,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a4345df916abf8d371eca94b2e35856aa"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a4345df916abf8d371eca94b2e35856aa">print_handler</a> (<a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a> result_flag, <a class="el" href="cliutils_8h.html#a50be9a711bb0bd5dfed4a0b7b3082a8a">cli_result_type</a> res_type, void *result)</td></tr>
 <tr class="memdesc:a4345df916abf8d371eca94b2e35856aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Print handler prints the result of the command.  <a href="cliutils_8h.html#a4345df916abf8d371eca94b2e35856aa">More...</a><br /></td></tr>
 <tr class="separator:a4345df916abf8d371eca94b2e35856aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5693469c70c63ea2a212ffe44ed637e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a5693469c70c63ea2a212ffe44ed637e1">create_cli_app</a> (<a class="el" href="cliutils_8h.html#ae288ed5c176e1d82bedbf6d66f708f4c">cli_app</a> **app, char *name, char *description)</td></tr>
+<tr class="memdesc:a5693469c70c63ea2a212ffe44ed637e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a cli app object.  <a href="cliutils_8h.html#a5693469c70c63ea2a212ffe44ed637e1">More...</a><br /></td></tr>
+<tr class="separator:a5693469c70c63ea2a212ffe44ed637e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Cliutils main header file. Defines the Public API of cliutils. </p>
@@ -324,6 +335,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Help option short name </p>
+
+</div>
+</div>
+<a id="a0e4635cf2d72761894c8ecb4a4f9635f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e4635cf2d72761894c8ecb4a4f9635f">&#9670;&nbsp;</a></span>CLI_ROOT_COMMAND_NAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CLI_ROOT_COMMAND_NAME&#160;&#160;&#160;__root__</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Name of the root command in the CLI APP </p>
 
 </div>
 </div>
@@ -454,6 +480,25 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="ae288ed5c176e1d82bedbf6d66f708f4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae288ed5c176e1d82bedbf6d66f708f4c">&#9670;&nbsp;</a></span>cli_app</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structcli__app__t.html">cli_app_t</a> <a class="el" href="cliutils_8h.html#ae288ed5c176e1d82bedbf6d66f708f4c">cli_app</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Represents the top-level CLI APP object. </p>
+<p>The <b>cli</b> <b>app</b> contains all the commands available, and their associated handlers.</p>
+<p>By default it contains a command with the name :CLI_ROOT_COMMAND_NAME. The root command is activated with the options and arguments, if no other command name is matched. </p>
 
 </div>
 </div>
@@ -801,6 +846,51 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>MODULE_API* </dd></dl>
+
+</div>
+</div>
+<a id="a5693469c70c63ea2a212ffe44ed637e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5693469c70c63ea2a212ffe44ed637e1">&#9670;&nbsp;</a></span>create_cli_app()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a> create_cli_app </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cliutils_8h.html#ae288ed5c176e1d82bedbf6d66f708f4c">cli_app</a> **&#160;</td>
+          <td class="paramname"><em>app</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>description</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a cli app object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">app</td><td>applicaton object to create and return </td></tr>
+    <tr><td class="paramname">name</td><td>name of the application </td></tr>
+    <tr><td class="paramname">description</td><td>description of the application </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>cli_cmd_err error code (0 indicates success) </dd></dl>
 
 </div>
 </div>
