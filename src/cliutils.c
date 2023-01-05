@@ -24,13 +24,6 @@ void print_args(int argc, char **argv)
 	}
 }
 
-/**
- * Create a new value object of given type.
- *
- * \param val object to create
- * \param type
- * \return error code
- */
 cli_cmd_err make_cli_val(cli_val **val, cli_type type)
 {
 	(*val) = (cli_val *)calloc(1, sizeof(cli_val));
@@ -55,9 +48,6 @@ cli_val* create_cli_val(cli_type type, int bool_val, int int_val, double dbl_val
 	return v;
 }
 
-/**
- * Free the created value
- */
 void free_cli_val(cli_val *val)
 {
 	if (val->str_value)
@@ -67,9 +57,6 @@ void free_cli_val(cli_val *val)
 	free(val);
 }
 
-/**
- * Reset values to system defaults.
- */
 void clear_cli_val(cli_val *val)
 {
 	val->bool_value = 0;
@@ -78,15 +65,6 @@ void clear_cli_val(cli_val *val)
 	val->str_value = NULL;
 }
 
-/**
- * Copy values from 'from' to 'to'.
- * Can be used to reset to defaults.
- * (description and type are not copied)
- * str_value should be freed by caller.
- *
- * \param to val to set
- * \param from val to read from
- */
 void copy_cli_val(cli_val *to, cli_val *from)
 {
 	to->bool_value = from->bool_value;
@@ -95,15 +73,6 @@ void copy_cli_val(cli_val *to, cli_val *from)
 	to->str_value = from->str_value;
 }
 
-/**
- * Parse the input and read the value of the type of the val object.
- * (Should not be called when the values is a flag.)
- * The value should be set as soon as the argument/option is seen
- *
- * \param val object whose value will be set
- * \param input string input
- * \return error code
- */
 cli_cmd_err parse_cli_val(cli_val *val, char *input)
 {
 	if (input == NULL)
@@ -180,16 +149,6 @@ int cli_val_to_lua(lua_State *L, cli_val *val)
 	return 1;
 }
 
-/**
- * Create a new option given a name and type.
- *
- * \param option object to create
- * \param name
- * \param short_name
- * \param type
- * \param description
- * \return error code
- */
 cli_cmd_err make_option(cli_option **option, char *name, char *short_name,
 	cli_val* val, cli_val* default_val, char *description)
 {
@@ -212,9 +171,6 @@ cli_option* create_option(char* name, char* short_name, cli_val*val, cli_val* de
 	return o;
 }
 
-/**
- * Free resources used by option
- */
 void free_option(cli_option *option)
 {
 	if (option->short_name)
@@ -302,15 +258,6 @@ void cli_fill_options_in_list(arraylist* optlist, cli_option* options[]) {
 	}
 }
 
-/**
- * Create a new argument given a name and type.
- *
- * \param argument object to create
- * \param name
- * \param type
- * \param description
- * \return error code
- */
 cli_cmd_err make_argument(cli_argument **arg, char* name, cli_val* val, cli_val* default_val, char* description)
 {
 	(*arg) = (cli_argument *)calloc(1, sizeof(cli_argument));
@@ -332,9 +279,6 @@ cli_argument* create_argument(char* name, cli_val* val, cli_val* default_val, ch
 	return arg;
 }
 
-/**
- * Free resources used by argument
- */
 void free_argument(cli_argument *arg)
 {
 	if (arg->description)
@@ -384,19 +328,6 @@ void arraylist_cli_argument_to_lua(lua_State *L, int index, void *data) {
 	cli_argument_to_lua(L, (cli_argument*) data);
 }
 
-/**
- * Create a new command with the given name and handler
- * Options and sub-commands need to be added after creation.
- * The sub-commands and options lists will be initialized,
- * so one just needs to add items using the arraylist add function.
- *
- * \param command obj to be created
- * \param name
- * \param short_name
- * \param description
- * \param handler function ptr to handler
- * \return error code
- */
 cli_cmd_err make_command(cli_command **command, char *name, char *short_name,
 						 char *description, cli_command_handler handler)
 {
@@ -426,9 +357,6 @@ cli_command* create_command(char* name, char* short_name,
 	return NULL;
 }
 
-/**
- * Free a command object
- */
 void free_command(cli_command *command)
 {
 	if (command->short_name)
@@ -691,16 +619,6 @@ arraylist *get_command_to_exec(arraylist *commands, int *argc,
 	return cmds_to_exec;
 }
 
-/**
- * Run the help command for all commands or single command
- *
- * \param commands the list of commands registered (this is a list of cli_command*)
- * \param handler_args an args value to be passed to the command handler
- * \param argc the number of tokens in the line
- * \param argv args as an array of strings
- * \param success_handler handle success results
- * \param error_handler handler error results
- */
 cli_cmd_err help_cmd_handler(arraylist *commands, void *handler_args,
 							 int argc, char **argv, cli_command_output_handler success_handler,
 							 cli_command_output_handler error_handler)
@@ -723,13 +641,6 @@ cli_cmd_err help_cmd_handler(arraylist *commands, void *handler_args,
 	return CLI_COMMAND_SUCCESS;
 }
 
-/**
- * Get the help string for the arg_commands from the registered commands list.
- * \param help_str the help string to return
- * \param commands is the configured list of commands
- * \param arg_commands is a list of string
- * \return error code
- */
 cli_cmd_err get_help_for(char **help_str, arraylist *commands,
 						 arraylist *arg_commands)
 {
@@ -905,17 +816,6 @@ void print_options(arraylist *options)
 	}
 }
 
-/**
- * Execute a single line containing one top-level command.
- * All output is written to stdout, all errors to stderr
- *
- * \param commands the list of commands registered (this is a list of cli_command*)
- * \param handler_args an args value to be passed to the command handler
- * \param argc the number of tokens in the line
- * \param argv args as an array of strings
- * \param success_handler handle success results
- * \param error_handler handler error results
- */
 cli_cmd_err exec_command(arraylist *commands, void *handler_args,
 						 int argc, char **argv, cli_command_output_handler success_handler,
 						 cli_command_output_handler error_handler)

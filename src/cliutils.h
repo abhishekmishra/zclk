@@ -76,66 +76,163 @@ typedef enum
  */
 typedef struct cli_val_t
 {
-	cli_type type;
-	int bool_value;
-	int int_value;
-	double dbl_value;
-	char* str_value;
+	cli_type type;		///< type of value
+	int bool_value;		///< boolean value
+	int int_value;		///< integer value
+	double dbl_value;	///< double value
+	char* str_value;	///< string value
 } cli_val;
 
+/**
+ * @brief Convert a cli value to its lua value
+ * 
+ * @param L Lua state
+ * @param val value
+ * @return int indicating error
+ */
 MODULE_API int cli_val_to_lua(lua_State *L, cli_val* val);
 
+/**
+ * @brief Create a cli val object
+ * 
+ * @param type type of the val
+ * @param bool_val boolean value
+ * @param int_val integer value
+ * @param dbl_val double value
+ * @param str  string value
+ * @return MODULE_API* 
+ */
 MODULE_API cli_val* create_cli_val(cli_type type, int bool_val, int int_val, double dbl_val, char* str);
 
+/**
+ * @brief Create a new flag cli value
+ * 
+ * @param v value
+ */
 #define CLI_VAL_FLAG(v) create_cli_val(CLI_TYPE_FLAG, v, 0, 0, NULL)
+
+/**
+ * @brief Create a new boolean cli value
+ * 
+ * @param v value
+ */
 #define CLI_VAL_BOOLEAN(v) create_cli_val(CLI_TYPE_BOOLEAN, v, 0, 0, NULL)
+
+/**
+ * @brief Create a new integer cli value
+ * 
+ * @param v value
+ */
 #define CLI_VAL_INT(v) create_cli_val(CLI_TYPE_INT, 0, v, 0, NULL)
+
+/**
+ * @brief Create a new double cli value
+ * 
+ * @param v value
+ */
 #define CLI_VAL_DOUBLE(v) create_cli_val(CLI_TYPE_DOUBLE, 0, 0, v, NULL)
+
+/**
+ * @brief Create a new string cli value
+ * 
+ * @param v value
+ */
 #define CLI_VAL_STRING(v) create_cli_val(CLI_TYPE_STRING, 0, 0, 0, v)
 
+/**
+ * @brief CLI Option Object
+ */
 typedef struct cli_option_t
 {
-	char* name;
-	char* short_name;
-	cli_val* val;
-	cli_val* default_val;
-	char* description;
+	char* name;				///< name of the option
+	char* short_name;		///< short_name of the option
+	cli_val* val;			///< value of the option
+	cli_val* default_val;	///< default value of the option
+	char* description;		///< textural description of the option
 } cli_option;
 
+/**
+ * @brief Convert the cli option to a lua value
+ * 
+ * @param L lua state
+ * @param option option object
+ * @return int error code
+ */
 MODULE_API int cli_option_to_lua(lua_State *L, cli_option* option);
+
+/**
+ * @brief Utility conversion function passed to arraylist to convert all entries to lua options
+ * 
+ * @param L lua state
+ * @param index 
+ * @param data must be a cli_option*
+ */
 MODULE_API void arraylist_cli_option_to_lua(lua_State *L, int index, void *data);
 
+/**
+ * @brief CLI Argument object
+ */
 typedef struct cli_argument_t
 {
-	char* name;
-	cli_val* val;
-	cli_val* default_val;
-	char* description;
-	int optional;
+	char* name;				///< name of the argument
+	cli_val* val;			///< value of the argument
+	cli_val* default_val;	///< default value of the argument
+	char* description;		///< textual description
+	int optional;			///< flag indicating if argument is optional
 } cli_argument;
 
+/**
+ * @brief Convert a cli argument to a lua object
+ * 
+ * @param L lua state
+ * @param arg cli argument
+ * @return int error code
+ */
 MODULE_API int cli_argument_to_lua(lua_State *L, cli_argument* arg);
+
+/**
+ * @brief Utility conversion function passed to arraylist to convert all entries to lua
+ * 
+ * @param L lua state
+ * @param index
+ * @param data must be a cli_argument*
+ */
 MODULE_API void arraylist_cli_argument_to_lua(lua_State *L, int index, void *data);
 
+/**
+ * @brief Fill the entries in the given option array into an arraylist
+ * 
+ * @param optlist arraylist to fill
+ * @param options options array to use
+ */
 MODULE_API void cli_fill_options_in_list(arraylist* optlist, cli_option* options[]);
 
+/**
+ * @brief Defines a function to handle command output
+ */
 typedef cli_cmd_err(*cli_command_output_handler)(cli_cmd_err result_flag,
 	cli_result_type result_type, void* result);
 
+/**
+ * @brief defines a function to handle a command
+ */
 typedef cli_cmd_err(*cli_command_handler)(void* handler_args,
 	arraylist* options, arraylist* args,
 	cli_command_output_handler success_handler,
 	cli_command_output_handler error_handler);
 
+/**
+ * @brief A CLI Command Ojbect
+ */
 typedef struct cli_command_t
 {
-	char* name;
-	char* short_name;
-	char* description;
-	arraylist* sub_commands;
-	arraylist* options;
-	arraylist* args;
-	cli_command_handler handler;
+	char* name;						///< name of the command
+	char* short_name;				///< short name of the command
+	char* description;				///< textual description
+	arraylist* sub_commands;		///< list of subcommands
+	arraylist* options;				///< options list
+	arraylist* args;				///< args list
+	cli_command_handler handler;	///< command handler function
 } cli_command;
 
 /**
@@ -183,33 +280,63 @@ MODULE_API cli_cmd_err parse_cli_val(cli_val* val, char* input);
  * \param option object to create
  * \param name
  * \param short_name
- * \param value
- * \param default value
+ * \param val
+ * \param default_val
  * \param description
  * \return error code
  */
 MODULE_API cli_cmd_err make_option(cli_option** option, char* name, char* short_name,
     cli_val* val, cli_val* default_val, char* description);
 
+/**
+ * @brief (Internal use) Create a option object
+ * 
+ * @param name 
+ * @param short_name 
+ * @param val 
+ * @param default_val 
+ * @param desc 
+ * @return MODULE_API* 
+ */
 MODULE_API cli_option* create_option(char* name, char* short_name, cli_val* val, cli_val* default_val, char* desc);
 
 /**
  * Free resources used by option
+ * 
+ * @param option to free
  */
 MODULE_API void free_option(cli_option* option);
 
+/**
+ * @brief Get the option by name object
+ * 
+ * @param options options list
+ * @param name name of option to retrieve
+ * @return cli_option* option with the given name
+ */
 MODULE_API cli_option* get_option_by_name(arraylist* options, char* name);
 
 /**
  * Create a new argument given a name and type.
  *
- * \param argument object to create
+ * \param arg object to create
  * \param name
- * \param type
- * \param description
+ * \param val
+ * \param default_val
+ * \param desc
  * \return error code
  */
 MODULE_API cli_cmd_err make_argument(cli_argument** arg, char* name, cli_val* val, cli_val* default_val, char* desc);
+
+/**
+ * @brief (Internal use only) Create a argument object
+ * 
+ * @param name 
+ * @param val 
+ * @param default_val 
+ * @param desc 
+ * @return MODULE_API* 
+ */
 MODULE_API cli_argument* create_argument(char* name, cli_val* val, cli_val* default_val, char* desc);
 
 /**
@@ -233,6 +360,16 @@ MODULE_API void free_argument(cli_argument* arg);
 MODULE_API cli_cmd_err make_command(cli_command** command, char* name, char* short_name,
 	char* description, cli_command_handler handler);
 
+/**
+ * @brief (Internal use only) Create a command object
+ * @see make_command
+ * 
+ * @param name 
+ * @param short_name 
+ * @param description 
+ * @param handler 
+ * @return cli_command* created command object
+ */
 MODULE_API cli_command* create_command(char* name, char* short_name,
     char* description, cli_command_handler handler);
 
@@ -287,8 +424,21 @@ MODULE_API cli_cmd_err exec_command(arraylist* commands, void* handler_args,
 	int argc, char** argv, cli_command_output_handler success_handler,
 	cli_command_output_handler error_handler);
 
+/**
+ * @brief Print a tabular result object to the stdout
+ * 
+ * @param result table result object
+ */
 MODULE_API void print_table_result(void* result);
 
+/**
+ * @brief A Print handler prints the result of the command
+ * 
+ * @param result_flag error flag
+ * @param res_type result type
+ * @param result result object
+ * @return error code
+ */
 MODULE_API cli_cmd_err print_handler(cli_cmd_err result_flag, cli_result_type res_type,
     void* result);
 
