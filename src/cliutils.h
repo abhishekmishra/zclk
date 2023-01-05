@@ -210,21 +210,21 @@ MODULE_API void cli_fill_options_in_list(arraylist* optlist, cli_option* options
 /**
  * @brief Defines a function to handle command output
  */
-typedef cli_cmd_err(*cli_command_output_handler)(cli_cmd_err result_flag,
+typedef cli_cmd_err(*zclk_command_output_handler)(cli_cmd_err result_flag,
 	cli_result_type result_type, void* result);
 
 /**
  * @brief defines a function to handle a command
  */
-typedef cli_cmd_err(*cli_command_handler)(void* handler_args,
+typedef cli_cmd_err(*zclk_command_handler)(void* handler_args,
 	arraylist* options, arraylist* args,
-	cli_command_output_handler success_handler,
-	cli_command_output_handler error_handler);
+	zclk_command_output_handler success_handler,
+	zclk_command_output_handler error_handler);
 
 /**
  * @brief A CLI Command Ojbect
  */
-typedef struct cli_command_t
+typedef struct zclk_command_t
 {
 	char* name;						///< name of the command
 	char* short_name;				///< short name of the command
@@ -232,8 +232,8 @@ typedef struct cli_command_t
 	arraylist* sub_commands;		///< list of subcommands
 	arraylist* options;				///< options list
 	arraylist* args;				///< args list
-	cli_command_handler handler;	///< command handler function
-} cli_command;
+	zclk_command_handler handler;	///< command handler function
+} zclk_command;
 
 /**
  * Create a new value object of given type.
@@ -357,26 +357,31 @@ MODULE_API void free_argument(cli_argument* arg);
  * \param handler function ptr to handler
  * \return error code
  */
-MODULE_API cli_cmd_err make_command(cli_command** command, char* name, char* short_name,
-	char* description, cli_command_handler handler);
+MODULE_API cli_cmd_err make_command(zclk_command** command, char* name, char* short_name,
+	char* description, zclk_command_handler handler);
 
 /**
- * @brief (Internal use only) Create a command object
+ * @brief Create a command object with automatic error handling
  * @see make_command
  * 
  * @param name 
  * @param short_name 
  * @param description 
  * @param handler 
- * @return cli_command* created command object
+ * @return zclk_command* created command object
  */
-MODULE_API cli_command* create_command(char* name, char* short_name,
-    char* description, cli_command_handler handler);
+MODULE_API zclk_command* zclk_command_new(char* name, char* short_name,
+    char* description, zclk_command_handler handler);
+
+MODULE_API cli_cmd_err zclk_command_subcommand_add(zclk_command *cmd, zclk_command *subcommand);
+MODULE_API cli_cmd_err zclk_command_option_add();
+MODULE_API cli_cmd_err zclk_command_argument_add();
+MODULE_API cli_cmd_err zclk_command_exec(zclk_command* cmd, int argc, char* argv[]);
 
 /**
  * Free a command object
  */
-MODULE_API void free_command(cli_command* command);
+MODULE_API void free_command(zclk_command* command);
 
 /**
 * Get help for a command
@@ -388,7 +393,7 @@ MODULE_API char* get_help_for_command(arraylist* cmds_to_exec);
 /**
  * Run the help command for all commands or single command
  *
- * \param commands the list of commands registered (this is a list of cli_command*)
+ * \param commands the list of commands registered (this is a list of zclk_command*)
  * \param handler_args an args value to be passed to the command handler
  * \param argc the number of tokens in the line
  * \param argv args as an array of strings
@@ -396,8 +401,8 @@ MODULE_API char* get_help_for_command(arraylist* cmds_to_exec);
  * \param error_handler handler error results
  */
 MODULE_API cli_cmd_err help_cmd_handler(arraylist* commands, void* handler_args,
-	int argc, char** argv, cli_command_output_handler success_handler,
-	cli_command_output_handler error_handler);
+	int argc, char** argv, zclk_command_output_handler success_handler,
+	zclk_command_output_handler error_handler);
 
 /**
  * Get the help string for the arg_commands from the registered commands list.
@@ -413,7 +418,7 @@ MODULE_API cli_cmd_err get_help_for(char** help_str, arraylist* commands,
  * Execute a single line containing one top-level command.
  * All output is written to stdout, all errors to stderr
  *
- * \param commands the list of commands registered (this is a list of cli_command*)
+ * \param commands the list of commands registered (this is a list of zclk_command*)
  * \param handler_args an args value to be passed to the command handler
  * \param argc the number of tokens in the line
  * \param argv args as an array of strings
@@ -421,8 +426,8 @@ MODULE_API cli_cmd_err get_help_for(char** help_str, arraylist* commands,
  * \param error_handler handler error results
  */
 MODULE_API cli_cmd_err exec_command(arraylist* commands, void* handler_args,
-	int argc, char** argv, cli_command_output_handler success_handler,
-	cli_command_output_handler error_handler);
+	int argc, char** argv, zclk_command_output_handler success_handler,
+	zclk_command_output_handler error_handler);
 
 /**
  * @brief Print a tabular result object to the stdout
@@ -441,36 +446,6 @@ MODULE_API void print_table_result(void* result);
  */
 MODULE_API cli_cmd_err print_handler(cli_cmd_err result_flag, cli_result_type res_type,
     void* result);
-
-/** Name of the root command in the CLI APP */
-#define CLI_ROOT_COMMAND_NAME __root__
-
-/**
- * @brief Represents the top-level CLI APP object.
- * 
- * The \b cli \b app contains all the commands available,
- * and their associated handlers.
- * 
- * By default it contains a command with the name :CLI_ROOT_COMMAND_NAME.
- * The root command is activated with the options and arguments, if
- * no other command name is matched.
- * 
- */
-typedef struct cli_app_t {
-	arraylist *commands;			///< list of the app's commands
-	char *name;						///< Name of the application
-	char *description;				///< Textual description
-} cli_app;
-
-/**
- * @brief Create a cli app object
- * 
- * @param app applicaton object to create and return
- * @param name name of the application
- * @param description description of the application
- * @return cli_cmd_err error code (0 indicates success)
- */
-cli_cmd_err create_cli_app(cli_app **app, char *name, char *description);
 
 #ifdef __cplusplus 
 }

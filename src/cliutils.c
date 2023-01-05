@@ -328,10 +328,10 @@ void arraylist_cli_argument_to_lua(lua_State *L, int index, void *data) {
 	cli_argument_to_lua(L, (cli_argument*) data);
 }
 
-cli_cmd_err make_command(cli_command **command, char *name, char *short_name,
-						 char *description, cli_command_handler handler)
+cli_cmd_err make_command(zclk_command **command, char *name, char *short_name,
+						 char *description, zclk_command_handler handler)
 {
-	(*command) = (cli_command *)calloc(1, sizeof(cli_command));
+	(*command) = (zclk_command *)calloc(1, sizeof(zclk_command));
 	if ((*command) == NULL)
 	{
 		return CLI_COMMAND_ERR_ALLOC_FAILED;
@@ -348,16 +348,16 @@ cli_cmd_err make_command(cli_command **command, char *name, char *short_name,
 	return CLI_COMMAND_SUCCESS;
 }
 
-cli_command* create_command(char* name, char* short_name,
-	char* description, cli_command_handler handler) {
-	cli_command* cmd;
+zclk_command* zclk_command_new(char* name, char* short_name,
+	char* description, zclk_command_handler handler) {
+	zclk_command* cmd;
 	if (make_command(&cmd, name, short_name, description, handler) == CLI_COMMAND_SUCCESS) {
 		return cmd;
 	}
 	return NULL;
 }
 
-void free_command(cli_command *command)
+void free_command(zclk_command *command)
 {
 	if (command->short_name)
 	{
@@ -380,7 +380,7 @@ char *get_program_name(arraylist *cmds_to_exec)
 	memset(progname_str, 0, CLI_SIZE_OF_PROGNAME_STR);
 	for (int i = 0; i < cmd_len; i++)
 	{
-		char *command = ((cli_command *)arraylist_get(cmds_to_exec, i))->name;
+		char *command = ((zclk_command *)arraylist_get(cmds_to_exec, i))->name;
 		char *p = command;
 		for (int i = 0; i < strlen(command); i++)
 		{
@@ -404,7 +404,7 @@ char *get_short_program_name(arraylist *cmds_to_exec)
 	memset(short_progname_str, 0, CLI_SIZE_OF_PROGNAME_STR);
 	for (int i = 0; i < cmd_len; i++)
 	{
-		char *command = ((cli_command *)arraylist_get(cmds_to_exec, i))->short_name;
+		char *command = ((zclk_command *)arraylist_get(cmds_to_exec, i))->short_name;
 		char *p = command;
 		for (int i = 0; i < strlen(command); i++)
 		{
@@ -426,7 +426,7 @@ char *get_help_for_command(arraylist *cmds_to_exec)
 {
 	if (arraylist_length(cmds_to_exec) > 0)
 	{
-		cli_command *command = arraylist_get(cmds_to_exec, arraylist_length(cmds_to_exec) - 1);
+		zclk_command *command = arraylist_get(cmds_to_exec, arraylist_length(cmds_to_exec) - 1);
 
 		memset(help_str, 0, CLI_SIZE_OF_HELP_STR);
 		sprintf(help_str, "Usage: %s", get_program_name(cmds_to_exec));
@@ -522,7 +522,7 @@ char *get_help_for_command(arraylist *cmds_to_exec)
 			strcat(help_str, "\nCommands:\n\n");
 			for (size_t i = 0; i < sub_cmd_len; i++)
 			{
-				cli_command *sc = arraylist_get(command->sub_commands, i);
+				zclk_command *sc = arraylist_get(command->sub_commands, i);
 				size_t used = 0;
 				strcat(help_str, "  ");
 				strcat(help_str, sc->name);
@@ -575,7 +575,7 @@ arraylist *get_command_to_exec(arraylist *commands, int *argc,
 	arraylist *cmds_to_exec = NULL;
 	arraylist_new(&cmds_to_exec, NULL);
 
-	cli_command *cmd_to_exec = NULL;
+	zclk_command *cmd_to_exec = NULL;
 
 	arraylist *cmd_list = commands;
 	while (1)
@@ -588,7 +588,7 @@ arraylist *get_command_to_exec(arraylist *commands, int *argc,
 			{
 				for (int j = 0; j < arraylist_length(cmd_list); j++)
 				{
-					cli_command *cmd = (cli_command *)arraylist_get(cmd_list,
+					zclk_command *cmd = (zclk_command *)arraylist_get(cmd_list,
 																	j);
 					if (strcmp(cmd_name, cmd->name) == 0 || strcmp(cmd_name, cmd->short_name) == 0)
 					{
@@ -620,14 +620,14 @@ arraylist *get_command_to_exec(arraylist *commands, int *argc,
 }
 
 cli_cmd_err help_cmd_handler(arraylist *commands, void *handler_args,
-							 int argc, char **argv, cli_command_output_handler success_handler,
-							 cli_command_output_handler error_handler)
+							 int argc, char **argv, zclk_command_output_handler success_handler,
+							 zclk_command_output_handler error_handler)
 {
 	//First read all commands
 	arraylist *cmds_to_exec = get_command_to_exec(commands, &argc, argv);
 	if (arraylist_length(cmds_to_exec) > 0)
 	{
-		cli_command *cmd_to_exec = arraylist_get(cmds_to_exec, arraylist_length(cmds_to_exec) - 1);
+		zclk_command *cmd_to_exec = arraylist_get(cmds_to_exec, arraylist_length(cmds_to_exec) - 1);
 		if (cmd_to_exec == NULL)
 		{
 			error_handler(CLI_COMMAND_ERR_COMMAND_NOT_FOUND, CLI_RESULT_STRING,
@@ -653,7 +653,7 @@ cli_cmd_err get_help_for(char **help_str, arraylist *commands,
 			int found_cmd = 0;
 			for (int j = 0; j < arraylist_length(cmd_list); j++)
 			{
-				cli_command *cmd = arraylist_get(cmd_list, j);
+				zclk_command *cmd = arraylist_get(cmd_list, j);
 				if (strcmp(cmd_name, cmd->name) == 0)
 				{
 					found_cmd = 1;
@@ -817,8 +817,8 @@ void print_options(arraylist *options)
 }
 
 cli_cmd_err exec_command(arraylist *commands, void *handler_args,
-						 int argc, char **argv, cli_command_output_handler success_handler,
-						 cli_command_output_handler error_handler)
+						 int argc, char **argv, zclk_command_output_handler success_handler,
+						 zclk_command_output_handler error_handler)
 {
 	cli_cmd_err err = CLI_COMMAND_SUCCESS;
 
@@ -833,7 +833,7 @@ cli_cmd_err exec_command(arraylist *commands, void *handler_args,
 
 	for (int i = 0; i < len_cmds; i++)
 	{
-		cli_command *cmd_to_exec = arraylist_get(cmds_to_exec, i);
+		zclk_command *cmd_to_exec = arraylist_get(cmds_to_exec, i);
 		size_t len_options = arraylist_length(cmd_to_exec->options);
 		for (int j = 0; j < len_options; j++)
 		{
@@ -873,7 +873,7 @@ cli_cmd_err exec_command(arraylist *commands, void *handler_args,
 	{
 		for (int i = 0; i < len_cmds; i++)
 		{
-			cli_command *cmd_to_exec = arraylist_get(cmds_to_exec, i);
+			zclk_command *cmd_to_exec = arraylist_get(cmds_to_exec, i);
 			if (cmd_to_exec == NULL)
 			{
 				printf("No valid command found. Type help to get more help\n");
@@ -1045,18 +1045,5 @@ cli_cmd_err print_handler(cli_cmd_err result_flag, cli_result_type res_type,
 	{
 		printf("This result type is not handled %d\n", res_type);
 	}
-	return CLI_COMMAND_SUCCESS;
-}
-
-cli_cmd_err create_cli_app(cli_app **app, char *name, char *description)
-{
-	(*app) = (cli_app *)calloc(1, sizeof(cli_app));
-	if ((*app) == NULL)
-	{
-		return CLI_COMMAND_ERR_ALLOC_FAILED;
-	}
-	(*app)->name = name;
-	(*app)->description = description;
-	arraylist_new(&((*app)->commands), (void (*)(void *)) & free_command);
 	return CLI_COMMAND_SUCCESS;
 }
