@@ -1,0 +1,4 @@
+<map id="cli_argument_t" name="cli_argument_t">
+<area shape="rect" id="node1" title="CLI Argument object." alt="" coords="5,109,124,136"/>
+<area shape="rect" id="node2" href="$structcli__val__t.html" title="This struct holds the value of the argument or option." alt="" coords="27,5,103,32"/>
+</map>
