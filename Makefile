@@ -61,5 +61,5 @@ help:
 		@echo "  install:  Runs the cmake project install target."
 		@echo "  delbuild: Deletes the cmake build directory!"
 		@echo "  genbuild: Generates the cmake build."
-        @echo "  docs:     Generates the doxygen docs."
+		@echo "  docs:     Generates the doxygen docs."
 		@echo "********************************************************"
