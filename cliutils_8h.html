@@ -262,17 +262,17 @@ Functions</h2></td></tr>
 <tr class="memitem:a5e1d6aa6b621e1a3b84552e7c6cb56ff"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a5e1d6aa6b621e1a3b84552e7c6cb56ff">zclk_command_new</a> (char *name, char *short_name, char *description, <a class="el" href="cliutils_8h.html#ad8d360aa408e3d03b927466a7b976001">zclk_command_handler</a> handler)</td></tr>
 <tr class="memdesc:a5e1d6aa6b621e1a3b84552e7c6cb56ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a command object with automatic error handling.  <a href="cliutils_8h.html#a5e1d6aa6b621e1a3b84552e7c6cb56ff">More...</a><br /></td></tr>
 <tr class="separator:a5e1d6aa6b621e1a3b84552e7c6cb56ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8eb84c140c56af094d7f6d7aebcfb12e"><td class="memItemLeft" align="right" valign="top"><a id="a8eb84c140c56af094d7f6d7aebcfb12e"></a>
-MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_command_subcommand_add</b> (<a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, <a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *subcommand)</td></tr>
+<tr class="memitem:a8eb84c140c56af094d7f6d7aebcfb12e"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a8eb84c140c56af094d7f6d7aebcfb12e">zclk_command_subcommand_add</a> (<a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, <a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *subcommand)</td></tr>
+<tr class="memdesc:a8eb84c140c56af094d7f6d7aebcfb12e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a subcommand to the given command.  <a href="cliutils_8h.html#a8eb84c140c56af094d7f6d7aebcfb12e">More...</a><br /></td></tr>
 <tr class="separator:a8eb84c140c56af094d7f6d7aebcfb12e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abaaca3172e2062bb711cf51f0db66706"><td class="memItemLeft" align="right" valign="top"><a id="abaaca3172e2062bb711cf51f0db66706"></a>
-MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_command_option_add</b> ()</td></tr>
-<tr class="separator:abaaca3172e2062bb711cf51f0db66706"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1021e56da0229046d686f97f4cf663f2"><td class="memItemLeft" align="right" valign="top"><a id="a1021e56da0229046d686f97f4cf663f2"></a>
-MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_command_argument_add</b> ()</td></tr>
-<tr class="separator:a1021e56da0229046d686f97f4cf663f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e5a95fa4a40aedbf3b8b0975cbe272d"><td class="memItemLeft" align="right" valign="top"><a id="a9e5a95fa4a40aedbf3b8b0975cbe272d"></a>
-MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_command_exec</b> (<a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, int argc, char *argv[])</td></tr>
+<tr class="memitem:a30786fa57fa7db082136c806ad4fe4f8"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a30786fa57fa7db082136c806ad4fe4f8">zclk_command_option_add</a> (<a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, <a class="el" href="cliutils_8h.html#a738f57130ce35c4f6e43cf108bf848d3">cli_option</a> *option)</td></tr>
+<tr class="memdesc:a30786fa57fa7db082136c806ad4fe4f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an option to the given command.  <a href="cliutils_8h.html#a30786fa57fa7db082136c806ad4fe4f8">More...</a><br /></td></tr>
+<tr class="separator:a30786fa57fa7db082136c806ad4fe4f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a320f4ac74f0ddfda7e3bc430fd65aca4"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a320f4ac74f0ddfda7e3bc430fd65aca4">zclk_command_argument_add</a> (<a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, <a class="el" href="cliutils_8h.html#a6c6d963e264001d384420d667e8b795b">cli_argument</a> *arg)</td></tr>
+<tr class="memdesc:a320f4ac74f0ddfda7e3bc430fd65aca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an argument to the given command.  <a href="cliutils_8h.html#a320f4ac74f0ddfda7e3bc430fd65aca4">More...</a><br /></td></tr>
+<tr class="separator:a320f4ac74f0ddfda7e3bc430fd65aca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e5a95fa4a40aedbf3b8b0975cbe272d"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a9e5a95fa4a40aedbf3b8b0975cbe272d">zclk_command_exec</a> (<a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, int argc, char *argv[])</td></tr>
+<tr class="memdesc:a9e5a95fa4a40aedbf3b8b0975cbe272d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the command with the given args.  <a href="cliutils_8h.html#a9e5a95fa4a40aedbf3b8b0975cbe272d">More...</a><br /></td></tr>
 <tr class="separator:a9e5a95fa4a40aedbf3b8b0975cbe272d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18986f2ce55690b003e4cde4c6b29892"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cliutils_8h.html#a18986f2ce55690b003e4cde4c6b29892">free_command</a> (<a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *command)</td></tr>
 <tr class="separator:a18986f2ce55690b003e4cde4c6b29892"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1576,6 +1576,89 @@ MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf1
 
 </div>
 </div>
+<a id="a320f4ac74f0ddfda7e3bc430fd65aca4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a320f4ac74f0ddfda7e3bc430fd65aca4">&#9670;&nbsp;</a></span>zclk_command_argument_add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a> zclk_command_argument_add </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *&#160;</td>
+          <td class="paramname"><em>cmd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="cliutils_8h.html#a6c6d963e264001d384420d667e8b795b">cli_argument</a> *&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add an argument to the given command. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>command </td></tr>
+    <tr><td class="paramname">arg</td><td>argument to add </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error code </dd></dl>
+
+</div>
+</div>
+<a id="a9e5a95fa4a40aedbf3b8b0975cbe272d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e5a95fa4a40aedbf3b8b0975cbe272d">&#9670;&nbsp;</a></span>zclk_command_exec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a> zclk_command_exec </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *&#160;</td>
+          <td class="paramname"><em>cmd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Execute the command with the given args. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>Command to execute </td></tr>
+    <tr><td class="paramname">argc</td><td>arg count </td></tr>
+    <tr><td class="paramname">argv</td><td>arg values </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error code </dd></dl>
+
+</div>
+</div>
 <a id="a5e1d6aa6b621e1a3b84552e7c6cb56ff"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5e1d6aa6b621e1a3b84552e7c6cb56ff">&#9670;&nbsp;</a></span>zclk_command_new()</h2>
 
@@ -1626,6 +1709,82 @@ MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf1
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>zclk_command* created command object </dd></dl>
+
+</div>
+</div>
+<a id="a30786fa57fa7db082136c806ad4fe4f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30786fa57fa7db082136c806ad4fe4f8">&#9670;&nbsp;</a></span>zclk_command_option_add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a> zclk_command_option_add </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *&#160;</td>
+          <td class="paramname"><em>cmd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="cliutils_8h.html#a738f57130ce35c4f6e43cf108bf848d3">cli_option</a> *&#160;</td>
+          <td class="paramname"><em>option</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add an option to the given command. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>command </td></tr>
+    <tr><td class="paramname">option</td><td>option to add </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error code </dd></dl>
+
+</div>
+</div>
+<a id="a8eb84c140c56af094d7f6d7aebcfb12e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8eb84c140c56af094d7f6d7aebcfb12e">&#9670;&nbsp;</a></span>zclk_command_subcommand_add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MODULE_API <a class="el" href="cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12">cli_cmd_err</a> zclk_command_subcommand_add </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *&#160;</td>
+          <td class="paramname"><em>cmd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="cliutils_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *&#160;</td>
+          <td class="paramname"><em>subcommand</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a subcommand to the given command. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>command </td></tr>
+    <tr><td class="paramname">subcommand</td><td>subcommand to add </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error code </dd></dl>
 
 </div>
 </div>
