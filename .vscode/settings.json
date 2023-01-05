@@ -6,5 +6,6 @@
     "licenser.author": "Abhishek Mishra",
     "licenser.license": "MIT",
     "licenser.projectName": "cliutils",
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "editor.formatOnSave": false
 }
