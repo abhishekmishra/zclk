@@ -61,3 +61,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC coll::coll)
 export(TARGETS cliutils NAMESPACE cliutils:: FILE cliutilsConfig.cmake)
 set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
 export(PACKAGE cliutils)
+
+#-------------------- CLIUTILS SAMPLES --------------------
+add_executable(        s1_basic_usage_arg_option   samples/s1_basic_usage_arg_option.c )
+target_link_libraries( s1_basic_usage_arg_option   ${PROJECT_NAME} )
