@@ -1047,3 +1047,16 @@ cli_cmd_err print_handler(cli_cmd_err result_flag, cli_result_type res_type,
 	}
 	return CLI_COMMAND_SUCCESS;
 }
+
+cli_cmd_err create_cli_app(cli_app **app, char *name, char *description)
+{
+	(*app) = (cli_app *)calloc(1, sizeof(cli_app));
+	if ((*app) == NULL)
+	{
+		return CLI_COMMAND_ERR_ALLOC_FAILED;
+	}
+	(*app)->name = name;
+	(*app)->description = description;
+	arraylist_new(&((*app)->commands), (void (*)(void *)) & free_command);
+	return CLI_COMMAND_SUCCESS;
+}

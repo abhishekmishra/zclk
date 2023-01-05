@@ -442,6 +442,36 @@ MODULE_API void print_table_result(void* result);
 MODULE_API cli_cmd_err print_handler(cli_cmd_err result_flag, cli_result_type res_type,
     void* result);
 
+/** Name of the root command in the CLI APP */
+#define CLI_ROOT_COMMAND_NAME __root__
+
+/**
+ * @brief Represents the top-level CLI APP object.
+ * 
+ * The \b cli \b app contains all the commands available,
+ * and their associated handlers.
+ * 
+ * By default it contains a command with the name :CLI_ROOT_COMMAND_NAME.
+ * The root command is activated with the options and arguments, if
+ * no other command name is matched.
+ * 
+ */
+typedef struct cli_app_t {
+	arraylist *commands;			///< list of the app's commands
+	char *name;						///< Name of the application
+	char *description;				///< Textual description
+} cli_app;
+
+/**
+ * @brief Create a cli app object
+ * 
+ * @param app applicaton object to create and return
+ * @param name name of the application
+ * @param description description of the application
+ * @return cli_cmd_err error code (0 indicates success)
+ */
+cli_cmd_err create_cli_app(cli_app **app, char *name, char *description);
+
 #ifdef __cplusplus 
 }
 #endif
