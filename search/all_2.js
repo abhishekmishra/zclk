@@ -7,7 +7,5 @@ var searchData=
   ['cli_5ftable_5ft_8',['cli_table_t',['../structcli__table__t.html',1,'']]],
   ['cliutils_20documentation_9',['Cliutils Documentation',['../index.html',1,'']]],
   ['cliutils_2eh_10',['cliutils.h',['../cliutils_8h.html',1,'']]],
-  ['copy_5fzclk_5fval_11',['copy_zclk_val',['../cliutils_8h.html#a002b0bdb28d6352f3e12f8471c73c644',1,'cliutils.c']]],
-  ['create_5fargument_12',['create_argument',['../cliutils_8h.html#aa51872f35fe954e923cb086ea90d6c54',1,'cliutils.c']]],
-  ['create_5foption_13',['create_option',['../cliutils_8h.html#a41fe60c279f96c8967aae97851c59570',1,'cliutils.c']]]
+  ['copy_5fzclk_5fval_11',['copy_zclk_val',['../cliutils_8h.html#a002b0bdb28d6352f3e12f8471c73c644',1,'cliutils.c']]]
 ];

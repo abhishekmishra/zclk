@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['parse_5fzclk_5fval_102',['parse_zclk_val',['../cliutils_8h.html#a6d6995f7778acdebc699e004f700d8fb',1,'cliutils.c']]],
-  ['print_5fhandler_103',['print_handler',['../cliutils_8h.html#a105717eddc992d79185c01c0b59bd4ad',1,'cliutils.c']]],
-  ['print_5ftable_5fresult_104',['print_table_result',['../cliutils_8h.html#a9caed1930c265ffb2e354ff0622cf0bf',1,'cliutils.c']]]
+  ['new_5fzclk_5fargument_100',['new_zclk_argument',['../cliutils_8h.html#ac419181d6fae3bd55c7fefbeaf1c8803',1,'cliutils.c']]],
+  ['new_5fzclk_5fcommand_101',['new_zclk_command',['../cliutils_8h.html#adfe4d57bf015c173344acf49c17eb6d3',1,'cliutils.c']]],
+  ['new_5fzclk_5foption_102',['new_zclk_option',['../cliutils_8h.html#a73a31c15a83c9dcfe346d295d6f07653',1,'cliutils.c']]]
 ];
