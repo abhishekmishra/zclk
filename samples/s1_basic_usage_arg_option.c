@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
 
     zclk_command_argument_add(
         cmd,
-        create_argument(
+        new_zclk_argument(
             "arg-one",
             ZCLK_VAL_STRING("blah"),
             ZCLK_VAL_STRING("blah"),

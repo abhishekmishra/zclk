@@ -402,7 +402,7 @@ zclk_cmd_err make_argument(zclk_argument **arg, char* name, zclk_val* val, zclk_
 	return ZCLK_COMMAND_SUCCESS;
 }
 
-zclk_argument* create_argument(char* name, zclk_val* val, zclk_val* default_val, char* desc) {
+zclk_argument* new_zclk_argument(char* name, zclk_val* val, zclk_val* default_val, char* desc) {
 	zclk_argument* arg;
 	make_argument(&arg, name, val, default_val, desc);
 	return arg;

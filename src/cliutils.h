@@ -358,7 +358,7 @@ MODULE_API zclk_cmd_err make_argument(zclk_argument** arg, char* name,
  * @param desc 
  * @return MODULE_API* 
  */
-MODULE_API zclk_argument* create_argument(char* name, zclk_val* val, 
+MODULE_API zclk_argument* new_zclk_argument(char* name, zclk_val* val, 
 	zclk_val* default_val, char* desc);
 
 /**
