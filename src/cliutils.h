@@ -128,35 +128,35 @@ MODULE_API zclk_val* new_zclk_val_flag(int flag_val);
  * 
  * @param v value
  */
-#define ZCLK_VAL_FLAG(v) new_zclk_val_flag(v)
+#define zclk_flag(v) new_zclk_val_flag(v)
 
 /**
  * @brief Create a new boolean cli value
  * 
  * @param v value
  */
-#define ZCLK_VAL_BOOLEAN(v) new_zclk_val_bool(v)
+#define zclk_boolean(v) new_zclk_val_bool(v)
 
 /**
  * @brief Create a new integer cli value
  * 
  * @param v value
  */
-#define ZCLK_VAL_INT(v) new_zclk_val_int(v)
+#define zclk_int(v) new_zclk_val_int(v)
 
 /**
  * @brief Create a new double cli value
  * 
  * @param v value
  */
-#define ZCLK_VAL_DOUBLE(v) new_zclk_val_double(v)
+#define zclk_double(v) new_zclk_val_double(v)
 
 /**
  * @brief Create a new string cli value
  * 
  * @param v value
  */
-#define ZCLK_VAL_STRING(v) new_zclk_val_string(v)
+#define zclk_string(v) new_zclk_val_string(v)
 
 /**
  * @brief CLI Option Object

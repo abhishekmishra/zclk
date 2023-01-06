@@ -478,8 +478,8 @@ zclk_cmd_err make_command(zclk_command **command, char *name, char *short_name,
 	zclk_command_option_add(
 		(*command),
 		new_zclk_option(ZCLK_OPTION_HELP_LONG,
-					  ZCLK_OPTION_HELP_SHORT, ZCLK_VAL_FLAG(0),
-					  ZCLK_VAL_FLAG(0), ZCLK_OPTION_HELP_DESC));
+					  ZCLK_OPTION_HELP_SHORT, zclk_flag(0),
+					  zclk_flag(0), ZCLK_OPTION_HELP_DESC));
 
 	return ZCLK_COMMAND_SUCCESS;
 }

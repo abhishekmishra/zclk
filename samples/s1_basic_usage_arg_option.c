@@ -27,16 +27,16 @@ int main(int argc, char* argv[])
         new_zclk_option(
             "option-one",
 			"o", 
-            ZCLK_VAL_FLAG(0),
-            ZCLK_VAL_FLAG(0), 
+            zclk_flag(0),
+            zclk_flag(0), 
             "Option One"));
 
     zclk_command_argument_add(
         cmd,
         new_zclk_argument(
             "arg-one",
-            ZCLK_VAL_STRING("blah"),
-            ZCLK_VAL_STRING("blah"),
+            zclk_string("blah"),
+            zclk_string("blah"),
             "Argument One"));
     
     zclk_command_exec(cmd, argc, argv);
