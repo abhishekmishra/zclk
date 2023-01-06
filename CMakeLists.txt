@@ -7,14 +7,14 @@ project ( cliutils C )
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS 1)
 
 # Set the project source dir (just convention)
-set( CLIUTILS_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR} )
-set( CLIUTILS_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR} )
+set( ZCLK_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR} )
+set( ZCLK_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR} )
 
 # It's useful to setup the current version of our code in the build system
 # using a `semver` style
-set ( CLIUTILS_VERSION_MAJOR 0 )
-set ( CLIUTILS_VERSION_MINOR 1 )
-set ( CLIUTILS_VERSION_PATCH 0 )
+set ( ZCLK_VERSION_MAJOR 0 )
+set ( ZCLK_VERSION_MINOR 1 )
+set ( ZCLK_VERSION_PATCH 0 )
 
 # https://stackoverflow.com/a/47260387/9483968
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -25,7 +25,7 @@ include_directories( src )
 
 # Lists
 # Setup the list of source files
-set( CLIUTILS_SOURCES
+set( ZCLK_SOURCES
   src/zclk.c
   src/cli_common.c
   src/cli_table.c
@@ -39,7 +39,7 @@ set( CLIUTILS_SOURCES
   src/cli_progress.h
 )
 
-add_library( ${PROJECT_NAME} SHARED ${CLIUTILS_SOURCES} )
+add_library( ${PROJECT_NAME} SHARED ${ZCLK_SOURCES} )
 target_include_directories(${PROJECT_NAME} PUBLIC src)
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD 11)
@@ -65,6 +65,6 @@ export(TARGETS cliutils NAMESPACE cliutils:: FILE cliutilsConfig.cmake)
 set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
 export(PACKAGE cliutils)
 
-#-------------------- CLIUTILS SAMPLES --------------------
+#-------------------- ZCLK SAMPLES --------------------
 add_executable(        s1_basic_usage_arg_option   samples/s1_basic_usage_arg_option.c )
 target_link_libraries( s1_basic_usage_arg_option   ${PROJECT_NAME} )
