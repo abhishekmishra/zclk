@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['free_5fargument_40',['free_argument',['../cliutils_8h.html#a8e9915f04a12011fa94f9bb5fc683c04',1,'cliutils.c']]],
-  ['free_5fcli_5fval_41',['free_cli_val',['../cliutils_8h.html#a161e572ea84fbda33fc120cb1a83fc1b',1,'cliutils.c']]],
-  ['free_5fcommand_42',['free_command',['../cliutils_8h.html#a18986f2ce55690b003e4cde4c6b29892',1,'cliutils.c']]],
-  ['free_5foption_43',['free_option',['../cliutils_8h.html#a8f1dc028a72f72e4d84427fde1639141',1,'cliutils.c']]]
+  ['free_5fargument_19',['free_argument',['../cliutils_8h.html#a9b0bf62433265699c448089dd12a2521',1,'cliutils.c']]],
+  ['free_5fcommand_20',['free_command',['../cliutils_8h.html#a18986f2ce55690b003e4cde4c6b29892',1,'cliutils.c']]],
+  ['free_5foption_21',['free_option',['../cliutils_8h.html#a1651d170959c938bf3cd495d47714316',1,'cliutils.c']]],
+  ['free_5fzclk_5fval_22',['free_zclk_val',['../cliutils_8h.html#a665f82a8d69f141ebea3dad9afa06152',1,'cliutils.c']]]
 ];

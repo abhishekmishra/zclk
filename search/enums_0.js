@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['cli_5fcmd_5ferr_136',['cli_cmd_err',['../cliutils_8h.html#a743b2a472267b528dadffba2d0ccbf12',1,'cliutils.h']]],
-  ['cli_5fresult_5ftype_137',['cli_result_type',['../cliutils_8h.html#a50be9a711bb0bd5dfed4a0b7b3082a8a',1,'cliutils.h']]],
-  ['cli_5ftype_138',['cli_type',['../cliutils_8h.html#a3cf98869e7d33a1d73bff5b6f9fbaf23',1,'cliutils.h']]]
+  ['zclk_5fcmd_5ferr_136',['zclk_cmd_err',['../cliutils_8h.html#a58084c85631e1befaf475b825ea86b07',1,'cliutils.h']]],
+  ['zclk_5fresult_5ftype_137',['zclk_result_type',['../cliutils_8h.html#a1228d6c253b585f9ae45a1538a1313e6',1,'cliutils.h']]],
+  ['zclk_5ftype_138',['zclk_type',['../cliutils_8h.html#a8ebb632ba43af7f5a82159eb49b43181',1,'cliutils.h']]]
 ];

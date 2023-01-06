@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['int_5fvalue_121',['int_value',['../structcli__val__t.html#aa0d4434e0e23eba6af13f4235f441aea',1,'cli_val_t']]]
+  ['int_5fvalue_121',['int_value',['../structzclk__val__t.html#a4d9db36069ee30f169bac0d8268c4542',1,'zclk_val_t']]]
 ];

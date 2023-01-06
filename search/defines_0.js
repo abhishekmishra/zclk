@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['cli_5foption_5fhelp_5fdesc_139',['CLI_OPTION_HELP_DESC',['../cliutils_8h.html#ae81d204920104769ed30287603035aba',1,'cliutils.h']]],
-  ['cli_5foption_5fhelp_5flong_140',['CLI_OPTION_HELP_LONG',['../cliutils_8h.html#af67a1d4df74fb6d5c0791c610ee6b984',1,'cliutils.h']]],
-  ['cli_5foption_5fhelp_5fshort_141',['CLI_OPTION_HELP_SHORT',['../cliutils_8h.html#aa9bdebfa65c9c2f83cabe7c88be880b2',1,'cliutils.h']]],
-  ['cli_5fval_5fboolean_142',['CLI_VAL_BOOLEAN',['../cliutils_8h.html#a7d15302098dc65a439ec7bca5d8bd558',1,'cliutils.h']]],
-  ['cli_5fval_5fdouble_143',['CLI_VAL_DOUBLE',['../cliutils_8h.html#a8c13a4b29472d1c2bda585ee4918d6a9',1,'cliutils.h']]],
-  ['cli_5fval_5fflag_144',['CLI_VAL_FLAG',['../cliutils_8h.html#aa5c2f7e977959e51d96cd3443b461052',1,'cliutils.h']]],
-  ['cli_5fval_5fint_145',['CLI_VAL_INT',['../cliutils_8h.html#aebee104c8e51a5b99d08ba3f27ec26ca',1,'cliutils.h']]],
-  ['cli_5fval_5fstring_146',['CLI_VAL_STRING',['../cliutils_8h.html#aefc8ab64fe075106ee0a35fa7e0219f8',1,'cliutils.h']]]
+  ['zclk_5foption_5fhelp_5fdesc_139',['ZCLK_OPTION_HELP_DESC',['../cliutils_8h.html#a2902039070a873bca69272d9c090d358',1,'cliutils.h']]],
+  ['zclk_5foption_5fhelp_5flong_140',['ZCLK_OPTION_HELP_LONG',['../cliutils_8h.html#a697445b80eac688724ad69ef2630d73a',1,'cliutils.h']]],
+  ['zclk_5foption_5fhelp_5fshort_141',['ZCLK_OPTION_HELP_SHORT',['../cliutils_8h.html#aa8620440d02bbf48a2658533efbb27aa',1,'cliutils.h']]],
+  ['zclk_5fval_5fboolean_142',['ZCLK_VAL_BOOLEAN',['../cliutils_8h.html#a989d6fc5bb468dfb1654fa48d73d39ed',1,'cliutils.h']]],
+  ['zclk_5fval_5fdouble_143',['ZCLK_VAL_DOUBLE',['../cliutils_8h.html#a4f26f7b3fe94179af3825503c18c7bb5',1,'cliutils.h']]],
+  ['zclk_5fval_5fflag_144',['ZCLK_VAL_FLAG',['../cliutils_8h.html#a1bfa68997861ac330c72bde3b0ae52aa',1,'cliutils.h']]],
+  ['zclk_5fval_5fint_145',['ZCLK_VAL_INT',['../cliutils_8h.html#abe160d10c0c03417505a02c282dc010f',1,'cliutils.h']]],
+  ['zclk_5fval_5fstring_146',['ZCLK_VAL_STRING',['../cliutils_8h.html#addba469895b5e91740cdb3bb7aa776f4',1,'cliutils.h']]]
 ];
