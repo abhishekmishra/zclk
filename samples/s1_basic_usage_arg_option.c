@@ -1,16 +1,17 @@
 #include <cliutils.h>
 #include <stdio.h>
 
-cli_cmd_err basic_handler(void* handler_args,
+zclk_cmd_err basic_handler(void* handler_args,
 	arraylist* options, arraylist* args,
 	zclk_command_output_handler success_handler,
 	zclk_command_output_handler error_handler)
 {
     for (size_t i = 0; i < arraylist_length(options);i++)
     {
-        cli_option *opt = (cli_option*)arraylist_get(options, i);
+        zclk_option *opt = (zclk_option*)arraylist_get(options, i);
         printf("option: %s=%d\n", opt->name, opt->val->bool_value);
     }
+    return 0;
 }
 
 int main(int argc, char* argv[])
@@ -26,16 +27,16 @@ int main(int argc, char* argv[])
         create_option(
             "option-one",
 			"o", 
-            CLI_VAL_FLAG(0),
-            CLI_VAL_FLAG(0), 
+            ZCLK_VAL_FLAG(0),
+            ZCLK_VAL_FLAG(0), 
             "Option One"));
 
     zclk_command_argument_add(
         cmd,
         create_argument(
             "arg-one",
-            CLI_VAL_STRING("blah"),
-            CLI_VAL_STRING("blah"),
+            ZCLK_VAL_STRING("blah"),
+            ZCLK_VAL_STRING("blah"),
             "Argument One"));
     
     zclk_command_exec(cmd, argc, argv);

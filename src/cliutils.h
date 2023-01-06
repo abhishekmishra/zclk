@@ -8,8 +8,8 @@
  * \brief Cliutils main header file. Defines the Public API of cliutils.
  */
 
-#ifndef SRC_CLI_COMMAND_H_
-#define SRC_CLI_COMMAND_H_
+#ifndef __ZCLK_H__
+#define __ZCLK_H__
 
 #include "cli_common.h"
 
@@ -25,11 +25,11 @@ extern "C" {
 #endif
 
 /** Help option long name */
-#define CLI_OPTION_HELP_LONG "help"
+#define ZCLK_OPTION_HELP_LONG "help"
 /** Help option short name */
-#define CLI_OPTION_HELP_SHORT "h"
+#define ZCLK_OPTION_HELP_SHORT "h"
 /** Help option description */
-#define CLI_OPTION_HELP_DESC "Print help for command."
+#define ZCLK_OPTION_HELP_DESC "Print help for command."
 
 /**
  * @brief This enum defines the possible error codes 
@@ -37,15 +37,15 @@ extern "C" {
  */
 typedef enum
 {
-	CLI_COMMAND_IS_RUNNING = -1,
-	CLI_COMMAND_SUCCESS = 0,
-	CLI_COMMAND_ERR_UNKNOWN = 1,
-	CLI_COMMAND_ERR_ALLOC_FAILED = 2,
-	CLI_COMMAND_ERR_COMMAND_NOT_FOUND = 3,
-	CLI_COMMAND_ERR_OPTION_NOT_FOUND = 4,
-	CLI_COMMAND_ERR_ARG_NOT_FOUND = 5,
-	CLI_COMMAND_ERR_EXTRA_ARGS_FOUND = 6
-} cli_cmd_err;
+	ZCLK_COMMAND_IS_RUNNING = -1,
+	ZCLK_COMMAND_SUCCESS = 0,
+	ZCLK_COMMAND_ERR_UNKNOWN = 1,
+	ZCLK_COMMAND_ERR_ALLOC_FAILED = 2,
+	ZCLK_COMMAND_ERR_COMMAND_NOT_FOUND = 3,
+	ZCLK_COMMAND_ERR_OPTION_NOT_FOUND = 4,
+	ZCLK_COMMAND_ERR_ARG_NOT_FOUND = 5,
+	ZCLK_COMMAND_ERR_EXTRA_ARGS_FOUND = 6
+} zclk_cmd_err;
 
 /**
  * @brief This enum defines the possible datatypes of 
@@ -53,12 +53,12 @@ typedef enum
  */
 typedef enum
 {
-	CLI_TYPE_BOOLEAN = 0,
-	CLI_TYPE_INT = 1,
-	CLI_TYPE_DOUBLE = 2,
-	CLI_TYPE_STRING = 3,
-	CLI_TYPE_FLAG = 4
-} cli_type;
+	ZCLK_TYPE_BOOLEAN = 0,
+	ZCLK_TYPE_INT = 1,
+	ZCLK_TYPE_DOUBLE = 2,
+	ZCLK_TYPE_STRING = 3,
+	ZCLK_TYPE_FLAG = 4
+} zclk_type;
 
 /**
  * @brief This enum defines the possible types of result 
@@ -66,25 +66,25 @@ typedef enum
  */
 typedef enum
 {
-	CLI_RESULT_STRING = 0,
-	CLI_RESULT_TABLE = 1,
-	CLI_RESULT_DICT = 2,
-	CLI_RESULT_PROGRESS = 3
-} cli_result_type;
+	ZCLK_RESULT_STRING = 0,
+	ZCLK_RESULT_TABLE = 1,
+	ZCLK_RESULT_DICT = 2,
+	ZCLK_RESULT_PROGRESS = 3
+} zclk_result_type;
 
 //TODO add defaults
 /**
  * @brief This struct holds the value of the argument or option.
  * 
  */
-typedef struct cli_val_t
+typedef struct zclk_val_t
 {
-	cli_type type;		///< type of value
+	zclk_type type;		///< type of value
 	int bool_value;		///< boolean value
 	int int_value;		///< integer value
 	double dbl_value;	///< double value
 	char* str_value;	///< string value
-} cli_val;
+} zclk_val;
 
 /**
  * @brief Convert a cli value to its lua value
@@ -93,7 +93,7 @@ typedef struct cli_val_t
  * @param val value
  * @return int indicating error
  */
-MODULE_API int cli_val_to_lua(lua_State *L, cli_val* val);
+MODULE_API int zclk_val_to_lua(lua_State *L, zclk_val* val);
 
 /**
  * @brief Create a cli val object
@@ -105,7 +105,7 @@ MODULE_API int cli_val_to_lua(lua_State *L, cli_val* val);
  * @param str  string value
  * @return MODULE_API* 
  */
-MODULE_API cli_val* create_cli_val(cli_type type, int bool_val, 
+MODULE_API zclk_val* create_zclk_val(zclk_type type, int bool_val, 
 	int int_val, double dbl_val, char* str);
 
 /**
@@ -113,47 +113,47 @@ MODULE_API cli_val* create_cli_val(cli_type type, int bool_val,
  * 
  * @param v value
  */
-#define CLI_VAL_FLAG(v) create_cli_val(CLI_TYPE_FLAG, v, 0, 0, NULL)
+#define ZCLK_VAL_FLAG(v) create_zclk_val(ZCLK_TYPE_FLAG, v, 0, 0, NULL)
 
 /**
  * @brief Create a new boolean cli value
  * 
  * @param v value
  */
-#define CLI_VAL_BOOLEAN(v) create_cli_val(CLI_TYPE_BOOLEAN, v, 0, 0, NULL)
+#define ZCLK_VAL_BOOLEAN(v) create_zclk_val(ZCLK_TYPE_BOOLEAN, v, 0, 0, NULL)
 
 /**
  * @brief Create a new integer cli value
  * 
  * @param v value
  */
-#define CLI_VAL_INT(v) create_cli_val(CLI_TYPE_INT, 0, v, 0, NULL)
+#define ZCLK_VAL_INT(v) create_zclk_val(ZCLK_TYPE_INT, 0, v, 0, NULL)
 
 /**
  * @brief Create a new double cli value
  * 
  * @param v value
  */
-#define CLI_VAL_DOUBLE(v) create_cli_val(CLI_TYPE_DOUBLE, 0, 0, v, NULL)
+#define ZCLK_VAL_DOUBLE(v) create_zclk_val(ZCLK_TYPE_DOUBLE, 0, 0, v, NULL)
 
 /**
  * @brief Create a new string cli value
  * 
  * @param v value
  */
-#define CLI_VAL_STRING(v) create_cli_val(CLI_TYPE_STRING, 0, 0, 0, v)
+#define ZCLK_VAL_STRING(v) create_zclk_val(ZCLK_TYPE_STRING, 0, 0, 0, v)
 
 /**
  * @brief CLI Option Object
  */
-typedef struct cli_option_t
+typedef struct zclk_option_t
 {
 	char* name;				///< name of the option
 	char* short_name;		///< short_name of the option
-	cli_val* val;			///< value of the option
-	cli_val* default_val;	///< default value of the option
+	zclk_val* val;			///< value of the option
+	zclk_val* default_val;	///< default value of the option
 	char* description;		///< textural description of the option
-} cli_option;
+} zclk_option;
 
 /**
  * @brief Convert the cli option to a lua value
@@ -162,28 +162,28 @@ typedef struct cli_option_t
  * @param option option object
  * @return int error code
  */
-MODULE_API int cli_option_to_lua(lua_State *L, cli_option* option);
+MODULE_API int zclk_option_to_lua(lua_State *L, zclk_option* option);
 
 /**
  * @brief Utility conversion function passed to arraylist to convert all entries to lua options
  * 
  * @param L lua state
  * @param index 
- * @param data must be a cli_option*
+ * @param data must be a zclk_option*
  */
-MODULE_API void arraylist_cli_option_to_lua(lua_State *L, int index, void *data);
+MODULE_API void arraylist_zclk_option_to_lua(lua_State *L, int index, void *data);
 
 /**
  * @brief CLI Argument object
  */
-typedef struct cli_argument_t
+typedef struct zclk_argument_t
 {
 	char* name;				///< name of the argument
-	cli_val* val;			///< value of the argument
-	cli_val* default_val;	///< default value of the argument
+	zclk_val* val;			///< value of the argument
+	zclk_val* default_val;	///< default value of the argument
 	char* description;		///< textual description
 	int optional;			///< flag indicating if argument is optional
-} cli_argument;
+} zclk_argument;
 
 /**
  * @brief Convert a cli argument to a lua object
@@ -192,16 +192,16 @@ typedef struct cli_argument_t
  * @param arg cli argument
  * @return int error code
  */
-MODULE_API int cli_argument_to_lua(lua_State *L, cli_argument* arg);
+MODULE_API int zclk_argument_to_lua(lua_State *L, zclk_argument* arg);
 
 /**
  * @brief Utility conversion function passed to arraylist to convert all entries to lua
  * 
  * @param L lua state
  * @param index
- * @param data must be a cli_argument*
+ * @param data must be a zclk_argument*
  */
-MODULE_API void arraylist_cli_argument_to_lua(lua_State *L, int index, void *data);
+MODULE_API void arraylist_zclk_argument_to_lua(lua_State *L, int index, void *data);
 
 /**
  * @brief Fill the entries in the given option array into an arraylist
@@ -209,18 +209,18 @@ MODULE_API void arraylist_cli_argument_to_lua(lua_State *L, int index, void *dat
  * @param optlist arraylist to fill
  * @param options options array to use
  */
-MODULE_API void cli_fill_options_in_list(arraylist* optlist, cli_option* options[]);
+MODULE_API void zclk_fill_options_in_list(arraylist* optlist, zclk_option* options[]);
 
 /**
  * @brief Defines a function to handle command output
  */
-typedef cli_cmd_err(*zclk_command_output_handler)(cli_cmd_err result_flag,
-	cli_result_type result_type, void* result);
+typedef zclk_cmd_err(*zclk_command_output_handler)(zclk_cmd_err result_flag,
+	zclk_result_type result_type, void* result);
 
 /**
  * @brief defines a function to handle a command
  */
-typedef cli_cmd_err(*zclk_command_handler)(void* handler_args,
+typedef zclk_cmd_err(*zclk_command_handler)(void* handler_args,
 	arraylist* options, arraylist* args,
 	zclk_command_output_handler success_handler,
 	zclk_command_output_handler error_handler);
@@ -246,17 +246,17 @@ typedef struct zclk_command_t
  * \param type
  * \return error code
  */
-MODULE_API cli_cmd_err make_cli_val(cli_val** val, cli_type type);
+MODULE_API zclk_cmd_err make_zclk_val(zclk_val** val, zclk_type type);
 
 /**
  * Free the created value
  */
-MODULE_API void free_cli_val(cli_val* val);
+MODULE_API void free_zclk_val(zclk_val* val);
 
 /**
  * Reset values to system defaults.
  */
-MODULE_API void clear_cli_val(cli_val* val);
+MODULE_API void clear_zclk_val(zclk_val* val);
 
 /**
  * Copy values from 'from' to 'to'.
@@ -265,7 +265,7 @@ MODULE_API void clear_cli_val(cli_val* val);
  * \param to val to set
  * \param from val to read from
  */
-MODULE_API void copy_cli_val(cli_val* to, cli_val* from);
+MODULE_API void copy_zclk_val(zclk_val* to, zclk_val* from);
 
 /**
  * Parse the input and read the value of the type of the val object.
@@ -276,7 +276,7 @@ MODULE_API void copy_cli_val(cli_val* to, cli_val* from);
  * \param input string input
  * \return error code
  */
-MODULE_API cli_cmd_err parse_cli_val(cli_val* val, char* input);
+MODULE_API zclk_cmd_err parse_zclk_val(zclk_val* val, char* input);
 
 /**
  * Create a new option given a name and type.
@@ -289,8 +289,8 @@ MODULE_API cli_cmd_err parse_cli_val(cli_val* val, char* input);
  * \param description
  * \return error code
  */
-MODULE_API cli_cmd_err make_option(cli_option** option, char* name, 
-	char* short_name, cli_val* val, cli_val* default_val, char* description);
+MODULE_API zclk_cmd_err make_option(zclk_option** option, char* name, 
+	char* short_name, zclk_val* val, zclk_val* default_val, char* description);
 
 /**
  * @brief (Internal use) Create a option object
@@ -302,24 +302,24 @@ MODULE_API cli_cmd_err make_option(cli_option** option, char* name,
  * @param desc 
  * @return MODULE_API* 
  */
-MODULE_API cli_option* create_option(char* name, char* short_name, 
-	cli_val* val, cli_val* default_val, char* desc);
+MODULE_API zclk_option* create_option(char* name, char* short_name, 
+	zclk_val* val, zclk_val* default_val, char* desc);
 
 /**
  * Free resources used by option
  * 
  * @param option to free
  */
-MODULE_API void free_option(cli_option* option);
+MODULE_API void free_option(zclk_option* option);
 
 /**
  * @brief Get the option by name object
  * 
  * @param options options list
  * @param name name of option to retrieve
- * @return cli_option* option with the given name
+ * @return zclk_option* option with the given name
  */
-MODULE_API cli_option* get_option_by_name(arraylist* options, char* name);
+MODULE_API zclk_option* get_option_by_name(arraylist* options, char* name);
 
 /**
  * Create a new argument given a name and type.
@@ -331,8 +331,8 @@ MODULE_API cli_option* get_option_by_name(arraylist* options, char* name);
  * \param desc
  * \return error code
  */
-MODULE_API cli_cmd_err make_argument(cli_argument** arg, char* name, 
-	cli_val* val, cli_val* default_val, char* desc);
+MODULE_API zclk_cmd_err make_argument(zclk_argument** arg, char* name, 
+	zclk_val* val, zclk_val* default_val, char* desc);
 
 /**
  * @brief (Internal use only) Create a argument object
@@ -343,13 +343,13 @@ MODULE_API cli_cmd_err make_argument(cli_argument** arg, char* name,
  * @param desc 
  * @return MODULE_API* 
  */
-MODULE_API cli_argument* create_argument(char* name, cli_val* val, 
-	cli_val* default_val, char* desc);
+MODULE_API zclk_argument* create_argument(char* name, zclk_val* val, 
+	zclk_val* default_val, char* desc);
 
 /**
  * Free resources used by argument
  */
-MODULE_API void free_argument(cli_argument* arg);
+MODULE_API void free_argument(zclk_argument* arg);
 
 /**
  * Create a new command with the given name and handler
@@ -364,7 +364,7 @@ MODULE_API void free_argument(cli_argument* arg);
  * \param handler function ptr to handler
  * \return error code
  */
-MODULE_API cli_cmd_err make_command(zclk_command** command, char* name, 
+MODULE_API zclk_cmd_err make_command(zclk_command** command, char* name, 
 	char* short_name, char* description, zclk_command_handler handler);
 
 /**
@@ -391,7 +391,7 @@ MODULE_API zclk_command* zclk_command_new(
  * @param subcommand subcommand to add
  * @return error code
  */
-MODULE_API cli_cmd_err zclk_command_subcommand_add(
+MODULE_API zclk_cmd_err zclk_command_subcommand_add(
 							zclk_command *cmd,
 							zclk_command *subcommand
 						);
@@ -403,9 +403,9 @@ MODULE_API cli_cmd_err zclk_command_subcommand_add(
  * @param option option to add
  * @return error code
  */
-MODULE_API cli_cmd_err zclk_command_option_add(
+MODULE_API zclk_cmd_err zclk_command_option_add(
 							zclk_command *cmd,
-							cli_option* option
+							zclk_option* option
 						);
 
 /**
@@ -415,9 +415,9 @@ MODULE_API cli_cmd_err zclk_command_option_add(
  * @param arg argument to add
  * @return error code
  */
-MODULE_API cli_cmd_err zclk_command_argument_add(
+MODULE_API zclk_cmd_err zclk_command_argument_add(
 							zclk_command *cmd,
-							cli_argument* arg
+							zclk_argument* arg
 						);
 
 /**
@@ -428,7 +428,7 @@ MODULE_API cli_cmd_err zclk_command_argument_add(
  * @param argv arg values
  * @return error code
  */
-MODULE_API cli_cmd_err zclk_command_exec(
+MODULE_API zclk_cmd_err zclk_command_exec(
 							zclk_command* cmd, 
 							int argc, char* argv[]
 						);
@@ -456,7 +456,7 @@ MODULE_API char* get_help_for_command(arraylist* cmds_to_exec);
  * \param success_handler handle success results
  * \param error_handler handler error results
  */
-MODULE_API cli_cmd_err help_cmd_handler(arraylist* commands, 
+MODULE_API zclk_cmd_err help_cmd_handler(arraylist* commands, 
 	void* handler_args,	int argc, char** argv, 
 	zclk_command_output_handler success_handler,
 	zclk_command_output_handler error_handler);
@@ -468,7 +468,7 @@ MODULE_API cli_cmd_err help_cmd_handler(arraylist* commands,
  * \param arg_commands is a list of string
  * \return error code
  */
-MODULE_API cli_cmd_err get_help_for(char** help_str, arraylist* commands,
+MODULE_API zclk_cmd_err get_help_for(char** help_str, arraylist* commands,
 	arraylist* arg_commands);
 
 /**
@@ -483,7 +483,7 @@ MODULE_API cli_cmd_err get_help_for(char** help_str, arraylist* commands,
  * \param success_handler handle success results
  * \param error_handler handler error results
  */
-MODULE_API cli_cmd_err exec_command(arraylist* commands, void* handler_args,
+MODULE_API zclk_cmd_err exec_command(arraylist* commands, void* handler_args,
 	int argc, char** argv, zclk_command_output_handler success_handler,
 	zclk_command_output_handler error_handler);
 
@@ -502,12 +502,12 @@ MODULE_API void print_table_result(void* result);
  * @param result result object
  * @return error code
  */
-MODULE_API cli_cmd_err print_handler(cli_cmd_err result_flag, 
-	cli_result_type res_type,
+MODULE_API zclk_cmd_err print_handler(zclk_cmd_err result_flag, 
+	zclk_result_type res_type,
     void* result);
 
 #ifdef __cplusplus 
 }
 #endif
 
-#endif /* SRC_CLI_COMMAND_H_ */
+#endif /* __ZCLK_H__ */

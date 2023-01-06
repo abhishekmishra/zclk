@@ -10,11 +10,11 @@
 
 #include "cliutils.h"
 
-#define CLI_SIZE_OF_HELP_STR 4096
-#define CLI_SIZE_OF_PROGNAME_STR 1024
-static char help_str[CLI_SIZE_OF_HELP_STR];
-static char progname_str[CLI_SIZE_OF_PROGNAME_STR];
-static char short_progname_str[CLI_SIZE_OF_PROGNAME_STR];
+#define ZCLK_SIZE_OF_HELP_STR 4096
+#define ZCLK_SIZE_OF_PROGNAME_STR 1024
+static char help_str[ZCLK_SIZE_OF_HELP_STR];
+static char progname_str[ZCLK_SIZE_OF_PROGNAME_STR];
+static char short_progname_str[ZCLK_SIZE_OF_PROGNAME_STR];
 
 void print_args(int argc, char **argv)
 {
@@ -24,21 +24,21 @@ void print_args(int argc, char **argv)
 	}
 }
 
-cli_cmd_err make_cli_val(cli_val **val, cli_type type)
+zclk_cmd_err make_zclk_val(zclk_val **val, zclk_type type)
 {
-	(*val) = (cli_val *)calloc(1, sizeof(cli_val));
+	(*val) = (zclk_val *)calloc(1, sizeof(zclk_val));
 	if ((*val) == NULL)
 	{
-		return CLI_COMMAND_ERR_ALLOC_FAILED;
+		return ZCLK_COMMAND_ERR_ALLOC_FAILED;
 	}
 	(*val)->type = type;
-	clear_cli_val(*val);
-	return CLI_COMMAND_SUCCESS;
+	clear_zclk_val(*val);
+	return ZCLK_COMMAND_SUCCESS;
 }
 
-cli_val* create_cli_val(cli_type type, int bool_val, int int_val, double dbl_val, char* str) {
-	cli_val* v;
-	make_cli_val(&v, type);
+zclk_val* create_zclk_val(zclk_type type, int bool_val, int int_val, double dbl_val, char* str) {
+	zclk_val* v;
+	make_zclk_val(&v, type);
 	if (v != NULL) {
 		v->bool_value = bool_val;
 		v->int_value = int_val;
@@ -48,7 +48,7 @@ cli_val* create_cli_val(cli_type type, int bool_val, int int_val, double dbl_val
 	return v;
 }
 
-void free_cli_val(cli_val *val)
+void free_zclk_val(zclk_val *val)
 {
 	if (val->str_value)
 	{
@@ -57,7 +57,7 @@ void free_cli_val(cli_val *val)
 	free(val);
 }
 
-void clear_cli_val(cli_val *val)
+void clear_zclk_val(zclk_val *val)
 {
 	val->bool_value = 0;
 	val->int_value = 0;
@@ -65,7 +65,7 @@ void clear_cli_val(cli_val *val)
 	val->str_value = NULL;
 }
 
-void copy_cli_val(cli_val *to, cli_val *from)
+void copy_zclk_val(zclk_val *to, zclk_val *from)
 {
 	to->bool_value = from->bool_value;
 	to->int_value = from->int_value;
@@ -73,11 +73,11 @@ void copy_cli_val(cli_val *to, cli_val *from)
 	to->str_value = from->str_value;
 }
 
-cli_cmd_err parse_cli_val(cli_val *val, char *input)
+zclk_cmd_err parse_zclk_val(zclk_val *val, char *input)
 {
 	if (input == NULL)
 	{
-		return CLI_COMMAND_ERR_UNKNOWN;
+		return ZCLK_COMMAND_ERR_UNKNOWN;
 	}
 	else
 	{
@@ -85,7 +85,7 @@ cli_cmd_err parse_cli_val(cli_val *val, char *input)
 		double d;
 		switch (val->type)
 		{
-		case CLI_TYPE_BOOLEAN:
+		case ZCLK_TYPE_BOOLEAN:
 			sscanf(input, "%d", &v);
 			if (v > 0)
 			{
@@ -96,25 +96,25 @@ cli_cmd_err parse_cli_val(cli_val *val, char *input)
 				val->bool_value = 0;
 			}
 			break;
-		case CLI_TYPE_INT:
+		case ZCLK_TYPE_INT:
 			sscanf(input, "%d", &v);
 			val->int_value = v;
 			break;
-		case CLI_TYPE_DOUBLE:
+		case ZCLK_TYPE_DOUBLE:
 			sscanf(input, "%lf", &d);
 			val->dbl_value = d;
 			break;
-		case CLI_TYPE_STRING:
+		case ZCLK_TYPE_STRING:
 			val->str_value = input;
 			break;
 		default:
-			return CLI_COMMAND_ERR_UNKNOWN;
+			return ZCLK_COMMAND_ERR_UNKNOWN;
 		}
-		return CLI_COMMAND_SUCCESS;
+		return ZCLK_COMMAND_SUCCESS;
 	}
 }
 
-int cli_val_to_lua(lua_State *L, cli_val *val)
+int zclk_val_to_lua(lua_State *L, zclk_val *val)
 {
 	if (val == NULL)
 	{
@@ -124,17 +124,17 @@ int cli_val_to_lua(lua_State *L, cli_val *val)
 	{
 		switch (val->type)
 		{
-		case CLI_TYPE_FLAG:
-		case CLI_TYPE_BOOLEAN:
+		case ZCLK_TYPE_FLAG:
+		case ZCLK_TYPE_BOOLEAN:
 			lua_pushboolean(L, val->bool_value);
 			break;
-		case CLI_TYPE_INT:
+		case ZCLK_TYPE_INT:
 			lua_pushinteger(L, val->int_value);
 			break;
-		case CLI_TYPE_DOUBLE:
+		case ZCLK_TYPE_DOUBLE:
 			lua_pushnumber(L, val->dbl_value);
 			break;
-		case CLI_TYPE_STRING:
+		case ZCLK_TYPE_STRING:
 			if (val->str_value == NULL) {
 				lua_pushnil(L);
 			}
@@ -149,29 +149,29 @@ int cli_val_to_lua(lua_State *L, cli_val *val)
 	return 1;
 }
 
-cli_cmd_err make_option(cli_option **option, char *name, char *short_name,
-	cli_val* val, cli_val* default_val, char *description)
+zclk_cmd_err make_option(zclk_option **option, char *name, char *short_name,
+	zclk_val* val, zclk_val* default_val, char *description)
 {
-	(*option) = (cli_option *)calloc(1, sizeof(cli_option));
+	(*option) = (zclk_option *)calloc(1, sizeof(zclk_option));
 	if ((*option) == NULL)
 	{
-		return CLI_COMMAND_ERR_ALLOC_FAILED;
+		return ZCLK_COMMAND_ERR_ALLOC_FAILED;
 	}
 	(*option)->name = name;
 	(*option)->short_name = short_name;
 	(*option)->description = description;
 	(*option)->val = val;
 	(*option)->default_val = default_val;
-	return CLI_COMMAND_SUCCESS;
+	return ZCLK_COMMAND_SUCCESS;
 }
 
-cli_option* create_option(char* name, char* short_name, cli_val*val, cli_val* default_val, char* desc) {
-	cli_option* o;
+zclk_option* create_option(char* name, char* short_name, zclk_val*val, zclk_val* default_val, char* desc) {
+	zclk_option* o;
 	make_option(&o, name, short_name, val, default_val, desc);
 	return o;
 }
 
-void free_option(cli_option *option)
+void free_option(zclk_option *option)
 {
 	if (option->short_name)
 	{
@@ -191,14 +191,14 @@ void free_option(cli_option *option)
 	free(option);
 }
 
-cli_option *get_option_by_name(arraylist *options, char *name)
+zclk_option *get_option_by_name(arraylist *options, char *name)
 {
 	if (name != NULL)
 	{
 		size_t opt_len = arraylist_length(options);
 		for (size_t i = 0; i < opt_len; i++)
 		{
-			cli_option *x = arraylist_get(options, i);
+			zclk_option *x = arraylist_get(options, i);
 			if ((x->name != NULL && strcmp(x->name, name) == 0) || (x->short_name != NULL && strcmp(x->short_name, name) == 0))
 			{
 				return x;
@@ -208,7 +208,7 @@ cli_option *get_option_by_name(arraylist *options, char *name)
 	return NULL;
 }
 
-int cli_option_to_lua(lua_State *L, cli_option *option)
+int zclk_option_to_lua(lua_State *L, zclk_option *option)
 {
 	lua_createtable(L, 0, 5);
 
@@ -225,10 +225,10 @@ int cli_option_to_lua(lua_State *L, cli_option *option)
 		}
 		lua_setfield(L, -2, "short_name");
 
-		cli_val_to_lua(L, option->val);
+		zclk_val_to_lua(L, option->val);
 		lua_setfield(L, -2, "val");
 
-		cli_val_to_lua(L, option->default_val);
+		zclk_val_to_lua(L, option->default_val);
 		lua_setfield(L, -2, "default_val");
 
 		if (option->description == NULL) {
@@ -243,14 +243,14 @@ int cli_option_to_lua(lua_State *L, cli_option *option)
 	return 1;
 }
 
-void arraylist_cli_option_to_lua(lua_State *L, int index, void *data) {
-	cli_option_to_lua(L, (cli_option*) data);
+void arraylist_zclk_option_to_lua(lua_State *L, int index, void *data) {
+	zclk_option_to_lua(L, (zclk_option*) data);
 }
 
-void cli_fill_options_in_list(arraylist* optlist, cli_option* options[]) {
+void zclk_fill_options_in_list(arraylist* optlist, zclk_option* options[]) {
 	if (options != NULL && optlist != NULL) {
 		int count = 0;
-		cli_option* val;
+		zclk_option* val;
 		while ((val = options[count]) != NULL) {
 			arraylist_add(optlist, val);
 			count += 1;
@@ -258,28 +258,28 @@ void cli_fill_options_in_list(arraylist* optlist, cli_option* options[]) {
 	}
 }
 
-cli_cmd_err make_argument(cli_argument **arg, char* name, cli_val* val, cli_val* default_val, char* description)
+zclk_cmd_err make_argument(zclk_argument **arg, char* name, zclk_val* val, zclk_val* default_val, char* description)
 {
-	(*arg) = (cli_argument *)calloc(1, sizeof(cli_argument));
+	(*arg) = (zclk_argument *)calloc(1, sizeof(zclk_argument));
 	if ((*arg) == NULL)
 	{
-		return CLI_COMMAND_ERR_ALLOC_FAILED;
+		return ZCLK_COMMAND_ERR_ALLOC_FAILED;
 	}
 	(*arg)->name = name;
 	(*arg)->description = description;
 	(*arg)->optional = 0;
 	(*arg)->val = val;
 	(*arg)->default_val = default_val;
-	return CLI_COMMAND_SUCCESS;
+	return ZCLK_COMMAND_SUCCESS;
 }
 
-cli_argument* create_argument(char* name, cli_val* val, cli_val* default_val, char* desc) {
-	cli_argument* arg;
+zclk_argument* create_argument(char* name, zclk_val* val, zclk_val* default_val, char* desc) {
+	zclk_argument* arg;
 	make_argument(&arg, name, val, default_val, desc);
 	return arg;
 }
 
-void free_argument(cli_argument *arg)
+void free_argument(zclk_argument *arg)
 {
 	if (arg->description)
 	{
@@ -294,7 +294,7 @@ void free_argument(cli_argument *arg)
 	free(arg);
 }
 
-int cli_argument_to_lua(lua_State *L, cli_argument* arg)
+int zclk_argument_to_lua(lua_State *L, zclk_argument* arg)
 {
 	lua_createtable(L, 0, 5);
 
@@ -305,11 +305,11 @@ int cli_argument_to_lua(lua_State *L, cli_argument* arg)
 		lua_settable(L, -3);
 
 		lua_pushstring(L, "val");
-		cli_val_to_lua(L, arg->val);
+		zclk_val_to_lua(L, arg->val);
 		lua_settable(L, -3);
 
 		lua_pushstring(L, "default_val");
-		cli_val_to_lua(L, arg->default_val);
+		zclk_val_to_lua(L, arg->default_val);
 		lua_settable(L, -3);
 
 		lua_pushstring(L, "description");
@@ -324,96 +324,96 @@ int cli_argument_to_lua(lua_State *L, cli_argument* arg)
 	return 1;
 }
 
-void arraylist_cli_argument_to_lua(lua_State *L, int index, void *data) {
-	cli_argument_to_lua(L, (cli_argument*) data);
+void arraylist_zclk_argument_to_lua(lua_State *L, int index, void *data) {
+	zclk_argument_to_lua(L, (zclk_argument*) data);
 }
 
-cli_cmd_err make_command(zclk_command **command, char *name, char *short_name,
+zclk_cmd_err make_command(zclk_command **command, char *name, char *short_name,
 						 char *description, zclk_command_handler handler)
 {
 	(*command) = (zclk_command *)calloc(1, sizeof(zclk_command));
 	if ((*command) == NULL)
 	{
-		return CLI_COMMAND_ERR_ALLOC_FAILED;
+		return ZCLK_COMMAND_ERR_ALLOC_FAILED;
 	}
 	(*command)->name = name;
 	(*command)->short_name = short_name;
 	(*command)->description = description;
 	(*command)->handler = handler;
 	arraylist_new(&((*command)->options), (void (*)(void *)) & free_option);
-	set_lua_convertor((*command)->options, &arraylist_cli_option_to_lua);
+	set_lua_convertor((*command)->options, &arraylist_zclk_option_to_lua);
 	arraylist_new(&((*command)->sub_commands), (void (*)(void *)) & free_command);
 	arraylist_new(&((*command)->args), (void (*)(void *)) & free_argument);
-	set_lua_convertor((*command)->args, &arraylist_cli_argument_to_lua);
+	set_lua_convertor((*command)->args, &arraylist_zclk_argument_to_lua);
 
 	zclk_command_option_add(
 		(*command),
-		create_option(CLI_OPTION_HELP_LONG,
-					  CLI_OPTION_HELP_SHORT, CLI_VAL_FLAG(0),
-					  CLI_VAL_FLAG(0), CLI_OPTION_HELP_DESC));
+		create_option(ZCLK_OPTION_HELP_LONG,
+					  ZCLK_OPTION_HELP_SHORT, ZCLK_VAL_FLAG(0),
+					  ZCLK_VAL_FLAG(0), ZCLK_OPTION_HELP_DESC));
 
-	return CLI_COMMAND_SUCCESS;
+	return ZCLK_COMMAND_SUCCESS;
 }
 
 zclk_command* zclk_command_new(char* name, char* short_name,
 	char* description, zclk_command_handler handler) {
 	zclk_command* cmd;
-	if (make_command(&cmd, name, short_name, description, handler) == CLI_COMMAND_SUCCESS) {
+	if (make_command(&cmd, name, short_name, description, handler) == ZCLK_COMMAND_SUCCESS) {
 		return cmd;
 	}
 	return NULL;
 }
 
-cli_cmd_err zclk_command_subcommand_add(zclk_command *cmd, 
+zclk_cmd_err zclk_command_subcommand_add(zclk_command *cmd, 
 											zclk_command *subcommand)
 {
 	if(cmd == NULL || subcommand == NULL) 
 	{
-		return CLI_COMMAND_ERR_UNKNOWN;
+		return ZCLK_COMMAND_ERR_UNKNOWN;
 	}
 
 	arraylist_add(cmd->sub_commands, subcommand);
-	return CLI_COMMAND_SUCCESS;
+	return ZCLK_COMMAND_SUCCESS;
 }
 
-cli_cmd_err zclk_command_option_add(
+zclk_cmd_err zclk_command_option_add(
 							zclk_command *cmd,
-							cli_option* option
+							zclk_option* option
 						)
 {
 	if(cmd == NULL || option == NULL) 
 	{
-		return CLI_COMMAND_ERR_UNKNOWN;
+		return ZCLK_COMMAND_ERR_UNKNOWN;
 	}
 
 	arraylist_add(cmd->options, option);
-	return CLI_COMMAND_SUCCESS;
+	return ZCLK_COMMAND_SUCCESS;
 }
 
-cli_cmd_err zclk_command_argument_add(
+zclk_cmd_err zclk_command_argument_add(
 							zclk_command *cmd,
-							cli_argument* arg
+							zclk_argument* arg
 						)
 {
 	if(cmd == NULL || arg == NULL) 
 	{
-		return CLI_COMMAND_ERR_UNKNOWN;
+		return ZCLK_COMMAND_ERR_UNKNOWN;
 	}
 
 	arraylist_add(cmd->args, arg);
-	return CLI_COMMAND_SUCCESS;
+	return ZCLK_COMMAND_SUCCESS;
 }
 
-cli_cmd_err zclk_command_exec(zclk_command* cmd, int argc, char* argv[])
+zclk_cmd_err zclk_command_exec(zclk_command* cmd, int argc, char* argv[])
 {
 	arraylist *toplevel_commands;
 	arraylist_new(&toplevel_commands, NULL);
 	arraylist_add(toplevel_commands, cmd);
-	cli_cmd_err err = exec_command(toplevel_commands, 
+	zclk_cmd_err err = exec_command(toplevel_commands, 
 								NULL, argc,	argv, 
 								(zclk_command_output_handler)&print_handler,
 								(zclk_command_output_handler)&print_handler);
-	if (err != CLI_COMMAND_SUCCESS)
+	if (err != ZCLK_COMMAND_SUCCESS)
 	{
 		printf("Error: invalid command.\n");
 	}
@@ -439,7 +439,7 @@ void free_command(zclk_command *command)
 char *get_program_name(arraylist *cmds_to_exec)
 {
 	size_t cmd_len = arraylist_length(cmds_to_exec);
-	memset(progname_str, 0, CLI_SIZE_OF_PROGNAME_STR);
+	memset(progname_str, 0, ZCLK_SIZE_OF_PROGNAME_STR);
 	for (int i = 0; i < cmd_len; i++)
 	{
 		char *command = ((zclk_command *)arraylist_get(cmds_to_exec, i))->name;
@@ -463,7 +463,7 @@ char *get_program_name(arraylist *cmds_to_exec)
 char *get_short_program_name(arraylist *cmds_to_exec)
 {
 	size_t cmd_len = arraylist_length(cmds_to_exec);
-	memset(short_progname_str, 0, CLI_SIZE_OF_PROGNAME_STR);
+	memset(short_progname_str, 0, ZCLK_SIZE_OF_PROGNAME_STR);
 	for (int i = 0; i < cmd_len; i++)
 	{
 		char *command = ((zclk_command *)arraylist_get(cmds_to_exec, i))->short_name;
@@ -490,7 +490,7 @@ char *get_help_for_command(arraylist *cmds_to_exec)
 	{
 		zclk_command *command = arraylist_get(cmds_to_exec, arraylist_length(cmds_to_exec) - 1);
 
-		memset(help_str, 0, CLI_SIZE_OF_HELP_STR);
+		memset(help_str, 0, ZCLK_SIZE_OF_HELP_STR);
 		sprintf(help_str, "Usage: %s", get_program_name(cmds_to_exec));
 
 		size_t opt_len = arraylist_length(command->options);
@@ -508,7 +508,7 @@ char *get_help_for_command(arraylist *cmds_to_exec)
 		size_t cmd_args_len = arraylist_length(command->args);
 		for (int ac = 0; ac < cmd_args_len; ac++)
 		{
-			cli_argument *arg = arraylist_get(command->args, ac);
+			zclk_argument *arg = arraylist_get(command->args, ac);
 			strcat(help_str, " <");
 			strcat(help_str, arg->name);
 			strcat(help_str, ">");
@@ -529,7 +529,7 @@ char *get_help_for_command(arraylist *cmds_to_exec)
 
 		for (int ac = 0; ac < cmd_args_len; ac++)
 		{
-			cli_argument *arg = arraylist_get(command->args, ac);
+			zclk_argument *arg = arraylist_get(command->args, ac);
 			strcat(help_str, " <");
 			strcat(help_str, arg->name);
 			strcat(help_str, ">");
@@ -544,7 +544,7 @@ char *get_help_for_command(arraylist *cmds_to_exec)
 			strcat(help_str, "Options:\n\n");
 			for (size_t i = 0; i < opt_len; i++)
 			{
-				cli_option *opt = arraylist_get(command->options, i);
+				zclk_option *opt = arraylist_get(command->options, i);
 				strcat(help_str, "\t");
 				if (opt->short_name != NULL)
 				{
@@ -563,7 +563,7 @@ char *get_help_for_command(arraylist *cmds_to_exec)
 					strcat(help_str, "--");
 					strcat(help_str, opt->name);
 					used = 2 + strlen(opt->name);
-					if (opt->val->type == CLI_TYPE_STRING)
+					if (opt->val->type == ZCLK_TYPE_STRING)
 					{
 						strcat(help_str, " string");
 						used += strlen(" string");
@@ -681,7 +681,7 @@ arraylist *get_command_to_exec(arraylist *commands, int *argc,
 	return cmds_to_exec;
 }
 
-cli_cmd_err help_cmd_handler(arraylist *commands, void *handler_args,
+zclk_cmd_err help_cmd_handler(arraylist *commands, void *handler_args,
 							 int argc, char **argv, zclk_command_output_handler success_handler,
 							 zclk_command_output_handler error_handler)
 {
@@ -692,18 +692,18 @@ cli_cmd_err help_cmd_handler(arraylist *commands, void *handler_args,
 		zclk_command *cmd_to_exec = arraylist_get(cmds_to_exec, arraylist_length(cmds_to_exec) - 1);
 		if (cmd_to_exec == NULL)
 		{
-			error_handler(CLI_COMMAND_ERR_COMMAND_NOT_FOUND, CLI_RESULT_STRING,
+			error_handler(ZCLK_COMMAND_ERR_COMMAND_NOT_FOUND, ZCLK_RESULT_STRING,
 						  "No valid command found. Type help to get more help\n");
-			return CLI_COMMAND_ERR_COMMAND_NOT_FOUND;
+			return ZCLK_COMMAND_ERR_COMMAND_NOT_FOUND;
 		}
 
 		char *help_str = cmd_to_exec->description;
-		success_handler(CLI_COMMAND_SUCCESS, CLI_RESULT_STRING, help_str);
+		success_handler(ZCLK_COMMAND_SUCCESS, ZCLK_RESULT_STRING, help_str);
 	}
-	return CLI_COMMAND_SUCCESS;
+	return ZCLK_COMMAND_SUCCESS;
 }
 
-cli_cmd_err get_help_for(char **help_str, arraylist *commands,
+zclk_cmd_err get_help_for(char **help_str, arraylist *commands,
 						 arraylist *arg_commands)
 {
 	arraylist *cmd_list = commands;
@@ -726,22 +726,22 @@ cli_cmd_err get_help_for(char **help_str, arraylist *commands,
 			}
 			if (found_cmd == 0)
 			{
-				return CLI_COMMAND_ERR_COMMAND_NOT_FOUND;
+				return ZCLK_COMMAND_ERR_COMMAND_NOT_FOUND;
 			}
 		}
 		else
 		{
-			return CLI_COMMAND_ERR_COMMAND_NOT_FOUND;
+			return ZCLK_COMMAND_ERR_COMMAND_NOT_FOUND;
 		}
 	}
-	return CLI_COMMAND_ERR_UNKNOWN;
+	return ZCLK_COMMAND_ERR_UNKNOWN;
 }
 
-cli_cmd_err parse_options(arraylist *options, int *argc, char **argv)
+zclk_cmd_err parse_options(arraylist *options, int *argc, char **argv)
 {
 	while (1)
 	{
-		cli_option *found = NULL;
+		zclk_option *found = NULL;
 		for (int i = 0; i < *argc; i++)
 		{
 			char *option = argv[i];
@@ -763,7 +763,7 @@ cli_cmd_err parse_options(arraylist *options, int *argc, char **argv)
 				size_t options_len = arraylist_length(options);
 				for (int j = 0; j < options_len; j++)
 				{
-					cli_option *opt = arraylist_get(options, j);
+					zclk_option *opt = arraylist_get(options, j);
 					if (long_option_name && opt->name != NULL)
 					{
 						if (strcmp(long_option_name, opt->name) == 0)
@@ -782,14 +782,14 @@ cli_cmd_err parse_options(arraylist *options, int *argc, char **argv)
 				if (found == NULL)
 				{
 					printf("Unknown option %s\n.", option);
-					return CLI_COMMAND_ERR_OPTION_NOT_FOUND;
+					return ZCLK_COMMAND_ERR_OPTION_NOT_FOUND;
 				}
 				else
 				{
 					//printf("Found %s\n", found->name);
 					skip_count += 1;
 					//read option value if it is not a flag
-					if (found->val->type == CLI_TYPE_FLAG)
+					if (found->val->type == ZCLK_TYPE_FLAG)
 					{
 						found->val->bool_value = 1;
 					}
@@ -798,13 +798,13 @@ cli_cmd_err parse_options(arraylist *options, int *argc, char **argv)
 						if (i == (*argc - 1))
 						{
 							printf("Value missing for option %s.\n", option);
-							return CLI_COMMAND_ERR_OPTION_NOT_FOUND;
+							return ZCLK_COMMAND_ERR_OPTION_NOT_FOUND;
 						}
 						else
 						{
 							skip_count += 1;
 							char *value = argv[i + 1];
-							parse_cli_val(found->val, value);
+							parse_zclk_val(found->val, value);
 						}
 					}
 					for (int sk = 0; sk < skip_count; sk++)
@@ -824,10 +824,10 @@ cli_cmd_err parse_options(arraylist *options, int *argc, char **argv)
 		}
 	}
 
-	return CLI_COMMAND_SUCCESS;
+	return ZCLK_COMMAND_SUCCESS;
 }
 
-cli_cmd_err parse_args(arraylist *args, int *argc, char **argv)
+zclk_cmd_err parse_args(arraylist *args, int *argc, char **argv)
 {
 	size_t args_len = arraylist_length(args);
 	//	printf("args len %d\n", args_len);
@@ -835,23 +835,23 @@ cli_cmd_err parse_args(arraylist *args, int *argc, char **argv)
 	{
 		for (int i = 0; i < args_len; i++)
 		{
-			cli_argument *arg = arraylist_get(args, i);
+			zclk_argument *arg = arraylist_get(args, i);
 			char *argval = argv[i];
 			//check if we have
-			parse_cli_val(arg->val, argval);
+			parse_zclk_val(arg->val, argval);
 			//			printf("Argval %s\n", argval);
 		}
 	}
 	else
 	{
-		return CLI_COMMAND_ERR_ARG_NOT_FOUND;
+		return ZCLK_COMMAND_ERR_ARG_NOT_FOUND;
 	}
 	for (int i = 0; i < args_len; i++)
 	{
 		(*argc) = gobble((*argc), &argv, 0);
 		//		printf("new argc = %d\n", (*argc));
 	}
-	return CLI_COMMAND_SUCCESS;
+	return ZCLK_COMMAND_SUCCESS;
 }
 
 void print_options(arraylist *options)
@@ -861,16 +861,16 @@ void print_options(arraylist *options)
 		size_t options_len = arraylist_length(options);
 		for (int i = 0; i < options_len; i++)
 		{
-			cli_option *o = arraylist_get(options, i);
+			zclk_option *o = arraylist_get(options, i);
 			switch (o->val->type)
 			{
-			case CLI_TYPE_BOOLEAN:
+			case ZCLK_TYPE_BOOLEAN:
 				printf("Options%d %s, %s = %d\n", i, o->name, o->short_name, o->val->bool_value);
 				break;
-			case CLI_TYPE_FLAG:
+			case ZCLK_TYPE_FLAG:
 				printf("Options%d %s, %s = %d\n", i, o->name, o->short_name, o->val->bool_value);
 				break;
-			case CLI_TYPE_STRING:
+			case ZCLK_TYPE_STRING:
 				printf("Options%d %s, %s = %s\n", i, o->name, o->short_name, o->val->str_value);
 				break;
 			}
@@ -878,20 +878,20 @@ void print_options(arraylist *options)
 	}
 }
 
-cli_cmd_err exec_command(arraylist *commands, void *handler_args,
+zclk_cmd_err exec_command(arraylist *commands, void *handler_args,
 						 int argc, char **argv, zclk_command_output_handler success_handler,
 						 zclk_command_output_handler error_handler)
 {
-	cli_cmd_err err = CLI_COMMAND_SUCCESS;
+	zclk_cmd_err err = ZCLK_COMMAND_SUCCESS;
 
 	//First read all commands
 	arraylist *cmds_to_exec = get_command_to_exec(commands, &argc, argv);
 	size_t len_cmds = arraylist_length(cmds_to_exec);
 	arraylist *all_options, *all_args;
 	arraylist_new(&all_options, NULL);
-	set_lua_convertor(all_options, &arraylist_cli_option_to_lua);
+	set_lua_convertor(all_options, &arraylist_zclk_option_to_lua);
 	arraylist_new(&all_args, NULL);
-	set_lua_convertor(all_args, &arraylist_cli_argument_to_lua);
+	set_lua_convertor(all_args, &arraylist_zclk_argument_to_lua);
 
 	for (int i = 0; i < len_cmds; i++)
 	{
@@ -912,24 +912,24 @@ cli_cmd_err exec_command(arraylist *commands, void *handler_args,
 
 	//Then read all options
 	err = parse_options(all_options, &argc, argv);
-	if (err != CLI_COMMAND_SUCCESS)
+	if (err != ZCLK_COMMAND_SUCCESS)
 	{
 		return err;
 	}
 
 	//print_options(all_options);
 
-	cli_option *help_option = get_option_by_name(all_options, CLI_OPTION_HELP_LONG);
+	zclk_option *help_option = get_option_by_name(all_options, ZCLK_OPTION_HELP_LONG);
 	if (help_option->val->bool_value)
 	{
 		char *help_str = get_help_for_command(cmds_to_exec);
 		if (help_str == NULL)
 		{
-			error_handler(CLI_COMMAND_ERR_COMMAND_NOT_FOUND, CLI_RESULT_STRING,
+			error_handler(ZCLK_COMMAND_ERR_COMMAND_NOT_FOUND, ZCLK_RESULT_STRING,
 						  "No valid command found. Type help to get more help\n");
-			return CLI_COMMAND_ERR_COMMAND_NOT_FOUND;
+			return ZCLK_COMMAND_ERR_COMMAND_NOT_FOUND;
 		}
-		success_handler(CLI_COMMAND_SUCCESS, CLI_RESULT_STRING, help_str);
+		success_handler(ZCLK_COMMAND_SUCCESS, ZCLK_RESULT_STRING, help_str);
 	}
 	else
 	{
@@ -939,7 +939,7 @@ cli_cmd_err exec_command(arraylist *commands, void *handler_args,
 			if (cmd_to_exec == NULL)
 			{
 				printf("No valid command found. Type help to get more help\n");
-				return CLI_COMMAND_ERR_COMMAND_NOT_FOUND;
+				return ZCLK_COMMAND_ERR_COMMAND_NOT_FOUND;
 			}
 
 			// for the last command in the chain, it can have args
@@ -947,7 +947,7 @@ cli_cmd_err exec_command(arraylist *commands, void *handler_args,
 			{
 				//Now read all arguments
 				err = parse_args(cmd_to_exec->args, &argc, argv);
-				if (err != CLI_COMMAND_SUCCESS)
+				if (err != ZCLK_COMMAND_SUCCESS)
 				{
 					return err;
 				}
@@ -956,7 +956,7 @@ cli_cmd_err exec_command(arraylist *commands, void *handler_args,
 				if (argc > 0)
 				{
 					printf("%d extra arguments found.\n", argc);
-					return CLI_COMMAND_ERR_EXTRA_ARGS_FOUND;
+					return ZCLK_COMMAND_ERR_EXTRA_ARGS_FOUND;
 				}
 			}
 
@@ -1056,10 +1056,10 @@ void print_table_result(void* result)
 	}
 }
 
-cli_cmd_err print_handler(cli_cmd_err result_flag, cli_result_type res_type,
+zclk_cmd_err print_handler(zclk_cmd_err result_flag, zclk_result_type res_type,
 	void* result)
 {
-	if (res_type == CLI_RESULT_STRING)
+	if (res_type == ZCLK_RESULT_STRING)
 	{
 		if (result != NULL)
 		{
@@ -1067,11 +1067,11 @@ cli_cmd_err print_handler(cli_cmd_err result_flag, cli_result_type res_type,
 			printf("%s", result_str);
 		}
 	}
-	else if (res_type == CLI_RESULT_TABLE)
+	else if (res_type == ZCLK_RESULT_TABLE)
 	{
 		print_table_result(result);
 	}
-	else if (res_type == CLI_RESULT_DICT)
+	else if (res_type == ZCLK_RESULT_DICT)
 	{
 		cli_dict* result_dict = (cli_dict*)result;
 		cli_dict_foreach(result_dict, k, v)
@@ -1080,7 +1080,7 @@ cli_cmd_err print_handler(cli_cmd_err result_flag, cli_result_type res_type,
 		}
 		printf("\n");
 	}
-	else if (res_type == CLI_RESULT_PROGRESS)
+	else if (res_type == ZCLK_RESULT_PROGRESS)
 	{
 		cli_multi_progress* result_progress = (cli_multi_progress*)result;
 		if (result_progress->old_count > 0)
@@ -1107,5 +1107,5 @@ cli_cmd_err print_handler(cli_cmd_err result_flag, cli_result_type res_type,
 	{
 		printf("This result type is not handled %d\n", res_type);
 	}
-	return CLI_COMMAND_SUCCESS;
+	return ZCLK_COMMAND_SUCCESS;
 }
