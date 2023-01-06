@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['exec_5fcommand_16',['exec_command',['../cliutils_8h.html#a08bb8185aab1a37e0532569d84222813',1,'cliutils.c']]]
+  ['handler_11',['handler',['../structzclk__command__t.html#ac15e1955dfcfdf440ea19a8128f7abf3',1,'zclk_command_t']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['handler_24',['handler',['../structzclk__command__t.html#ac15e1955dfcfdf440ea19a8128f7abf3',1,'zclk_command_t']]],
-  ['help_5fcmd_5fhandler_25',['help_cmd_handler',['../cliutils_8h.html#a12e28b2098f8db7bf7fb0eebceb2cad3',1,'cliutils.c']]]
+  ['optional_14',['optional',['../structzclk__argument__t.html#ae8b9b5d7da2bd778cfb99856c2846ee7',1,'zclk_argument_t']]],
+  ['options_15',['options',['../structzclk__command__t.html#aa0788e923eeae8cd37d91366186ac2b0',1,'zclk_command_t']]]
 ];
