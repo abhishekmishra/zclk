@@ -1,4 +1,4 @@
-#include <cliutils.h>
+#include <zclk.h>
 #include <stdio.h>
 
 zclk_cmd_err basic_handler(void* handler_args,

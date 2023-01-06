@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "cliutils.h"
+#include "zclk.h"
 
 #define ZCLK_SIZE_OF_HELP_STR 4096
 #define ZCLK_SIZE_OF_PROGNAME_STR 1024

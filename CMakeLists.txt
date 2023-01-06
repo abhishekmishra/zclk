@@ -26,13 +26,13 @@ include_directories( src )
 # Lists
 # Setup the list of source files
 set( CLIUTILS_SOURCES
-  src/cliutils.c
+  src/zclk.c
   src/cli_common.c
   src/cli_table.c
   src/cli_dict.c
   src/cli_progress.c
 
-  src/cliutils.h
+  src/zclk.h
   src/cli_common.h
   src/cli_table.h
   src/cli_dict.h
