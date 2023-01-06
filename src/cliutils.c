@@ -294,7 +294,7 @@ zclk_cmd_err make_option(zclk_option **option, char *name, char *short_name,
 	return ZCLK_COMMAND_SUCCESS;
 }
 
-zclk_option* create_option(char* name, char* short_name, zclk_val*val, zclk_val* default_val, char* desc) {
+zclk_option* new_zclk_option(char* name, char* short_name, zclk_val*val, zclk_val* default_val, char* desc) {
 	zclk_option* o;
 	make_option(&o, name, short_name, val, default_val, desc);
 	return o;
@@ -477,14 +477,14 @@ zclk_cmd_err make_command(zclk_command **command, char *name, char *short_name,
 
 	zclk_command_option_add(
 		(*command),
-		create_option(ZCLK_OPTION_HELP_LONG,
+		new_zclk_option(ZCLK_OPTION_HELP_LONG,
 					  ZCLK_OPTION_HELP_SHORT, ZCLK_VAL_FLAG(0),
 					  ZCLK_VAL_FLAG(0), ZCLK_OPTION_HELP_DESC));
 
 	return ZCLK_COMMAND_SUCCESS;
 }
 
-zclk_command* zclk_command_new(char* name, char* short_name,
+zclk_command* new_zclk_command(char* name, char* short_name,
 	char* description, zclk_command_handler handler) {
 	zclk_command* cmd;
 	if (make_command(&cmd, name, short_name, description, handler) == ZCLK_COMMAND_SUCCESS) {

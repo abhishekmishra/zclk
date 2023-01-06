@@ -317,7 +317,7 @@ MODULE_API zclk_cmd_err make_option(zclk_option** option, char* name,
  * @param desc 
  * @return MODULE_API* 
  */
-MODULE_API zclk_option* create_option(char* name, char* short_name, 
+MODULE_API zclk_option* new_zclk_option(char* name, char* short_name, 
 	zclk_val* val, zclk_val* default_val, char* desc);
 
 /**
@@ -392,7 +392,7 @@ MODULE_API zclk_cmd_err make_command(zclk_command** command, char* name,
  * @param handler 
  * @return zclk_command* created command object
  */
-MODULE_API zclk_command* zclk_command_new(
+MODULE_API zclk_command* new_zclk_command(
 							char* name, 
 							char* short_name,
     						char* description, 

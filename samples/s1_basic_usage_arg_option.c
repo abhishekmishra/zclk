@@ -19,12 +19,12 @@ int main(int argc, char* argv[])
     printf("Sample#1: Basic Usage of CLIUTILS with "
         "One Argument and One Option.\n");
 
-    zclk_command *cmd = zclk_command_new(argv[0], "cmd",
+    zclk_command *cmd = new_zclk_command(argv[0], "cmd",
                             "Basic Description", &basic_handler);
     
     zclk_command_option_add(
         cmd,
-        create_option(
+        new_zclk_option(
             "option-one",
 			"o", 
             ZCLK_VAL_FLAG(0),
