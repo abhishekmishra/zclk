@@ -79,12 +79,34 @@ typedef enum
  */
 typedef struct zclk_val_t
 {
-	zclk_type type;		///< type of value
-	int bool_value;		///< boolean value
-	int int_value;		///< integer value
-	double dbl_value;	///< double value
-	char* str_value;	///< string value
+	zclk_type type;			///< type of value
+	union {
+		int bool_value;		///< boolean value
+		int int_value;		///< integer value
+		double dbl_value;	///< double value
+		char* str_value;	///< string value
+	} data;					///< data of the value
 } zclk_val;
+
+MODULE_API int zclk_val_is_type(zclk_val *val, zclk_type type);
+
+#define zclk_val_is_bool(val)		zclk_val_is_type(val, ZCLK_TYPE_BOOLEAN)
+#define zclk_val_is_int(val)		zclk_val_is_type(val, ZCLK_TYPE_INT)
+#define zclk_val_is_double(val)		zclk_val_is_type(val, ZCLK_TYPE_DOUBLE)
+#define zclk_val_is_string(val)		zclk_val_is_type(val, ZCLK_TYPE_STRING)
+#define zclk_val_is_flag(val)		zclk_val_is_type(val, ZCLK_TYPE_FLAG)
+
+MODULE_API int zclk_val_get_bool(zclk_val *val);
+MODULE_API int zclk_val_get_int(zclk_val *val);
+MODULE_API double zclk_val_get_double(zclk_val *val);
+MODULE_API char* zclk_val_get_string(zclk_val *val);
+MODULE_API int zclk_val_get_flag(zclk_val *val);
+
+MODULE_API void zclk_val_set_bool(zclk_val *val, int bval);
+MODULE_API void zclk_val_set_int(zclk_val *val, int ival);
+MODULE_API void zclk_val_set_dobule(zclk_val *val, double dval);
+MODULE_API void zclk_val_set_string(zclk_val *val, char* sval);
+MODULE_API void zclk_val_set_flag(zclk_val *val, int fval);
 
 /**
  * @brief Convert a cli value to its lua value
@@ -95,53 +117,46 @@ typedef struct zclk_val_t
  */
 MODULE_API int zclk_val_to_lua(lua_State *L, zclk_val* val);
 
-/**
- * @brief Create a cli val object
- * 
- * @param type type of the val
- * @param bool_val boolean value
- * @param int_val integer value
- * @param dbl_val double value
- * @param str  string value
- * @return MODULE_API* 
- */
-MODULE_API zclk_val* create_zclk_val(zclk_type type, int bool_val, 
-	int int_val, double dbl_val, char* str);
+MODULE_API zclk_val* new_zclk_val_bool(int bool_val);
+MODULE_API zclk_val* new_zclk_val_int(int int_val);
+MODULE_API zclk_val* new_zclk_val_double(double double_val);
+MODULE_API zclk_val* new_zclk_val_string(char* string_val);
+MODULE_API zclk_val* new_zclk_val_flag(int flag_val);
 
 /**
  * @brief Create a new flag cli value
  * 
  * @param v value
  */
-#define ZCLK_VAL_FLAG(v) create_zclk_val(ZCLK_TYPE_FLAG, v, 0, 0, NULL)
+#define ZCLK_VAL_FLAG(v) new_zclk_val_flag(v)
 
 /**
  * @brief Create a new boolean cli value
  * 
  * @param v value
  */
-#define ZCLK_VAL_BOOLEAN(v) create_zclk_val(ZCLK_TYPE_BOOLEAN, v, 0, 0, NULL)
+#define ZCLK_VAL_BOOLEAN(v) new_zclk_val_bool(v)
 
 /**
  * @brief Create a new integer cli value
  * 
  * @param v value
  */
-#define ZCLK_VAL_INT(v) create_zclk_val(ZCLK_TYPE_INT, 0, v, 0, NULL)
+#define ZCLK_VAL_INT(v) new_zclk_val_int(v)
 
 /**
  * @brief Create a new double cli value
  * 
  * @param v value
  */
-#define ZCLK_VAL_DOUBLE(v) create_zclk_val(ZCLK_TYPE_DOUBLE, 0, 0, v, NULL)
+#define ZCLK_VAL_DOUBLE(v) new_zclk_val_double(v)
 
 /**
  * @brief Create a new string cli value
  * 
  * @param v value
  */
-#define ZCLK_VAL_STRING(v) create_zclk_val(ZCLK_TYPE_STRING, 0, 0, 0, v)
+#define ZCLK_VAL_STRING(v) new_zclk_val_string(v)
 
 /**
  * @brief CLI Option Object

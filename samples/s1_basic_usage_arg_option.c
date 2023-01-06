@@ -9,7 +9,7 @@ zclk_cmd_err basic_handler(void* handler_args,
     for (size_t i = 0; i < arraylist_length(options);i++)
     {
         zclk_option *opt = (zclk_option*)arraylist_get(options, i);
-        printf("option: %s=%d\n", opt->name, opt->val->bool_value);
+        printf("option: %s=%d\n", opt->name, zclk_val_get_bool(opt->val));
     }
     return 0;
 }

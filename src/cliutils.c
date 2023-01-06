@@ -32,45 +32,174 @@ zclk_cmd_err make_zclk_val(zclk_val **val, zclk_type type)
 		return ZCLK_COMMAND_ERR_ALLOC_FAILED;
 	}
 	(*val)->type = type;
-	clear_zclk_val(*val);
 	return ZCLK_COMMAND_SUCCESS;
 }
 
-zclk_val* create_zclk_val(zclk_type type, int bool_val, int int_val, double dbl_val, char* str) {
-	zclk_val* v;
-	make_zclk_val(&v, type);
-	if (v != NULL) {
-		v->bool_value = bool_val;
-		v->int_value = int_val;
-		v->dbl_value = dbl_val;
-		v->str_value = str;
+zclk_val* new_zclk_val_bool(int bool_val)
+{
+	zclk_val *val;
+	zclk_cmd_err res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
+	if(res == ZCLK_COMMAND_SUCCESS)
+	{
+		val->data.bool_value = bool_val;
 	}
-	return v;
 }
 
-void free_zclk_val(zclk_val *val)
+zclk_val* new_zclk_val_int(int int_val)
 {
-	if (val->str_value)
+	zclk_val *val;
+	zclk_cmd_err res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
+	if(res == ZCLK_COMMAND_SUCCESS)
 	{
-		free(val->str_value);
+		val->data.int_value = int_val;
+	}
+}
+
+zclk_val* new_zclk_val_double(double double_val)
+{
+	zclk_val *val;
+	zclk_cmd_err res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
+	if(res == ZCLK_COMMAND_SUCCESS)
+	{
+		val->data.dbl_value = double_val;
+	}
+}
+
+zclk_val* new_zclk_val_string(char* string_val)
+{
+	zclk_val *val;
+	zclk_cmd_err res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
+	if(res == ZCLK_COMMAND_SUCCESS)
+	{
+		val->data.str_value = string_val;
+	}
+}
+
+zclk_val* new_zclk_val_flag(int flag_val)
+{
+	zclk_val *val;
+	zclk_cmd_err res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
+	if(res == ZCLK_COMMAND_SUCCESS)
+	{
+		val->data.bool_value = flag_val;
+	}
+}
+
+int zclk_val_is_type(zclk_val *val, zclk_type type)
+{
+	if (val == NULL)
+	{
+		//TODO: create error code
+		return -1;
+	}
+	if(val->type == type)
+	{
+		return ZCLK_COMMAND_SUCCESS;
+	}
+	else
+	{
+		//TODO: create error code
+		return 1;
+	}
+}
+
+int zclk_val_get_bool(zclk_val *val)
+{
+	return (int)(val->data.bool_value);
+}
+
+int zclk_val_get_int(zclk_val *val)
+{
+
+	return (int)(val->data.int_value);
+}
+
+double zclk_val_get_double(zclk_val *val)
+{
+	return (double)(val->data.dbl_value);
+}
+
+char *zclk_val_get_string(zclk_val * val)
+{
+	return (char *)(val->data.str_value);
+}
+
+int zclk_val_get_flag(zclk_val * val)
+{
+	return (int)(val->data.bool_value);
+}
+
+void zclk_val_set_bool(zclk_val *val, int bval)
+{
+	if(val!= NULL)
+	{
+		val->data.bool_value = bval;
+	}
+}
+
+void zclk_val_set_int(zclk_val *val, int ival)
+{
+	if(val!= NULL)
+	{
+		val->data.int_value = ival;
+	}
+}
+void zclk_val_set_dobule(zclk_val *val, double dval)
+{
+	if(val!= NULL)
+	{
+		val->data.dbl_value = dval;
+	}
+}
+
+void zclk_val_set_string(zclk_val *val, char* sval)
+{
+	if(val!= NULL)
+	{
+		val->data.str_value = sval;
+	}
+}
+
+void zclk_val_set_flag(zclk_val *val, int fval)
+{
+	if(val!= NULL)
+	{
+		val->data.bool_value = fval;
+	}
+}
+
+void free_zclk_val(zclk_val * val)
+{
+	if (zclk_val_is_string(val))
+	{
+		free(val->data.str_value);
 	}
 	free(val);
 }
 
-void clear_zclk_val(zclk_val *val)
-{
-	val->bool_value = 0;
-	val->int_value = 0;
-	val->dbl_value = 0.0;
-	val->str_value = NULL;
-}
-
 void copy_zclk_val(zclk_val *to, zclk_val *from)
 {
-	to->bool_value = from->bool_value;
-	to->int_value = from->int_value;
-	to->dbl_value = from->dbl_value;
-	to->str_value = from->str_value;
+	to->type = from->type;
+	if(zclk_val_is_bool(from))
+	{
+		to->data.bool_value = from->data.bool_value;
+	}
+	if(zclk_val_is_int(from))
+	{
+		to->data.int_value = from->data.int_value;
+	}
+	if(zclk_val_is_double(from))
+	{
+		to->data.dbl_value = from->data.dbl_value;
+	}
+	if(zclk_val_is_string(from))
+	{
+		to->data.str_value = from->data.str_value;
+	}
+	if(zclk_val_is_flag(from))
+	{
+		to->data.bool_value = from->data.bool_value;
+	}
 }
 
 zclk_cmd_err parse_zclk_val(zclk_val *val, char *input)
@@ -89,23 +218,23 @@ zclk_cmd_err parse_zclk_val(zclk_val *val, char *input)
 			sscanf(input, "%d", &v);
 			if (v > 0)
 			{
-				val->bool_value = 1;
+				zclk_val_set_bool(val, 1);
 			}
 			else
 			{
-				val->bool_value = 0;
+				zclk_val_set_bool(val, 0);
 			}
 			break;
 		case ZCLK_TYPE_INT:
 			sscanf(input, "%d", &v);
-			val->int_value = v;
+			zclk_val_set_int(val, v);
 			break;
 		case ZCLK_TYPE_DOUBLE:
 			sscanf(input, "%lf", &d);
-			val->dbl_value = d;
+			zclk_val_set_dobule(val, d);
 			break;
 		case ZCLK_TYPE_STRING:
-			val->str_value = input;
+			zclk_val_set_string(val, input);
 			break;
 		default:
 			return ZCLK_COMMAND_ERR_UNKNOWN;
@@ -126,20 +255,20 @@ int zclk_val_to_lua(lua_State *L, zclk_val *val)
 		{
 		case ZCLK_TYPE_FLAG:
 		case ZCLK_TYPE_BOOLEAN:
-			lua_pushboolean(L, val->bool_value);
+			lua_pushboolean(L, zclk_val_get_bool(val));
 			break;
 		case ZCLK_TYPE_INT:
-			lua_pushinteger(L, val->int_value);
+			lua_pushinteger(L, zclk_val_get_int(val));
 			break;
 		case ZCLK_TYPE_DOUBLE:
-			lua_pushnumber(L, val->dbl_value);
+			lua_pushnumber(L, zclk_val_get_double(val));
 			break;
 		case ZCLK_TYPE_STRING:
-			if (val->str_value == NULL) {
+			if (zclk_val_get_string(val) == NULL) {
 				lua_pushnil(L);
 			}
 			else {
-				lua_pushstring(L, val->str_value);
+				lua_pushstring(L, zclk_val_get_string(val));
 			}
 			break;
 		default:
@@ -791,7 +920,7 @@ zclk_cmd_err parse_options(arraylist *options, int *argc, char **argv)
 					//read option value if it is not a flag
 					if (found->val->type == ZCLK_TYPE_FLAG)
 					{
-						found->val->bool_value = 1;
+						zclk_val_set_bool(found->val, 1);
 					}
 					else
 					{
@@ -865,13 +994,13 @@ void print_options(arraylist *options)
 			switch (o->val->type)
 			{
 			case ZCLK_TYPE_BOOLEAN:
-				printf("Options%d %s, %s = %d\n", i, o->name, o->short_name, o->val->bool_value);
+				printf("Options%d %s, %s = %d\n", i, o->name, o->short_name, zclk_val_get_bool(o->val));
 				break;
 			case ZCLK_TYPE_FLAG:
-				printf("Options%d %s, %s = %d\n", i, o->name, o->short_name, o->val->bool_value);
+				printf("Options%d %s, %s = %d\n", i, o->name, o->short_name, zclk_val_get_bool(o->val));
 				break;
 			case ZCLK_TYPE_STRING:
-				printf("Options%d %s, %s = %s\n", i, o->name, o->short_name, o->val->str_value);
+				printf("Options%d %s, %s = %s\n", i, o->name, o->short_name, zclk_val_get_string(o->val));
 				break;
 			}
 		}
@@ -920,7 +1049,7 @@ zclk_cmd_err exec_command(arraylist *commands, void *handler_args,
 	//print_options(all_options);
 
 	zclk_option *help_option = get_option_by_name(all_options, ZCLK_OPTION_HELP_LONG);
-	if (help_option->val->bool_value)
+	if (zclk_val_get_bool(help_option->val))
 	{
 		char *help_str = get_help_for_command(cmds_to_exec);
 		if (help_str == NULL)
