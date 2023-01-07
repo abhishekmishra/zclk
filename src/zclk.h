@@ -320,9 +320,36 @@ MODULE_API zclk_cmd_err make_option(zclk_option** option, char* name,
 MODULE_API zclk_option* new_zclk_option(char* name, char* short_name, 
 	zclk_val* val, zclk_val* default_val, char* desc);
 
+MODULE_API zclk_option *new_zclk_option_bool(char *name, char *short_name, 
+	int val, int default_val, char *desc);
+MODULE_API zclk_option *new_zclk_option_int(char *name, char *short_name, 
+	int val, int default_val, char *desc);
+MODULE_API zclk_option *new_zclk_option_double(char *name, char *short_name, 
+	double val, double default_val, char *desc);
+MODULE_API zclk_option *new_zclk_option_string(char *name, char *short_name, 
+	char* val, char* default_val, char *desc);
+MODULE_API zclk_option *new_zclk_option_flag(char *name, char *short_name, 
+	int val, int default_val, char *desc);
+
+MODULE_API char *zclk_option_get_name(zclk_option *opt);
+MODULE_API char *zclk_option_get_short_name(zclk_option *opt);
+MODULE_API char *zclk_option_get_desc(zclk_option *opt);
+
+MODULE_API int zclk_option_get_val_bool(zclk_option *opt);
+MODULE_API int zclk_option_get_val_int(zclk_option *opt);
+MODULE_API double zclk_option_get_val_double(zclk_option *opt);
+MODULE_API char* zclk_option_get_val_string(zclk_option *opt);
+MODULE_API int zclk_option_get_val_flag(zclk_option *opt);
+
+MODULE_API int zclk_option_get_default_val_bool(zclk_option *opt);
+MODULE_API int zclk_option_get_default_val_int(zclk_option *opt);
+MODULE_API double zclk_option_get_default_val_double(zclk_option *opt);
+MODULE_API char* zclk_option_get_default_val_string(zclk_option *opt);
+MODULE_API int zclk_option_get_default_val_flag(zclk_option *opt);
+
 /**
  * Free resources used by option
- * 
+ *
  * @param option to free
  */
 MODULE_API void free_option(zclk_option* option);
@@ -360,6 +387,33 @@ MODULE_API zclk_cmd_err make_argument(zclk_argument** arg, char* name,
  */
 MODULE_API zclk_argument* new_zclk_argument(char* name, zclk_val* val, 
 	zclk_val* default_val, char* desc);
+
+MODULE_API zclk_argument *new_zclk_argument_bool(char *name, char *short_name, 
+	int val, int default_val, char *desc);
+MODULE_API zclk_argument *new_zclk_argument_int(char *name, char *short_name, 
+	int val, int default_val, char *desc);
+MODULE_API zclk_argument *new_zclk_argument_double(char *name, char *short_name, 
+	double val, double default_val, char *desc);
+MODULE_API zclk_argument *new_zclk_argument_string(char *name, char *short_name, 
+	char* val, char* default_val, char *desc);
+MODULE_API zclk_argument *new_zclk_argument_flag(char *name, char *short_name, 
+	int val, int default_val, char *desc);
+
+MODULE_API char *zclk_argument_get_name(zclk_argument *opt);
+MODULE_API char *zclk_argument_get_short_name(zclk_argument *opt);
+MODULE_API char *zclk_argument_get_desc(zclk_argument *opt);
+
+MODULE_API int zclk_argument_get_val_bool(zclk_argument *opt);
+MODULE_API int zclk_argument_get_val_int(zclk_argument *opt);
+MODULE_API double zclk_argument_get_val_double(zclk_argument *opt);
+MODULE_API char* zclk_argument_get_val_string(zclk_argument *opt);
+MODULE_API int zclk_argument_get_val_flag(zclk_argument *opt);
+
+MODULE_API int zclk_argument_get_default_val_bool(zclk_argument *opt);
+MODULE_API int zclk_argument_get_default_val_int(zclk_argument *opt);
+MODULE_API double zclk_argument_get_default_val_double(zclk_argument *opt);
+MODULE_API char* zclk_argument_get_default_val_string(zclk_argument *opt);
+MODULE_API int zclk_argument_get_default_val_flag(zclk_argument *opt);
 
 /**
  * Free resources used by argument
