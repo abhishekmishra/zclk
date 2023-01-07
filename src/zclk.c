@@ -43,6 +43,7 @@ zclk_val* new_zclk_val_bool(int bool_val)
 	{
 		val->data.bool_value = bool_val;
 	}
+	return val;
 }
 
 zclk_val* new_zclk_val_int(int int_val)
@@ -53,6 +54,7 @@ zclk_val* new_zclk_val_int(int int_val)
 	{
 		val->data.int_value = int_val;
 	}
+	return val;
 }
 
 zclk_val* new_zclk_val_double(double double_val)
@@ -63,6 +65,7 @@ zclk_val* new_zclk_val_double(double double_val)
 	{
 		val->data.dbl_value = double_val;
 	}
+	return val;
 }
 
 zclk_val* new_zclk_val_string(char* string_val)
@@ -73,6 +76,7 @@ zclk_val* new_zclk_val_string(char* string_val)
 	{
 		val->data.str_value = string_val;
 	}
+	return val;
 }
 
 zclk_val* new_zclk_val_flag(int flag_val)
@@ -83,6 +87,7 @@ zclk_val* new_zclk_val_flag(int flag_val)
 	{
 		val->data.bool_value = flag_val;
 	}
+	return val;
 }
 
 int zclk_val_is_type(zclk_val *val, zclk_type type)
@@ -546,6 +551,7 @@ zclk_cmd_err zclk_command_exec(zclk_command* cmd, int argc, char* argv[])
 	{
 		printf("Error: invalid command.\n");
 	}
+	return err;
 }
 
 void free_command(zclk_command *command)
@@ -1139,7 +1145,7 @@ void print_table_result(void* result)
 			col_width = max_width;
 		}
 		char* fmtspec = (char*)calloc(16, sizeof(char));
-		sprintf(fmtspec, "%%-%d.%ds", (col_width + 1), col_width);
+		sprintf(fmtspec, "%%-%lu.%zus", (col_width + 1), col_width);
 		col_widths[i] = col_width;
 		col_fmtspec[i] = fmtspec;
 		//printf("%d and %s\n", col_width, fmtspec);
