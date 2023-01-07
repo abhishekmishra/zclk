@@ -4,8 +4,8 @@
 // https://opensource.org/licenses/MIT
 
 /**
- * \file cliutils.h
- * \brief Cliutils main header file. Defines the Public API of cliutils.
+ * \file zclk.h
+ * \brief Zclk main header file. Defines the Public API of zclk.
  */
 
 #ifndef __ZCLK_H__
