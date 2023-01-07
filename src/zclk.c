@@ -305,6 +305,158 @@ zclk_option* new_zclk_option(char* name, char* short_name, zclk_val*val, zclk_va
 	return o;
 }
 
+zclk_option *new_zclk_option_bool(char *name, char *short_name, 
+	int val, int default_val, char *desc)
+{
+	return new_zclk_option(name, short_name, 
+		new_zclk_val_bool(val), new_zclk_val_bool(default_val), desc);
+}
+
+zclk_option *new_zclk_option_int(char *name, char *short_name, 
+	int val, int default_val, char *desc)
+{
+	return new_zclk_option(name, short_name, 
+		new_zclk_val_int(val), new_zclk_val_int(default_val), desc);
+}
+
+zclk_option *new_zclk_option_double(char *name, char *short_name, 
+	double val, double default_val, char *desc)
+{
+	return new_zclk_option(name, short_name, 
+		new_zclk_val_double(val), new_zclk_val_double(default_val), desc);
+}
+
+zclk_option *new_zclk_option_string(char *name, char *short_name, 
+	char* val, char* default_val, char *desc)
+{
+	return new_zclk_option(name, short_name, 
+		new_zclk_val_string(val), new_zclk_val_string(default_val), desc);
+}
+
+zclk_option *new_zclk_option_flag(char *name, char *short_name, 
+	int val, int default_val, char *desc)
+{
+	return new_zclk_option(name, short_name, 
+		new_zclk_val_flag(val), new_zclk_val_flag(default_val), desc);
+}
+
+char *zclk_option_get_name(zclk_option *opt)
+{
+	if(opt == NULL)
+	{
+		return NULL;
+	}
+	return (opt->name);
+}
+
+char *zclk_option_get_short_name(zclk_option *opt)
+{
+	if(opt == NULL)
+	{
+		return NULL;
+	}
+	return (opt->name);
+}
+
+char *zclk_option_get_desc(zclk_option *opt)
+{
+	if(opt == NULL)
+	{
+		return NULL;
+	}
+	return (opt->name);
+}
+
+int zclk_option_get_val_bool(zclk_option *opt)
+{
+	if(opt == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_bool(opt->val);
+}
+
+int zclk_option_get_val_int(zclk_option *opt)
+{
+	if(opt == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_int(opt->val);
+}
+
+double zclk_option_get_val_double(zclk_option *opt)
+{
+	if(opt == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_double(opt->val);
+}
+
+char* zclk_option_get_val_string(zclk_option *opt)
+{
+	if(opt == NULL)
+	{
+		return NULL;
+	}
+	return zclk_val_get_string(opt->val);
+}
+
+int zclk_option_get_val_flag(zclk_option *opt)
+{
+	if(opt == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_flag(opt->val);
+}
+
+int zclk_option_get_default_val_bool(zclk_option *opt)
+{
+	if(opt == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_bool(opt->default_val);
+}
+
+int zclk_option_get_default_val_int(zclk_option *opt)
+{
+	if(opt == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_int(opt->default_val);
+}
+
+double zclk_option_get_default_val_double(zclk_option *opt)
+{
+	if(opt == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_double(opt->default_val);
+}
+
+char* zclk_option_get_default_val_string(zclk_option *opt)
+{
+	if(opt == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_string(opt->default_val);
+}
+
+int zclk_option_get_default_val_flag(zclk_option *opt)
+{
+	if(opt == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_flag(opt->default_val);
+}
+
 void free_option(zclk_option *option)
 {
 	if (option->short_name)
@@ -412,6 +564,152 @@ zclk_argument* new_zclk_argument(char* name, zclk_val* val, zclk_val* default_va
 	make_argument(&arg, name, val, default_val, desc);
 	return arg;
 }
+
+zclk_argument *new_zclk_argument_bool(char *name, 
+	int val, int default_val, char *desc)
+{
+	return new_zclk_argument(name, 
+		new_zclk_val_bool(val), new_zclk_val_bool(default_val), desc);
+}
+
+zclk_argument *new_zclk_argument_int(char *name, 
+	int val, int default_val, char *desc)
+{
+	return new_zclk_argument(name, 
+		new_zclk_val_int(val), new_zclk_val_int(default_val), desc);
+}
+
+zclk_argument *new_zclk_argument_double(char *name, 
+	double val, double default_val, char *desc)
+{
+	return new_zclk_argument(name, 
+		new_zclk_val_double(val), new_zclk_val_double(default_val), desc);
+}
+
+zclk_argument *new_zclk_argument_string(char *name, 
+	char* val, char* default_val, char *desc)
+{
+	return new_zclk_argument(name, 
+		new_zclk_val_string(val), new_zclk_val_string(default_val), desc);
+}
+
+zclk_argument *new_zclk_argument_flag(char *name, 
+	int val, int default_val, char *desc)
+{
+	return new_zclk_argument(name, 
+		new_zclk_val_flag(val), new_zclk_val_flag(default_val), desc);
+}
+
+
+char *zclk_argument_get_name(zclk_argument *arg)
+{
+	if(arg == NULL)
+	{
+		return NULL;
+	}
+	return (arg->name);
+}
+
+char *zclk_argument_get_desc(zclk_argument *arg)
+{
+	if(arg == NULL)
+	{
+		return NULL;
+	}
+	return (arg->description);
+}
+
+
+int zclk_argument_get_val_bool(zclk_argument *arg)
+{
+	if(arg == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_bool(arg->val);
+}
+
+int zclk_argument_get_val_int(zclk_argument *arg)
+{
+	if(arg == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_int(arg->val);
+}
+
+double zclk_argument_get_val_double(zclk_argument *arg)
+{
+	if(arg == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_double(arg->val);
+}
+
+char* zclk_argument_get_val_string(zclk_argument *arg)
+{
+	if(arg == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_string(arg->val);
+}
+
+int zclk_argument_get_val_flag(zclk_argument *arg)
+{
+	if(arg == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_flag(arg->val);
+}
+
+int zclk_argument_get_default_val_bool(zclk_argument *arg)
+{
+	if(arg == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_bool(arg->default_val);
+}
+
+int zclk_argument_get_default_val_int(zclk_argument *arg)
+{
+	if(arg == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_int(arg->default_val);
+}
+
+double zclk_argument_get_default_val_double(zclk_argument *arg)
+{
+	if(arg == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_double(arg->default_val);
+}
+
+char* zclk_argument_get_default_val_string(zclk_argument *arg)
+{
+	if(arg == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_string(arg->default_val);
+}
+
+int zclk_argument_get_default_val_flag(zclk_argument *arg)
+{
+	if(arg == NULL)
+	{
+		return 0;
+	}
+	return zclk_val_get_flag(arg->default_val);
+}
+
 
 void free_argument(zclk_argument *arg)
 {

@@ -60,6 +60,11 @@ typedef enum
 	ZCLK_TYPE_FLAG = 4
 } zclk_type;
 
+#define ZCLK_BOOL_TRUE 	1
+#define ZCLK_BOOL_FALSE 0
+#define ZCLK_FLAG_ON 	1
+#define ZCLK_FLAG_OFF	0
+
 /**
  * @brief This enum defines the possible types of result 
  * 	cli program might output.
@@ -388,19 +393,18 @@ MODULE_API zclk_cmd_err make_argument(zclk_argument** arg, char* name,
 MODULE_API zclk_argument* new_zclk_argument(char* name, zclk_val* val, 
 	zclk_val* default_val, char* desc);
 
-MODULE_API zclk_argument *new_zclk_argument_bool(char *name, char *short_name, 
+MODULE_API zclk_argument *new_zclk_argument_bool(char *name, 
 	int val, int default_val, char *desc);
-MODULE_API zclk_argument *new_zclk_argument_int(char *name, char *short_name, 
+MODULE_API zclk_argument *new_zclk_argument_int(char *name, 
 	int val, int default_val, char *desc);
-MODULE_API zclk_argument *new_zclk_argument_double(char *name, char *short_name, 
+MODULE_API zclk_argument *new_zclk_argument_double(char *name, 
 	double val, double default_val, char *desc);
-MODULE_API zclk_argument *new_zclk_argument_string(char *name, char *short_name, 
+MODULE_API zclk_argument *new_zclk_argument_string(char *name, 
 	char* val, char* default_val, char *desc);
-MODULE_API zclk_argument *new_zclk_argument_flag(char *name, char *short_name, 
+MODULE_API zclk_argument *new_zclk_argument_flag(char *name, 
 	int val, int default_val, char *desc);
 
 MODULE_API char *zclk_argument_get_name(zclk_argument *opt);
-MODULE_API char *zclk_argument_get_short_name(zclk_argument *opt);
 MODULE_API char *zclk_argument_get_desc(zclk_argument *opt);
 
 MODULE_API int zclk_argument_get_val_bool(zclk_argument *opt);
