@@ -333,38 +333,46 @@ $(function() {
 <div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;                            <a class="code" href="structzclk__argument__t.html">zclk_argument</a>* arg</div>
 <div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;                        );</div>
 <div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160; </div>
-<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;MODULE_API <a class="code" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> <a class="code" href="zclk_8h.html#a436ba2ac56815733f3a3df9e60fbc3f9">zclk_command_exec</a>(</div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;                            <a class="code" href="structzclk__command__t.html">zclk_command</a>* cmd, </div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;                            <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>* argv[]</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;                        );</div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160; </div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;MODULE_API <span class="keywordtype">void</span> <a class="code" href="zclk_8h.html#a18986f2ce55690b003e4cde4c6b29892">free_command</a>(<a class="code" href="structzclk__command__t.html">zclk_command</a>* command);</div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160; </div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;MODULE_API <span class="keywordtype">char</span>* <a class="code" href="zclk_8h.html#a03e8dd3ab99294a9bacb3bbe886f04c2">get_help_for_command</a>(arraylist* cmds_to_exec);</div>
-<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160; </div>
-<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;MODULE_API <a class="code" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> <a class="code" href="zclk_8h.html#a12e28b2098f8db7bf7fb0eebceb2cad3">help_cmd_handler</a>(arraylist* commands, </div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;    <span class="keywordtype">void</span>* handler_args, <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv, </div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;    <a class="code" href="zclk_8h.html#af3ced625a9ac29ccddb1c2b5d4146411">zclk_command_output_handler</a> success_handler,</div>
-<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;    <a class="code" href="zclk_8h.html#af3ced625a9ac29ccddb1c2b5d4146411">zclk_command_output_handler</a> error_handler);</div>
-<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160; </div>
-<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;MODULE_API <a class="code" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> <a class="code" href="zclk_8h.html#a93bf3e9058f0dc32d7ddb3ed8a62ea10">get_help_for</a>(<span class="keywordtype">char</span>** help_str, arraylist* commands,</div>
-<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;    arraylist* arg_commands);</div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160; </div>
-<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;MODULE_API <a class="code" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> <a class="code" href="zclk_8h.html#a08bb8185aab1a37e0532569d84222813">exec_command</a>(arraylist* commands, <span class="keywordtype">void</span>* handler_args,</div>
-<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;    <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv, <a class="code" href="zclk_8h.html#af3ced625a9ac29ccddb1c2b5d4146411">zclk_command_output_handler</a> success_handler,</div>
-<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;    <a class="code" href="zclk_8h.html#af3ced625a9ac29ccddb1c2b5d4146411">zclk_command_output_handler</a> error_handler);</div>
-<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160; </div>
-<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;MODULE_API <span class="keywordtype">void</span> <a class="code" href="zclk_8h.html#a9caed1930c265ffb2e354ff0622cf0bf">print_table_result</a>(<span class="keywordtype">void</span>* result);</div>
-<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160; </div>
-<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;MODULE_API <a class="code" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> <a class="code" href="zclk_8h.html#a105717eddc992d79185c01c0b59bd4ad">print_handler</a>(<a class="code" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> result_flag, </div>
-<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;    <a class="code" href="zclk_8h.html#a1228d6c253b585f9ae45a1538a1313e6">zclk_result_type</a> res_type,</div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;    <span class="keywordtype">void</span>* result);</div>
-<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160; </div>
-<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;<span class="preprocessor">#ifdef __cplusplus </span></div>
-<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;}</div>
-<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160; </div>
-<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __ZCLK_H__ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;<span class="preprocessor">#define zclk_command_option_foreach(cmd, opt)                               \</span></div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;<span class="preprocessor">        zclk_option *opt = NULL;                                            \</span></div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;<span class="preprocessor">        size_t i = 0;                                                       \</span></div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;<span class="preprocessor">        size_t len = arraylist_length(cmd-&gt;options);                        \</span></div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;<span class="preprocessor">        for (i = 0; ((i &lt; len)? (opt = arraylist_get(cmd-&gt;options, i))      \</span></div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;<span class="preprocessor">                                    : 0);                                   \</span></div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;<span class="preprocessor">                    i++)</span></div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160; </div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;MODULE_API <a class="code" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> <a class="code" href="zclk_8h.html#a436ba2ac56815733f3a3df9e60fbc3f9">zclk_command_exec</a>(</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;                            <a class="code" href="structzclk__command__t.html">zclk_command</a>* cmd, </div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;                            <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>* argv[]</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;                        );</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160; </div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;MODULE_API <span class="keywordtype">void</span> <a class="code" href="zclk_8h.html#a18986f2ce55690b003e4cde4c6b29892">free_command</a>(<a class="code" href="structzclk__command__t.html">zclk_command</a>* command);</div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160; </div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;MODULE_API <span class="keywordtype">char</span>* <a class="code" href="zclk_8h.html#a03e8dd3ab99294a9bacb3bbe886f04c2">get_help_for_command</a>(arraylist* cmds_to_exec);</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160; </div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;MODULE_API <a class="code" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> <a class="code" href="zclk_8h.html#a12e28b2098f8db7bf7fb0eebceb2cad3">help_cmd_handler</a>(arraylist* commands, </div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;    <span class="keywordtype">void</span>* handler_args, <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv, </div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;    <a class="code" href="zclk_8h.html#af3ced625a9ac29ccddb1c2b5d4146411">zclk_command_output_handler</a> success_handler,</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;    <a class="code" href="zclk_8h.html#af3ced625a9ac29ccddb1c2b5d4146411">zclk_command_output_handler</a> error_handler);</div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160; </div>
+<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;MODULE_API <a class="code" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> <a class="code" href="zclk_8h.html#a93bf3e9058f0dc32d7ddb3ed8a62ea10">get_help_for</a>(<span class="keywordtype">char</span>** help_str, arraylist* commands,</div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;    arraylist* arg_commands);</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160; </div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;MODULE_API <a class="code" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> <a class="code" href="zclk_8h.html#a08bb8185aab1a37e0532569d84222813">exec_command</a>(arraylist* commands, <span class="keywordtype">void</span>* handler_args,</div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;    <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv, <a class="code" href="zclk_8h.html#af3ced625a9ac29ccddb1c2b5d4146411">zclk_command_output_handler</a> success_handler,</div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;    <a class="code" href="zclk_8h.html#af3ced625a9ac29ccddb1c2b5d4146411">zclk_command_output_handler</a> error_handler);</div>
+<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160; </div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;MODULE_API <span class="keywordtype">void</span> <a class="code" href="zclk_8h.html#a9caed1930c265ffb2e354ff0622cf0bf">print_table_result</a>(<span class="keywordtype">void</span>* result);</div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160; </div>
+<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;MODULE_API <a class="code" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> <a class="code" href="zclk_8h.html#a105717eddc992d79185c01c0b59bd4ad">print_handler</a>(<a class="code" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> result_flag, </div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;    <a class="code" href="zclk_8h.html#a1228d6c253b585f9ae45a1538a1313e6">zclk_result_type</a> res_type,</div>
+<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;    <span class="keywordtype">void</span>* result);</div>
+<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160; </div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;<span class="preprocessor">#ifdef __cplusplus </span></div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;}</div>
+<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160; </div>
+<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __ZCLK_H__ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="astructzclk__argument__t_html"><div class="ttname"><a href="structzclk__argument__t.html">zclk_argument_t</a></div><div class="ttdoc">CLI Argument object.</div><div class="ttdef"><b>Definition:</b> zclk.h:200</div></div>
 <div class="ttc" id="astructzclk__argument__t_html_a04173e61137b96ad588eb1beabb9ebba"><div class="ttname"><a href="structzclk__argument__t.html#a04173e61137b96ad588eb1beabb9ebba">zclk_argument_t::description</a></div><div class="ttdeci">char * description</div><div class="ttdoc">textual description</div><div class="ttdef"><b>Definition:</b> zclk.h:204</div></div>
 <div class="ttc" id="astructzclk__argument__t_html_a3de3341e8f7ea8ad199f979f9e6df499"><div class="ttname"><a href="structzclk__argument__t.html#a3de3341e8f7ea8ad199f979f9e6df499">zclk_argument_t::default_val</a></div><div class="ttdeci">zclk_val * default_val</div><div class="ttdoc">default value of the argument</div><div class="ttdef"><b>Definition:</b> zclk.h:203</div></div>

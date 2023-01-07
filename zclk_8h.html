@@ -171,6 +171,8 @@ Macros</h2></td></tr>
 <tr class="memitem:a22f8dff13bea09c62ce08f5de5270f31"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a22f8dff13bea09c62ce08f5de5270f31">zclk_string</a>(v)&#160;&#160;&#160;new_zclk_val_string(v)</td></tr>
 <tr class="memdesc:a22f8dff13bea09c62ce08f5de5270f31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new string cli value.  <a href="zclk_8h.html#a22f8dff13bea09c62ce08f5de5270f31">More...</a><br /></td></tr>
 <tr class="separator:a22f8dff13bea09c62ce08f5de5270f31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afced8ba1628ec3429146053ba922d737"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_command_option_foreach</b>(cmd,  opt)</td></tr>
+<tr class="separator:afced8ba1628ec3429146053ba922d737"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -495,6 +497,41 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
   </dd>
 </dl>
 
+</div>
+</div>
+<a id="afced8ba1628ec3429146053ba922d737"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afced8ba1628ec3429146053ba922d737">&#9670;&nbsp;</a></span>zclk_command_option_foreach</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define zclk_command_option_foreach</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">cmd, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">opt&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">        <a class="code" href="structzclk__option__t.html">zclk_option</a> *opt = NULL;                                            \</div>
+<div class="line">        size_t i = 0;                                                       \</div>
+<div class="line">        size_t len = arraylist_length(cmd-&gt;options);                        \</div>
+<div class="line">        for (i = 0; ((i &lt; len)? (opt = arraylist_get(cmd-&gt;options, i))      \</div>
+<div class="line">                                    : 0);                                   \</div>
+<div class="line">                    i++)</div>
+<div class="ttc" id="astructzclk__option__t_html"><div class="ttname"><a href="structzclk__option__t.html">zclk_option_t</a></div><div class="ttdoc">CLI Option Object.</div><div class="ttdef"><b>Definition:</b> zclk.h:170</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a0c2d959f50cdd2202be79b40be6b04da"></a>
