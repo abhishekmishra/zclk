@@ -493,6 +493,14 @@ MODULE_API zclk_cmd_err zclk_command_argument_add(
 							zclk_argument* arg
 						);
 
+#define zclk_command_option_foreach(cmd, opt)     							\
+		zclk_option *opt = NULL;                      						\
+		size_t i = 0;														\
+		size_t len = arraylist_length(cmd->options);						\
+		for (i = 0; ((i < len)? (opt = arraylist_get(cmd->options, i))		\
+									: 0);									\
+					i++)
+
 /**
  * @brief Execute the command with the given args
  * 

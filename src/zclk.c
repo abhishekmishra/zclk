@@ -842,7 +842,7 @@ zclk_cmd_err zclk_command_exec(zclk_command* cmd, int argc, char* argv[])
 	arraylist_new(&toplevel_commands, NULL);
 	arraylist_add(toplevel_commands, cmd);
 	zclk_cmd_err err = exec_command(toplevel_commands, 
-								NULL, argc,	argv, 
+								cmd, argc,	argv, 
 								(zclk_command_output_handler)&print_handler,
 								(zclk_command_output_handler)&print_handler);
 	if (err != ZCLK_COMMAND_SUCCESS)

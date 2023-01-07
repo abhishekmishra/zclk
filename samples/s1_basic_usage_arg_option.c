@@ -6,6 +6,7 @@ zclk_cmd_err basic_handler(void* handler_args,
 	zclk_command_output_handler success_handler,
 	zclk_command_output_handler error_handler)
 {
+    zclk_command* cmd = (zclk_command*)handler_args;
     printf("***************************************"
         "****************************\n");
     printf("Sample#1: Basic Usage of CLIUTILS with "
@@ -17,6 +18,11 @@ zclk_cmd_err basic_handler(void* handler_args,
     for (size_t i = 0; i < arraylist_length(options);i++)
     {
         zclk_option *opt = (zclk_option*)arraylist_get(options, i);
+        printf("\toption: %s=%d\n", opt->name, zclk_val_get_bool(opt->val));
+    }
+
+    zclk_command_option_foreach(cmd, opt)
+    {
         printf("\toption: %s=%d\n", opt->name, zclk_val_get_bool(opt->val));
     }
 

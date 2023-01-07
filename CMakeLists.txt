@@ -1,6 +1,6 @@
 cmake_minimum_required ( VERSION 3.9 )
 
-project ( cliutils C )
+project ( zclk C )
 
 # Export all symbols for shared linking to work on windows
 # see https://stackoverflow.com/questions/37128555/getting-cmake-to-build-shared-library-for-msvc
@@ -61,9 +61,9 @@ find_package(coll CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PUBLIC coll::coll)
 
 # Package Configuration
-export(TARGETS cliutils NAMESPACE cliutils:: FILE cliutilsConfig.cmake)
+export(TARGETS ${PROJECT_NAME} NAMESPACE ${PROJECT_NAME}:: FILE ${PROJECT_NAME}Config.cmake)
 set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
-export(PACKAGE cliutils)
+export(PACKAGE ${PROJECT_NAME})
 
 #-------------------- ZCLK SAMPLES --------------------
 add_executable(        s1_basic_usage_arg_option   samples/s1_basic_usage_arg_option.c )
