@@ -1,12 +1,8 @@
 #include <zclk.h>
 #include <stdio.h>
 
-zclk_cmd_err basic_handler(void* handler_args,
-	arraylist* options, arraylist* args,
-	zclk_command_output_handler success_handler,
-	zclk_command_output_handler error_handler)
+zclk_cmd_err basic_handler(zclk_command* cmd, void* handler_args)
 {
-    zclk_command* cmd = (zclk_command*)handler_args;
     printf("***************************************"
         "****************************\n");
     printf("Sample#1: Basic Usage of CLIUTILS with "
@@ -18,7 +14,14 @@ zclk_cmd_err basic_handler(void* handler_args,
 
     zclk_command_option_foreach(cmd, opt)
     {
-        printf("\toption: %s=%d\n", opt->name, zclk_val_get_bool(opt->val));
+        printf("\toption: %s=%d\n", opt->name, zclk_option_get_val_flag(opt));
+    }
+
+    printf("\n** Arguments\n");
+
+    zclk_command_argument_foreach(cmd, argument)
+    {
+        printf("\targument: %s=%s\n", argument->name, zclk_argument_get_val_string(argument));
     }
 
     printf("***************************************"
@@ -48,5 +51,5 @@ int main(int argc, char* argv[])
             "blah",
             "Argument One"));
     
-    zclk_command_exec(cmd, argc, argv);
+    zclk_command_exec(cmd, NULL, argc, argv);
 }

@@ -237,13 +237,14 @@ MODULE_API void zclk_fill_options_in_list(arraylist* optlist, zclk_option* optio
 typedef zclk_cmd_err(*zclk_command_output_handler)(zclk_cmd_err result_flag,
 	zclk_result_type result_type, void* result);
 
+// declration to assist in defining command fn
+struct zclk_command_t;
+
 /**
- * @brief defines a function to handle a command
+ * @brief defines a function to run a command
  */
-typedef zclk_cmd_err(*zclk_command_handler)(void* handler_args,
-	arraylist* options, arraylist* args,
-	zclk_command_output_handler success_handler,
-	zclk_command_output_handler error_handler);
+typedef zclk_cmd_err(*zclk_command_fn)(struct zclk_command_t* cmd,
+										void* handler_args);
 
 /**
  * @brief A CLI Command Ojbect
@@ -256,7 +257,11 @@ typedef struct zclk_command_t
 	arraylist* sub_commands;		///< list of subcommands
 	arraylist* options;				///< options list
 	arraylist* args;				///< args list
-	zclk_command_handler handler;	///< command handler function
+	zclk_command_fn handler;		///< command handler function
+	zclk_command_output_handler
+		error_handler;				///< error handler for the command
+	zclk_command_output_handler
+		success_handler;			///< success handler for the command
 } zclk_command;
 
 /**
@@ -299,7 +304,7 @@ MODULE_API void copy_zclk_val(zclk_val* to, zclk_val* from);
 MODULE_API zclk_cmd_err parse_zclk_val(zclk_val* val, char* input);
 
 /**
- * Create a new option given a name and type.
+ * (Internal Use) Create a new option given a name and type.
  *
  * \param option object to create
  * \param name
@@ -313,13 +318,18 @@ MODULE_API zclk_cmd_err make_option(zclk_option** option, char* name,
 	char* short_name, zclk_val* val, zclk_val* default_val, char* description);
 
 /**
- * @brief (Internal use) Create a option object
+ * @brief (Internal Use) Create an option object
  * 
- * @param name 
- * @param short_name 
- * @param val 
- * @param default_val 
- * @param desc 
+ * NOTE:
+ * For most usecases use the type specific option creation functions
+ * called \c new_zclk_option_<type>() . Here type can be one of bool, int
+ * flag, double or string.
+ * 
+ * @param name name of the option
+ * @param short_name short name
+ * @param val value object
+ * @param default_val default value object
+ * @param desc description
  * @return MODULE_API* 
  */
 MODULE_API zclk_option* new_zclk_option(char* name, char* short_name, 
@@ -369,8 +379,13 @@ MODULE_API void free_option(zclk_option* option);
 MODULE_API zclk_option* get_option_by_name(arraylist* options, char* name);
 
 /**
- * Create a new argument given a name and type.
+ * (Internal Use) Create a new argument given a name and type.
  *
+ * NOTE:
+ * For most usecases use the type specific argument creation functions
+ * called \c new_zclk_argument_<type>() . Here type can be one of bool, int
+ * flag, double or string.
+ * 
  * \param arg object to create
  * \param name
  * \param val
@@ -382,7 +397,12 @@ MODULE_API zclk_cmd_err make_argument(zclk_argument** arg, char* name,
 	zclk_val* val, zclk_val* default_val, char* desc);
 
 /**
- * @brief (Internal use only) Create a argument object
+ * @brief (Internal use) Create an argument object
+ * 
+ * NOTE:
+ * For most usecases use the type specific argument creation functions
+ * called \c new_zclk_argument_<type>() . Here type can be one of bool, int
+ * flag, double or string.
  * 
  * @param name 
  * @param val 
@@ -438,7 +458,7 @@ MODULE_API void free_argument(zclk_argument* arg);
  * \return error code
  */
 MODULE_API zclk_cmd_err make_command(zclk_command** command, char* name, 
-	char* short_name, char* description, zclk_command_handler handler);
+	char* short_name, char* description, zclk_command_fn handler);
 
 /**
  * @brief Create a command object with automatic error handling
@@ -454,7 +474,7 @@ MODULE_API zclk_command* new_zclk_command(
 							char* name, 
 							char* short_name,
     						char* description, 
-							zclk_command_handler handler
+							zclk_command_fn handler
 						);
 
 /**
@@ -495,24 +515,33 @@ MODULE_API zclk_cmd_err zclk_command_argument_add(
 
 #define zclk_command_option_foreach(cmd, opt)     							\
 		zclk_option *opt = NULL;                      						\
-		size_t i = 0;														\
-		size_t len = arraylist_length(cmd->options);						\
-		for (i = 0; ((i < len)? (opt = arraylist_get(cmd->options, i))		\
-									: 0);									\
+		size_t len##opt = arraylist_length(cmd->options);					\
+		for (size_t i = 0; ((i < len##opt)?									\
+							(opt = arraylist_get(cmd->options, i))			\
+							: 0);											\
+					i++)
+
+#define zclk_command_argument_foreach(cmd, arg)    							\
+		zclk_argument *arg = NULL;                     						\
+		size_t len##arg = arraylist_length(cmd->args);						\
+		for (size_t i = 0; ((i < len##arg)? 								\
+							(arg = arraylist_get(cmd->args, i))				\
+							: 0);											\
 					i++)
 
 /**
  * @brief Execute the command with the given args
  * 
  * @param cmd Command to execute
+ * @param exec_args exec args
  * @param argc arg count
  * @param argv arg values
  * @return error code
  */
 MODULE_API zclk_cmd_err zclk_command_exec(
-							zclk_command* cmd, 
-							int argc, char* argv[]
-						);
+	zclk_command *cmd,
+	void *exec_args,
+	int argc, char *argv[]);
 
 /**
  * Free a command object
@@ -561,12 +590,9 @@ MODULE_API zclk_cmd_err get_help_for(char** help_str, arraylist* commands,
  * \param handler_args an args value to be passed to the command handler
  * \param argc the number of tokens in the line
  * \param argv args as an array of strings
- * \param success_handler handle success results
- * \param error_handler handler error results
  */
 MODULE_API zclk_cmd_err exec_command(arraylist* commands, void* handler_args,
-	int argc, char** argv, zclk_command_output_handler success_handler,
-	zclk_command_output_handler error_handler);
+	int argc, char** argv);
 
 /**
  * @brief Print a tabular result object to the stdout
