@@ -68,7 +68,86 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="mainpage"></a> <b>NOTE: This library is still under development. The public API is unstable till the library reaches beta status. There will be breaking changes in public API if needed.</b></p>
-<p>zclk is a C library to build command line interfaces aka CLI programs.</p>
+<p><b>ZCLK</b> is a C library to build command line interfaces aka CLI programs.</p>
+<h1><a class="anchor" id="autotoc_md0"></a>
+Getting Started</h1>
+<h2><a class="anchor" id="autotoc_md1"></a>
+Build the package using CMake</h2>
+<p>The Makefile in the source folder contains targets for useful CMake commands. You can use the genbuild and build targets to create the CMake build folder, and then run the build for your platform.</p>
+<div class="fragment"><div class="line">$ make genbuild build</div>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md2"></a>
+Use the library in your code.</h2>
+<p>A library named zclk (with appropriate prefix/suffix for your platform) will be generated in the ./build folder.</p>
+<p>Use this library and add the src folder to your include folders during compilation.</p>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Simple Example</h2>
+<p>The <code>zclk_command</code> struct and its associated functions provide the majority of the public api of the library. There are functions to create commands, add options and arguments and then execute the commands given the program arguments. These are all demostrated in sample programs in the <code>./samples</code> folder in the source code.</p>
+<p>Here is a simple implementation with one command which has one option and one argument - to give a feel of the API...</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="zclk_8h.html">zclk.h</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> basic_handler(<a class="code" href="structzclk__command__t.html">zclk_command</a>* cmd, <span class="keywordtype">void</span>* handler_args)</div>
+<div class="line">{</div>
+<div class="line">    printf(<span class="stringliteral">&quot;***************************************&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;****************************\n&quot;</span>);</div>
+<div class="line">    printf(<span class="stringliteral">&quot;Sample#1: Basic Usage of CLIUTILS with &quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;One Argument and One Option.\n&quot;</span>);</div>
+<div class="line">    printf(<span class="stringliteral">&quot;***************************************&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;****************************\n&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    printf(<span class="stringliteral">&quot;\n** Options\n&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    zclk_command_option_foreach(cmd, opt)</div>
+<div class="line">    {</div>
+<div class="line">        printf(<span class="stringliteral">&quot;\toption: %s=%d\n&quot;</span>, opt-&gt;name, zclk_option_get_val_flag(opt));</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    printf(<span class="stringliteral">&quot;\n** Arguments\n&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    zclk_command_argument_foreach(cmd, argument)</div>
+<div class="line">    {</div>
+<div class="line">        printf(<span class="stringliteral">&quot;\targument: %s=%s\n&quot;</span>, argument-&gt;name, zclk_argument_get_val_string(argument));</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    printf(<span class="stringliteral">&quot;***************************************&quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;****************************\n&quot;</span>);</div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>* argv[])</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="structzclk__command__t.html">zclk_command</a> *cmd = <a class="code" href="zclk_8h.html#a7f37d232326ce951c3b37493628de9c5">new_zclk_command</a>(argv[0], <span class="stringliteral">&quot;cmd&quot;</span>,</div>
+<div class="line">                            <span class="stringliteral">&quot;Basic Description&quot;</span>, &amp;basic_handler);</div>
+<div class="line">    </div>
+<div class="line">    <a class="code" href="zclk_8h.html#aca8bb6f7f07d1bf9379baed543ac78e6">zclk_command_flag_option</a>(</div>
+<div class="line">        cmd,</div>
+<div class="line">        <span class="stringliteral">&quot;option-one&quot;</span>,</div>
+<div class="line">        <span class="stringliteral">&quot;o&quot;</span>, </div>
+<div class="line">        ZCLK_FLAG_OFF,</div>
+<div class="line">        ZCLK_FLAG_OFF, </div>
+<div class="line">        <span class="stringliteral">&quot;Option One&quot;</span></div>
+<div class="line">    );</div>
+<div class="line"> </div>
+<div class="line">    <a class="code" href="zclk_8h.html#a904e0559d4e358bc3d616258795db30c">zclk_command_string_argument</a>(</div>
+<div class="line">        cmd,</div>
+<div class="line">        <span class="stringliteral">&quot;arg-one&quot;</span>,</div>
+<div class="line">        <span class="stringliteral">&quot;blah&quot;</span>,</div>
+<div class="line">        <span class="stringliteral">&quot;blah&quot;</span>,</div>
+<div class="line">        <span class="stringliteral">&quot;Argument One&quot;</span>,</div>
+<div class="line">        1</div>
+<div class="line">    );</div>
+<div class="line">    </div>
+<div class="line">    <a class="code" href="zclk_8h.html#ac2974f9bac9e4bb8e40c008cc2d10f44">zclk_command_exec</a>(cmd, NULL, argc, argv);</div>
+<div class="line">}</div>
+<div class="ttc" id="astructzclk__command__t_html"><div class="ttname"><a href="structzclk__command__t.html">zclk_command_t</a></div><div class="ttdoc">A CLI Command Ojbect.</div><div class="ttdef"><b>Definition:</b> zclk.h:389</div></div>
+<div class="ttc" id="azclk_8h_html"><div class="ttname"><a href="zclk_8h.html">zclk.h</a></div><div class="ttdoc">Zclk main header file. Defines the Public API of zclk.</div></div>
+<div class="ttc" id="azclk_8h_html_a58084c85631e1befaf475b825ea86b07"><div class="ttname"><a href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a></div><div class="ttdeci">zclk_cmd_err</div><div class="ttdoc">This enum defines the possible error codes generated by functions in the API.</div><div class="ttdef"><b>Definition:</b> zclk.h:39</div></div>
+<div class="ttc" id="azclk_8h_html_a7f37d232326ce951c3b37493628de9c5"><div class="ttname"><a href="zclk_8h.html#a7f37d232326ce951c3b37493628de9c5">new_zclk_command</a></div><div class="ttdeci">MODULE_API zclk_command * new_zclk_command(char *name, char *short_name, char *description, zclk_command_fn handler)</div><div class="ttdoc">Create a command object with automatic error handling.</div><div class="ttdef"><b>Definition:</b> zclk.c:796</div></div>
+<div class="ttc" id="azclk_8h_html_a904e0559d4e358bc3d616258795db30c"><div class="ttname"><a href="zclk_8h.html#a904e0559d4e358bc3d616258795db30c">zclk_command_string_argument</a></div><div class="ttdeci">MODULE_API void zclk_command_string_argument(zclk_command *cmd, char *name, char *val, char *default_val, char *desc, int nargs)</div><div class="ttdoc">Create a new bool argument and add it to the given command.</div><div class="ttdef"><b>Definition:</b> zclk.c:951</div></div>
+<div class="ttc" id="azclk_8h_html_ac2974f9bac9e4bb8e40c008cc2d10f44"><div class="ttname"><a href="zclk_8h.html#ac2974f9bac9e4bb8e40c008cc2d10f44">zclk_command_exec</a></div><div class="ttdeci">MODULE_API zclk_cmd_err zclk_command_exec(zclk_command *cmd, void *exec_args, int argc, char *argv[])</div><div class="ttdoc">Execute the command with the given args.</div><div class="ttdef"><b>Definition:</b> zclk.c:976</div></div>
+<div class="ttc" id="azclk_8h_html_aca8bb6f7f07d1bf9379baed543ac78e6"><div class="ttname"><a href="zclk_8h.html#aca8bb6f7f07d1bf9379baed543ac78e6">zclk_command_flag_option</a></div><div class="ttdeci">MODULE_API void zclk_command_flag_option(zclk_command *cmd, char *name, char *short_name, int val, int default_val, char *desc)</div><div class="ttdoc">Create a new flag option and add it to the given command.</div><div class="ttdef"><b>Definition:</b> zclk.c:899</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
+Public API Header</h1>
 <p>The public API of the library is provided by <a class="el" href="zclk_8h.html">zclk.h</a>. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
