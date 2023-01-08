@@ -15,11 +15,6 @@ zclk_cmd_err basic_handler(void* handler_args,
         "****************************\n");
 
     printf("\n** Options\n");
-    for (size_t i = 0; i < arraylist_length(options);i++)
-    {
-        zclk_option *opt = (zclk_option*)arraylist_get(options, i);
-        printf("\toption: %s=%d\n", opt->name, zclk_val_get_bool(opt->val));
-    }
 
     zclk_command_option_foreach(cmd, opt)
     {
