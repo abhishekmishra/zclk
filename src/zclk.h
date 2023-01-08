@@ -95,22 +95,124 @@ typedef struct zclk_val_t
 
 MODULE_API int zclk_val_is_type(zclk_val *val, zclk_type type);
 
+/**
+ * @brief Check if given value is boolean
+ * 
+ * @param val value object
+ * @return flag indicating if value is boolean
+ */
 #define zclk_val_is_bool(val)		zclk_val_is_type(val, ZCLK_TYPE_BOOLEAN)
+
+/**
+ * @brief Check if given value is int
+ * 
+ * @param val value object
+ * @return flag indicating if value is int
+ */
 #define zclk_val_is_int(val)		zclk_val_is_type(val, ZCLK_TYPE_INT)
+
+/**
+ * @brief Check if given value is double
+ * 
+ * @param val value object
+ * @return flag indicating if value is double
+ */
 #define zclk_val_is_double(val)		zclk_val_is_type(val, ZCLK_TYPE_DOUBLE)
+
+/**
+ * @brief Check if given value is string
+ * 
+ * @param val value object
+ * @return flag indicating if value is string
+ */
 #define zclk_val_is_string(val)		zclk_val_is_type(val, ZCLK_TYPE_STRING)
+
+/**
+ * @brief Check if given value is flag
+ * 
+ * @param val value object
+ * @return flag indicating if value is flag
+ */
 #define zclk_val_is_flag(val)		zclk_val_is_type(val, ZCLK_TYPE_FLAG)
 
+/**
+ * @brief get the boolean value
+ * 
+ * @param val value object
+ * @return boolean value
+ */
 MODULE_API int zclk_val_get_bool(zclk_val *val);
+
+/**
+ * @brief get the int value
+ * 
+ * @param val value object
+ * @return int value
+ */
 MODULE_API int zclk_val_get_int(zclk_val *val);
+
+/**
+ * @brief get the double value
+ * 
+ * @param val value object
+ * @return double value
+ */
 MODULE_API double zclk_val_get_double(zclk_val *val);
+
+/**
+ * @brief get the string value
+ * 
+ * @param val value object
+ * @return string value
+ */
 MODULE_API char* zclk_val_get_string(zclk_val *val);
+
+/**
+ * @brief get the flag value
+ * 
+ * @param val value object
+ * @return flag value
+ */
 MODULE_API int zclk_val_get_flag(zclk_val *val);
 
+/**
+ * @brief set the boolean value
+ * 
+ * @param val value object
+ * @param bval boolean value
+ */
 MODULE_API void zclk_val_set_bool(zclk_val *val, int bval);
+
+/**
+ * @brief set the int value
+ * 
+ * @param val value object
+ * @param bval int value
+ */
 MODULE_API void zclk_val_set_int(zclk_val *val, int ival);
+
+/**
+ * @brief set the double value
+ * 
+ * @param val value object
+ * @param bval double value
+ */
 MODULE_API void zclk_val_set_dobule(zclk_val *val, double dval);
+
+/**
+ * @brief set the string value
+ * 
+ * @param val value object
+ * @param bval string value
+ */
 MODULE_API void zclk_val_set_string(zclk_val *val, char* sval);
+
+/**
+ * @brief set the flag value
+ * 
+ * @param val value object
+ * @param bval flag value
+ */
 MODULE_API void zclk_val_set_flag(zclk_val *val, int fval);
 
 /**
