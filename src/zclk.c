@@ -559,45 +559,48 @@ zclk_cmd_err make_argument(zclk_argument **arg, char* name, zclk_val* val, zclk_
 	return ZCLK_COMMAND_SUCCESS;
 }
 
-zclk_argument* new_zclk_argument(char* name, zclk_val* val, zclk_val* default_val, char* desc) {
+zclk_argument* new_zclk_argument(char* name, zclk_val* val, 
+			zclk_val* default_val, char* desc, int nargs) {
 	zclk_argument* arg;
 	make_argument(&arg, name, val, default_val, desc);
 	return arg;
 }
 
 zclk_argument *new_zclk_argument_bool(char *name, 
-	int val, int default_val, char *desc)
+	int val, int default_val, char *desc, int nargs)
 {
 	return new_zclk_argument(name, 
-		new_zclk_val_bool(val), new_zclk_val_bool(default_val), desc);
+		new_zclk_val_bool(val), new_zclk_val_bool(default_val), desc, nargs);
 }
 
 zclk_argument *new_zclk_argument_int(char *name, 
-	int val, int default_val, char *desc)
+	int val, int default_val, char *desc, int nargs)
 {
 	return new_zclk_argument(name, 
-		new_zclk_val_int(val), new_zclk_val_int(default_val), desc);
+		new_zclk_val_int(val), new_zclk_val_int(default_val), desc, nargs);
 }
 
 zclk_argument *new_zclk_argument_double(char *name, 
-	double val, double default_val, char *desc)
+	double val, double default_val, char *desc, int nargs)
 {
 	return new_zclk_argument(name, 
-		new_zclk_val_double(val), new_zclk_val_double(default_val), desc);
+		new_zclk_val_double(val), 
+		new_zclk_val_double(default_val), desc, nargs);
 }
 
 zclk_argument *new_zclk_argument_string(char *name, 
-	char* val, char* default_val, char *desc)
+	char* val, char* default_val, char *desc, int nargs)
 {
 	return new_zclk_argument(name, 
-		new_zclk_val_string(val), new_zclk_val_string(default_val), desc);
+		new_zclk_val_string(val), 
+		new_zclk_val_string(default_val), desc, nargs);
 }
 
 zclk_argument *new_zclk_argument_flag(char *name, 
-	int val, int default_val, char *desc)
+	int val, int default_val, char *desc, int nargs)
 {
 	return new_zclk_argument(name, 
-		new_zclk_val_flag(val), new_zclk_val_flag(default_val), desc);
+		new_zclk_val_flag(val), new_zclk_val_flag(default_val), desc, nargs);
 }
 
 
@@ -837,6 +840,137 @@ zclk_cmd_err zclk_command_argument_add(
 
 	arraylist_add(cmd->args, arg);
 	return ZCLK_COMMAND_SUCCESS;
+}
+
+void zclk_command_bool_option(zclk_command *cmd, char *name, 
+				char* short_name, int val, int default_val, char *desc)
+{
+	zclk_command_option_add(cmd, 
+			new_zclk_option_bool(
+					name,
+					short_name,
+					val,
+					default_val,
+					desc
+				));
+}
+
+void zclk_command_int_option(zclk_command *cmd, char *name, 
+				char* short_name, int val, int default_val, char *desc)
+{
+	zclk_command_option_add(cmd, 
+			new_zclk_option_int(
+					name,
+					short_name,
+					val,
+					default_val,
+					desc
+				));
+}
+
+
+void zclk_command_double_option(zclk_command *cmd, char *name, 
+				char* short_name, double val, double default_val, char *desc)
+{
+	zclk_command_option_add(cmd, 
+			new_zclk_option_double(
+					name,
+					short_name,
+					val,
+					default_val,
+					desc
+				));
+}
+
+
+void zclk_command_string_option(zclk_command *cmd, char *name, 
+				char* short_name, char* val, char* default_val, char *desc)
+{
+	zclk_command_option_add(cmd, 
+			new_zclk_option_string(
+					name,
+					short_name,
+					val,
+					default_val,
+					desc
+				));
+}
+
+void zclk_command_flag_option(zclk_command *cmd, char *name, 
+				char* short_name, int val, int default_val, char *desc)
+{
+	zclk_command_option_add(cmd, 
+			new_zclk_option_flag(
+					name,
+					short_name,
+					val,
+					default_val,
+					desc
+				));
+}
+
+
+void zclk_command_bool_argument(zclk_command *cmd, char *name, 
+				int val, int default_val, char *desc, int nargs)
+{
+	zclk_command_argument_add(cmd,
+			new_zclk_argument_bool(
+				name,
+				val,
+				default_val,
+				desc,
+				nargs));
+}
+
+void zclk_command_int_argument(zclk_command *cmd, char *name, 
+				int val, int default_val, char *desc, int nargs)
+{
+	zclk_command_argument_add(cmd,
+			new_zclk_argument_int(
+				name,
+				val,
+				default_val,
+				desc,
+				nargs));
+}
+
+
+void zclk_command_double_argument(zclk_command *cmd, char *name, 
+				double val, double default_val, char *desc, int nargs)
+{
+	zclk_command_argument_add(cmd,
+			new_zclk_argument_double(
+				name,
+				val,
+				default_val,
+				desc,
+				nargs));
+}
+
+
+void zclk_command_string_argument(zclk_command *cmd, char *name, 
+				char* val, char* default_val, char *desc, int nargs)
+{
+	zclk_command_argument_add(cmd,
+			new_zclk_argument_string(
+				name,
+				val,
+				default_val,
+				desc,
+				nargs));
+}
+
+
+void zclk_command_flag_argument(zclk_command *cmd, char *name, 
+				int val, int default_val, char *desc, int nargs)
+{
+	zclk_command_argument_add(cmd,
+			new_zclk_argument_flag(
+				name,
+				val,
+				default_val,
+				desc,
+				nargs));
 }
 
 zclk_cmd_err zclk_command_exec(zclk_command* cmd, 

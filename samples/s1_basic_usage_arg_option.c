@@ -34,22 +34,23 @@ int main(int argc, char* argv[])
     zclk_command *cmd = new_zclk_command(argv[0], "cmd",
                             "Basic Description", &basic_handler);
     
-    zclk_command_option_add(
+    zclk_command_flag_option(
         cmd,
-        new_zclk_option_flag(
-            "option-one",
-			"o", 
-            ZCLK_FLAG_OFF,
-            ZCLK_FLAG_OFF, 
-            "Option One"));
+        "option-one",
+        "o", 
+        ZCLK_FLAG_OFF,
+        ZCLK_FLAG_OFF, 
+        "Option One"
+    );
 
-    zclk_command_argument_add(
+    zclk_command_string_argument(
         cmd,
-        new_zclk_argument_string(
-            "arg-one",
-            "blah",
-            "blah",
-            "Argument One"));
+        "arg-one",
+        "blah",
+        "blah",
+        "Argument One",
+        1
+    );
     
     zclk_command_exec(cmd, NULL, argc, argv);
 }
