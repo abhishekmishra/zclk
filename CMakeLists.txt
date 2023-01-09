@@ -27,16 +27,16 @@ include_directories( src )
 # Setup the list of source files
 set( ZCLK_SOURCES
   src/zclk.c
-  src/cli_common.c
-  src/cli_table.c
-  src/cli_dict.c
-  src/cli_progress.c
+  src/zclk_common.c
+  src/zclk_table.c
+  src/zclk_dict.c
+  src/zclk_progress.c
 
   src/zclk.h
-  src/cli_common.h
-  src/cli_table.h
-  src/cli_dict.h
-  src/cli_progress.h
+  src/zclk_common.h
+  src/zclk_table.h
+  src/zclk_dict.h
+  src/zclk_progress.h
 )
 
 add_library( ${PROJECT_NAME} SHARED ${ZCLK_SOURCES} )

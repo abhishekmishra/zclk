@@ -6,10 +6,10 @@
  */
 
 #include <stdlib.h>
-#include "cli_table.h"
+#include "zclk_table.h"
 
-int create_cli_table(cli_table** table, size_t num_rows, size_t num_cols) {
-	(*table) = (cli_table*) calloc(1, sizeof(cli_table));
+int create_zclk_table(zclk_table** table, size_t num_rows, size_t num_cols) {
+	(*table) = (zclk_table*) calloc(1, sizeof(zclk_table));
 	if (!(*table)) {
 		return 1;
 	}
@@ -29,7 +29,7 @@ int create_cli_table(cli_table** table, size_t num_rows, size_t num_cols) {
 	return 0;
 }
 
-void free_cli_table(cli_table* table) {
+void free_zclk_table(zclk_table* table) {
 	for (size_t i = 0; i < table->num_cols; i++) {
 		free(table->header[i]);
 	}
@@ -44,26 +44,26 @@ void free_cli_table(cli_table* table) {
 	free(table);
 }
 
-int cli_table_set_header(cli_table* table, size_t col_id, char* name) {
+int zclk_table_set_header(zclk_table* table, size_t col_id, char* name) {
 	if (col_id >= 0 && col_id < table->num_cols) {
-		table->header[col_id] = cli_str_clone(name);
+		table->header[col_id] = zclk_str_clone(name);
 		return 0;
 	} else {
 		return -1;
 	}
 }
 
-int cli_table_set_row_val(cli_table* table, size_t row_id, size_t col_id, char* value) {
+int zclk_table_set_row_val(zclk_table* table, size_t row_id, size_t col_id, char* value) {
 	if (col_id >= 0 && col_id < table->num_cols && row_id >= 0
 			&& row_id < table->num_rows) {
-		table->values[row_id][col_id] = cli_str_clone(value);
+		table->values[row_id][col_id] = zclk_str_clone(value);
 		return 0;
 	} else {
 		return -1;
 	}
 }
 
-int cli_table_get_header(char** name, cli_table* table, size_t col_id) {
+int zclk_table_get_header(char** name, zclk_table* table, size_t col_id) {
 	if (col_id >= 0 && col_id < table->num_cols) {
 		(*name) = table->header[col_id];
 		return 0;
@@ -71,7 +71,7 @@ int cli_table_get_header(char** name, cli_table* table, size_t col_id) {
 	return -1;
 }
 
-int cli_table_get_row_val(char** value, cli_table* table, size_t row_id,
+int zclk_table_get_row_val(char** value, zclk_table* table, size_t row_id,
 	size_t col_id) {
 	if (col_id >= 0 && col_id < table->num_cols && row_id >= 0
 			&& row_id < table->num_rows) {

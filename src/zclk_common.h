@@ -3,8 +3,8 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-#ifndef SRC_CLI_COMMON_H_
-#define SRC_CLI_COMMON_H_
+#ifndef SRC_ZCLK_COMMON_H_
+#define SRC_ZCLK_COMMON_H_
 
 #include <stdlib.h>
 
@@ -31,10 +31,10 @@ extern "C" {
  * \param from string to clone from
  * \return cloned string, NULL if there is an error.
  */
-MODULE_API char* cli_str_clone(const char* from);
+MODULE_API char* zclk_str_clone(const char* from);
 
 #ifdef __cplusplus 
 }
 #endif
 
-#endif /* SRC_CLI_COMMON_H_ */
+#endif /* SRC_ZCLK_COMMON_H_ */

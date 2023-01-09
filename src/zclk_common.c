@@ -5,10 +5,10 @@
  * https://opensource.org/licenses/MIT
  */
 
-#include "cli_common.h"
+#include "zclk_common.h"
 #include <string.h>
 
-char* cli_str_clone(const char* from) {
+char* zclk_str_clone(const char* from) {
 	char* to = NULL;
 	if ((from != NULL)) {
 		to = (char*) malloc((strlen(from) + 1) * sizeof(char));

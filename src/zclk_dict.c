@@ -6,10 +6,10 @@
  */
 
 #include <stdlib.h>
-#include "cli_dict.h"
+#include "zclk_dict.h"
 
-int create_cli_dict(cli_dict** dict) {
-	(*dict) = (cli_dict*)calloc(1, sizeof(cli_dict));
+int create_zclk_dict(zclk_dict** dict) {
+	(*dict) = (zclk_dict*)calloc(1, sizeof(zclk_dict));
 	if(!(*dict)) {
 		return -1;
 	}
@@ -18,30 +18,30 @@ int create_cli_dict(cli_dict** dict) {
 	return 0;
 }
 
-void free_cli_dict(cli_dict* dict) {
+void free_zclk_dict(zclk_dict* dict) {
 	arraylist_free(dict->keys);
 	arraylist_free(dict->vals);
 	free(dict);
 }
 
-int cli_dict_put(cli_dict* dict, char* key, char* value) {
-	arraylist_add(dict->keys, cli_str_clone(key));
-	arraylist_add(dict->vals, cli_str_clone(value));
+int zclk_dict_put(zclk_dict* dict, char* key, char* value) {
+	arraylist_add(dict->keys, zclk_str_clone(key));
+	arraylist_add(dict->vals, zclk_str_clone(value));
 	return 0;
 }
 
 //TODO: Not implemented
-int cli_dict_remove(cli_dict* dict, char* key) {
+int zclk_dict_remove(zclk_dict* dict, char* key) {
 	return -1;
 }
 
 //TODO: Not implemented
-int cli_dict_get(cli_dict* dict, char* key, char** value) {
+int zclk_dict_get(zclk_dict* dict, char* key, char** value) {
 	return -1;
 }
 
 //TODO: Not implemented
-int cli_dict_keys(cli_dict* dict, char** keys) {
+int zclk_dict_keys(zclk_dict* dict, char** keys) {
 	return -1;
 }
 

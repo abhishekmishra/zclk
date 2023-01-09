@@ -1225,7 +1225,7 @@ arraylist *get_command_to_exec(arraylist *commands, int *argc,
 					{
 						found = 1;
 						cmd_list = cmd->sub_commands;
-						arraylist_add(cmd_names, cli_str_clone(cmd->name));
+						arraylist_add(cmd_names, zclk_str_clone(cmd->name));
 						//printf("found command %s\n", cmd->name);
 						cmd_to_exec = cmd;
 						arraylist_add(cmds_to_exec, cmd);
@@ -1543,7 +1543,7 @@ zclk_cmd_err exec_command(arraylist *commands, void *handler_args,
 
 void print_table_result(void* result)
 {
-	cli_table* result_tbl = (cli_table*)result;
+	zclk_table* result_tbl = (zclk_table*)result;
 	size_t* col_widths;
 	col_widths = (size_t*)calloc(result_tbl->num_cols, sizeof(size_t));
 	char** col_fmtspec;
@@ -1555,11 +1555,11 @@ void print_table_result(void* result)
 	//calculate column widths, and create format specifiers
 	for (int i = 0; i < result_tbl->num_cols; i++)
 	{
-		cli_table_get_header(&header, result_tbl, i);
+		zclk_table_get_header(&header, result_tbl, i);
 		size_t col_width = strlen(header);
 		for (int j = 0; j < result_tbl->num_rows; j++)
 		{
-			cli_table_get_row_val(&value, result_tbl, j, i);
+			zclk_table_get_row_val(&value, result_tbl, j, i);
 			if (value != NULL)
 			{
 				if (strlen(value) > col_width)
@@ -1586,7 +1586,7 @@ void print_table_result(void* result)
 	printf("\n");
 	for (int i = 0; i < result_tbl->num_cols; i++)
 	{
-		cli_table_get_header(&header, result_tbl, i);
+		zclk_table_get_header(&header, result_tbl, i);
 		printf(col_fmtspec[i], header);
 	}
 	printf("\n");
@@ -1603,7 +1603,7 @@ void print_table_result(void* result)
 	{
 		for (int j = 0; j < result_tbl->num_cols; j++)
 		{
-			cli_table_get_row_val(&value, result_tbl, i, j);
+			zclk_table_get_row_val(&value, result_tbl, i, j);
 			if (value == NULL)
 			{
 				printf(col_fmtspec[j], "");
@@ -1640,8 +1640,8 @@ zclk_cmd_err print_handler(zclk_cmd_err result_flag, zclk_result_type res_type,
 	}
 	else if (res_type == ZCLK_RESULT_DICT)
 	{
-		cli_dict* result_dict = (cli_dict*)result;
-		cli_dict_foreach(result_dict, k, v)
+		zclk_dict* result_dict = (zclk_dict*)result;
+		zclk_dict_foreach(result_dict, k, v)
 		{
 			printf("%-26.25s: %s\n", k, v);
 		}
@@ -1649,7 +1649,7 @@ zclk_cmd_err print_handler(zclk_cmd_err result_flag, zclk_result_type res_type,
 	}
 	else if (res_type == ZCLK_RESULT_PROGRESS)
 	{
-		cli_multi_progress* result_progress = (cli_multi_progress*)result;
+		zclk_multi_progress* result_progress = (zclk_multi_progress*)result;
 		if (result_progress->old_count > 0)
 		{
 			printf("\033[%dA", result_progress->old_count);
@@ -1659,7 +1659,7 @@ zclk_cmd_err print_handler(zclk_cmd_err result_flag, zclk_result_type res_type,
 		//		printf("To remove %d, to write %d\n", result_progress->old_count, new_len);
 		for (size_t i = 0; i < new_len; i++)
 		{
-			cli_progress* p = (cli_progress*)arraylist_get(
+			zclk_progress* p = (zclk_progress*)arraylist_get(
 				result_progress->progress_ls, i);
 			printf("\033[K%s: %s", p->name, p->message);
 			char* progress = p->extra;

@@ -6,31 +6,31 @@
 #ifndef SRC_CLD_DICT_H_
 #define SRC_CLD_DICT_H_
 
-#include "cli_common.h"
+#include "zclk_common.h"
 #include <coll_arraylist.h>
 
 #ifdef __cplusplus  
 extern "C" {
 #endif
 
-typedef struct cli_dict_t {
+typedef struct zclk_dict_t {
 	arraylist* keys;
 	arraylist* vals;
-} cli_dict;
+} zclk_dict;
 
-MODULE_API int create_cli_dict(cli_dict** dict);
+MODULE_API int create_zclk_dict(zclk_dict** dict);
 
-MODULE_API void free_cli_dict(cli_dict* dict);
+MODULE_API void free_zclk_dict(zclk_dict* dict);
 
-MODULE_API int cli_dict_put(cli_dict* dict, char* key, char* value);
+MODULE_API int zclk_dict_put(zclk_dict* dict, char* key, char* value);
 
-MODULE_API int cli_dict_remove(cli_dict* dict, char* key);
+MODULE_API int zclk_dict_remove(zclk_dict* dict, char* key);
 
-MODULE_API int cli_dict_get(cli_dict* dict, char* key, char** value);
+MODULE_API int zclk_dict_get(zclk_dict* dict, char* key, char** value);
 
-MODULE_API int cli_dict_keys(cli_dict* dict, char** keys);
+MODULE_API int zclk_dict_keys(zclk_dict* dict, char** keys);
 
-#define cli_dict_foreach(dict, key, value) \
+#define zclk_dict_foreach(dict, key, value) \
 	char* key; \
 	char* value; \
 	size_t i; \

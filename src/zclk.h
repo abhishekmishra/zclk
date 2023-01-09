@@ -11,14 +11,14 @@
 #ifndef __ZCLK_H__
 #define __ZCLK_H__
 
-#include "cli_common.h"
+#include "zclk_common.h"
 
 #include <coll_arraylist.h>
 #include <lua.h>
 #include <lauxlib.h>
-#include "cli_table.h"
-#include "cli_dict.h"
-#include "cli_progress.h"
+#include "zclk_table.h"
+#include "zclk_dict.h"
+#include "zclk_progress.h"
 
 #ifdef __cplusplus  
 extern "C" {
