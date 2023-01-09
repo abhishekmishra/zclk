@@ -68,3 +68,6 @@ export(PACKAGE ${PROJECT_NAME})
 #-------------------- ZCLK SAMPLES --------------------
 add_executable(        s1_basic_usage_arg_option   samples/s1_basic_usage_arg_option.c )
 target_link_libraries( s1_basic_usage_arg_option   ${PROJECT_NAME} )
+
+add_executable(        s2_sub_commands   samples/s2_sub_commands.c )
+target_link_libraries( s2_sub_commands   ${PROJECT_NAME} )
