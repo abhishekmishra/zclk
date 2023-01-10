@@ -190,14 +190,14 @@ typedef struct <a class="el" href="structzclk__option__t.html">zclk_option_t</a>
 typedef struct <a class="el" href="structzclk__argument__t.html">zclk_argument_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a0486453d0ff8be439727b6559ae04d34">zclk_argument</a></td></tr>
 <tr class="memdesc:a0486453d0ff8be439727b6559ae04d34"><td class="mdescLeft">&#160;</td><td class="mdescRight">CLI Argument object. <br /></td></tr>
 <tr class="separator:a0486453d0ff8be439727b6559ae04d34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3ced625a9ac29ccddb1c2b5d4146411"><td class="memItemLeft" align="right" valign="top"><a id="af3ced625a9ac29ccddb1c2b5d4146411"></a>
-typedef <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#af3ced625a9ac29ccddb1c2b5d4146411">zclk_command_output_handler</a>) (<a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> result_flag, <a class="el" href="zclk_8h.html#a1228d6c253b585f9ae45a1538a1313e6">zclk_result_type</a> result_type, void *result)</td></tr>
-<tr class="memdesc:af3ced625a9ac29ccddb1c2b5d4146411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a function to handle command output. <br /></td></tr>
-<tr class="separator:af3ced625a9ac29ccddb1c2b5d4146411"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78ac524d57a2d6bc1c7f96eb1b4dc65d"><td class="memItemLeft" align="right" valign="top"><a id="a78ac524d57a2d6bc1c7f96eb1b4dc65d"></a>
-typedef <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a78ac524d57a2d6bc1c7f96eb1b4dc65d">zclk_command_fn</a>) (struct <a class="el" href="structzclk__command__t.html">zclk_command_t</a> *cmd, void *handler_args)</td></tr>
-<tr class="memdesc:a78ac524d57a2d6bc1c7f96eb1b4dc65d"><td class="mdescLeft">&#160;</td><td class="mdescRight">defines a function to run a command <br /></td></tr>
-<tr class="separator:a78ac524d57a2d6bc1c7f96eb1b4dc65d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb5485f43237c289bd3a3feed93ccf8a"><td class="memItemLeft" align="right" valign="top"><a id="abb5485f43237c289bd3a3feed93ccf8a"></a>
+typedef <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#abb5485f43237c289bd3a3feed93ccf8a">zclk_command_output_handler</a>) (<a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a> result_flag, <a class="el" href="zclk_8h.html#a1228d6c253b585f9ae45a1538a1313e6">zclk_result_type</a> result_type, void *result)</td></tr>
+<tr class="memdesc:abb5485f43237c289bd3a3feed93ccf8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a function to handle command output. <br /></td></tr>
+<tr class="separator:abb5485f43237c289bd3a3feed93ccf8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab895ab5ad22c2207a026c9e3d90bc2de"><td class="memItemLeft" align="right" valign="top"><a id="ab895ab5ad22c2207a026c9e3d90bc2de"></a>
+typedef <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#ab895ab5ad22c2207a026c9e3d90bc2de">zclk_command_fn</a>) (struct <a class="el" href="structzclk__command__t.html">zclk_command_t</a> *cmd, void *handler_args)</td></tr>
+<tr class="memdesc:ab895ab5ad22c2207a026c9e3d90bc2de"><td class="mdescLeft">&#160;</td><td class="mdescRight">defines a function to run a command <br /></td></tr>
+<tr class="separator:ab895ab5ad22c2207a026c9e3d90bc2de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb15e975d81227700ed1d84df15eaee6"><td class="memItemLeft" align="right" valign="top"><a id="afb15e975d81227700ed1d84df15eaee6"></a>
 typedef struct <a class="el" href="structzclk__command__t.html">zclk_command_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a></td></tr>
 <tr class="memdesc:afb15e975d81227700ed1d84df15eaee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">A CLI Command Ojbect. <br /></td></tr>
@@ -205,20 +205,20 @@ typedef struct <a class="el" href="structzclk__command__t.html">zclk_command_t</
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a58084c85631e1befaf475b825ea86b07"><td class="memItemLeft" align="right" valign="top"><a id="a58084c85631e1befaf475b825ea86b07"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> { <br />
-&#160;&#160;<b>ZCLK_COMMAND_IS_RUNNING</b> = -1
-, <b>ZCLK_COMMAND_SUCCESS</b> = 0
-, <b>ZCLK_COMMAND_ERR_UNKNOWN</b> = 1
-, <b>ZCLK_COMMAND_ERR_ALLOC_FAILED</b> = 2
+<tr class="memitem:a85c06910a7ad5fe5406076943afbd60b"><td class="memItemLeft" align="right" valign="top"><a id="a85c06910a7ad5fe5406076943afbd60b"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a> { <br />
+&#160;&#160;<b>ZCLK_RES_IS_RUNNING</b> = -1
+, <b>ZCLK_RES_SUCCESS</b> = 0
+, <b>ZCLK_RES_ERR_UNKNOWN</b> = 1
+, <b>ZCLK_RES_ERR_ALLOC_FAILED</b> = 2
 , <br />
-&#160;&#160;<b>ZCLK_COMMAND_ERR_COMMAND_NOT_FOUND</b> = 3
-, <b>ZCLK_COMMAND_ERR_OPTION_NOT_FOUND</b> = 4
-, <b>ZCLK_COMMAND_ERR_ARG_NOT_FOUND</b> = 5
-, <b>ZCLK_COMMAND_ERR_EXTRA_ARGS_FOUND</b> = 6
+&#160;&#160;<b>ZCLK_RES_ERR_COMMAND_NOT_FOUND</b> = 3
+, <b>ZCLK_RES_ERR_OPTION_NOT_FOUND</b> = 4
+, <b>ZCLK_RES_ERR_ARG_NOT_FOUND</b> = 5
+, <b>ZCLK_RES_ERR_EXTRA_ARGS_FOUND</b> = 6
 <br />
  }</td></tr>
-<tr class="memdesc:a58084c85631e1befaf475b825ea86b07"><td class="mdescLeft">&#160;</td><td class="mdescRight">This enum defines the possible error codes generated by functions in the API. <br /></td></tr>
-<tr class="separator:a58084c85631e1befaf475b825ea86b07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a85c06910a7ad5fe5406076943afbd60b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This enum defines the possible error codes generated by functions in the API. <br /></td></tr>
+<tr class="separator:a85c06910a7ad5fe5406076943afbd60b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ebb632ba43af7f5a82159eb49b43181"><td class="memItemLeft" align="right" valign="top"><a id="a8ebb632ba43af7f5a82159eb49b43181"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a8ebb632ba43af7f5a82159eb49b43181">zclk_type</a> { <br />
 &#160;&#160;<b>ZCLK_TYPE_BOOLEAN</b> = 0
 , <b>ZCLK_TYPE_INT</b> = 1
@@ -306,18 +306,18 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_val_is
 <tr class="memitem:ab62c4eeb0b92095d30590d42f0399455"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#ab62c4eeb0b92095d30590d42f0399455">zclk_fill_options_in_list</a> (arraylist *optlist, <a class="el" href="zclk_8h.html#a1ec5fa3fb569d9226cbfbcd3b5def231">zclk_option</a> *options[])</td></tr>
 <tr class="memdesc:ab62c4eeb0b92095d30590d42f0399455"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill the entries in the given option array into an arraylist.  <a href="zclk_8h.html#ab62c4eeb0b92095d30590d42f0399455">More...</a><br /></td></tr>
 <tr class="separator:ab62c4eeb0b92095d30590d42f0399455"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a919e5b9ad05e3c1d8998b52210329a61"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a919e5b9ad05e3c1d8998b52210329a61">make_zclk_val</a> (<a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> **val, <a class="el" href="zclk_8h.html#a8ebb632ba43af7f5a82159eb49b43181">zclk_type</a> type)</td></tr>
-<tr class="separator:a919e5b9ad05e3c1d8998b52210329a61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d60475a9d4a52d05e76ec8cd330507c"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a2d60475a9d4a52d05e76ec8cd330507c">make_zclk_val</a> (<a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> **val, <a class="el" href="zclk_8h.html#a8ebb632ba43af7f5a82159eb49b43181">zclk_type</a> type)</td></tr>
+<tr class="separator:a2d60475a9d4a52d05e76ec8cd330507c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a665f82a8d69f141ebea3dad9afa06152"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a665f82a8d69f141ebea3dad9afa06152">free_zclk_val</a> (<a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *val)</td></tr>
 <tr class="separator:a665f82a8d69f141ebea3dad9afa06152"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2479a7abac483f13065fbc278eae3bbd"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a2479a7abac483f13065fbc278eae3bbd">clear_zclk_val</a> (<a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *val)</td></tr>
 <tr class="separator:a2479a7abac483f13065fbc278eae3bbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a002b0bdb28d6352f3e12f8471c73c644"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a002b0bdb28d6352f3e12f8471c73c644">copy_zclk_val</a> (<a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *to, <a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *from)</td></tr>
 <tr class="separator:a002b0bdb28d6352f3e12f8471c73c644"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d6995f7778acdebc699e004f700d8fb"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a6d6995f7778acdebc699e004f700d8fb">parse_zclk_val</a> (<a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *val, char *input)</td></tr>
-<tr class="separator:a6d6995f7778acdebc699e004f700d8fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d15d4b6a81f391d538651a6ab927069"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a3d15d4b6a81f391d538651a6ab927069">make_option</a> (<a class="el" href="zclk_8h.html#a1ec5fa3fb569d9226cbfbcd3b5def231">zclk_option</a> **option, char *name, char *short_name, <a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *val, <a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *default_val, char *description)</td></tr>
-<tr class="separator:a3d15d4b6a81f391d538651a6ab927069"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24154e04c5f9b82b7c1b9363f257777e"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a24154e04c5f9b82b7c1b9363f257777e">parse_zclk_val</a> (<a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *val, char *input)</td></tr>
+<tr class="separator:a24154e04c5f9b82b7c1b9363f257777e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a115aa9c21f2a5b25605458996763ccd2"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a115aa9c21f2a5b25605458996763ccd2">make_option</a> (<a class="el" href="zclk_8h.html#a1ec5fa3fb569d9226cbfbcd3b5def231">zclk_option</a> **option, char *name, char *short_name, <a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *val, <a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *default_val, char *description)</td></tr>
+<tr class="separator:a115aa9c21f2a5b25605458996763ccd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73a31c15a83c9dcfe346d295d6f07653"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a1ec5fa3fb569d9226cbfbcd3b5def231">zclk_option</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a73a31c15a83c9dcfe346d295d6f07653">new_zclk_option</a> (char *name, char *short_name, <a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *val, <a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *default_val, char *desc)</td></tr>
 <tr class="memdesc:a73a31c15a83c9dcfe346d295d6f07653"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Internal Use) Create an option object  <a href="zclk_8h.html#a73a31c15a83c9dcfe346d295d6f07653">More...</a><br /></td></tr>
 <tr class="separator:a73a31c15a83c9dcfe346d295d6f07653"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -380,8 +380,8 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_option
 <tr class="memitem:a58d28328380e8c681fca7c4fc5af0fd9"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a1ec5fa3fb569d9226cbfbcd3b5def231">zclk_option</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a58d28328380e8c681fca7c4fc5af0fd9">get_option_by_name</a> (arraylist *options, char *name)</td></tr>
 <tr class="memdesc:a58d28328380e8c681fca7c4fc5af0fd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the option by name object.  <a href="zclk_8h.html#a58d28328380e8c681fca7c4fc5af0fd9">More...</a><br /></td></tr>
 <tr class="separator:a58d28328380e8c681fca7c4fc5af0fd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4e7662373cad6d274876884b909a783"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#af4e7662373cad6d274876884b909a783">make_argument</a> (<a class="el" href="zclk_8h.html#a0486453d0ff8be439727b6559ae04d34">zclk_argument</a> **arg, char *name, <a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *val, <a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *default_val, char *desc)</td></tr>
-<tr class="separator:af4e7662373cad6d274876884b909a783"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a955fb8227e964aba820aec3846b5ea14"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a955fb8227e964aba820aec3846b5ea14">make_argument</a> (<a class="el" href="zclk_8h.html#a0486453d0ff8be439727b6559ae04d34">zclk_argument</a> **arg, char *name, <a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *val, <a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *default_val, char *desc)</td></tr>
+<tr class="separator:a955fb8227e964aba820aec3846b5ea14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c99747b64cc1788d3472e0a4bfab697"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a0486453d0ff8be439727b6559ae04d34">zclk_argument</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a2c99747b64cc1788d3472e0a4bfab697">new_zclk_argument</a> (char *name, <a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *val, <a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *default_val, char *desc, int nargs)</td></tr>
 <tr class="memdesc:a2c99747b64cc1788d3472e0a4bfab697"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Internal use) Create an argument object  <a href="zclk_8h.html#a2c99747b64cc1788d3472e0a4bfab697">More...</a><br /></td></tr>
 <tr class="separator:a2c99747b64cc1788d3472e0a4bfab697"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -438,20 +438,20 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 <tr class="separator:a6820f579c864e5990aa9065ba500079a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b0bf62433265699c448089dd12a2521"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a9b0bf62433265699c448089dd12a2521">free_argument</a> (<a class="el" href="zclk_8h.html#a0486453d0ff8be439727b6559ae04d34">zclk_argument</a> *arg)</td></tr>
 <tr class="separator:a9b0bf62433265699c448089dd12a2521"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e5a1fbc62fe29500a5f05b3a6587288"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a2e5a1fbc62fe29500a5f05b3a6587288">make_command</a> (<a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> **command, char *name, char *short_name, char *description, <a class="el" href="zclk_8h.html#a78ac524d57a2d6bc1c7f96eb1b4dc65d">zclk_command_fn</a> handler)</td></tr>
-<tr class="separator:a2e5a1fbc62fe29500a5f05b3a6587288"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f37d232326ce951c3b37493628de9c5"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a7f37d232326ce951c3b37493628de9c5">new_zclk_command</a> (char *name, char *short_name, char *description, <a class="el" href="zclk_8h.html#a78ac524d57a2d6bc1c7f96eb1b4dc65d">zclk_command_fn</a> handler)</td></tr>
+<tr class="memitem:ab5af911fc4332896dcc97ed5f0a15ca2"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#ab5af911fc4332896dcc97ed5f0a15ca2">make_command</a> (<a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> **command, char *name, char *short_name, char *description, <a class="el" href="zclk_8h.html#ab895ab5ad22c2207a026c9e3d90bc2de">zclk_command_fn</a> handler)</td></tr>
+<tr class="separator:ab5af911fc4332896dcc97ed5f0a15ca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f37d232326ce951c3b37493628de9c5"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a7f37d232326ce951c3b37493628de9c5">new_zclk_command</a> (char *name, char *short_name, char *description, <a class="el" href="zclk_8h.html#ab895ab5ad22c2207a026c9e3d90bc2de">zclk_command_fn</a> handler)</td></tr>
 <tr class="memdesc:a7f37d232326ce951c3b37493628de9c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a command object with automatic error handling.  <a href="zclk_8h.html#a7f37d232326ce951c3b37493628de9c5">More...</a><br /></td></tr>
 <tr class="separator:a7f37d232326ce951c3b37493628de9c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade64afbf79fd1579c733ee358581caf8"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#ade64afbf79fd1579c733ee358581caf8">zclk_command_subcommand_add</a> (<a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, <a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *subcommand)</td></tr>
-<tr class="memdesc:ade64afbf79fd1579c733ee358581caf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a subcommand to the given command.  <a href="zclk_8h.html#ade64afbf79fd1579c733ee358581caf8">More...</a><br /></td></tr>
-<tr class="separator:ade64afbf79fd1579c733ee358581caf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67097241a64589b80628661587c0e386"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a67097241a64589b80628661587c0e386">zclk_command_option_add</a> (<a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, <a class="el" href="zclk_8h.html#a1ec5fa3fb569d9226cbfbcd3b5def231">zclk_option</a> *option)</td></tr>
-<tr class="memdesc:a67097241a64589b80628661587c0e386"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an option to the given command.  <a href="zclk_8h.html#a67097241a64589b80628661587c0e386">More...</a><br /></td></tr>
-<tr class="separator:a67097241a64589b80628661587c0e386"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a186aeb011610a39bdaa15434ce049927"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a186aeb011610a39bdaa15434ce049927">zclk_command_argument_add</a> (<a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, <a class="el" href="zclk_8h.html#a0486453d0ff8be439727b6559ae04d34">zclk_argument</a> *arg)</td></tr>
-<tr class="memdesc:a186aeb011610a39bdaa15434ce049927"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an argument to the given command.  <a href="zclk_8h.html#a186aeb011610a39bdaa15434ce049927">More...</a><br /></td></tr>
-<tr class="separator:a186aeb011610a39bdaa15434ce049927"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca24d38a4ab954e04bc878dac8d4eeb6"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#aca24d38a4ab954e04bc878dac8d4eeb6">zclk_command_subcommand_add</a> (<a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, <a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *subcommand)</td></tr>
+<tr class="memdesc:aca24d38a4ab954e04bc878dac8d4eeb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a subcommand to the given command.  <a href="zclk_8h.html#aca24d38a4ab954e04bc878dac8d4eeb6">More...</a><br /></td></tr>
+<tr class="separator:aca24d38a4ab954e04bc878dac8d4eeb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20e29ed7a1c6f32702ce212241491c68"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a20e29ed7a1c6f32702ce212241491c68">zclk_command_option_add</a> (<a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, <a class="el" href="zclk_8h.html#a1ec5fa3fb569d9226cbfbcd3b5def231">zclk_option</a> *option)</td></tr>
+<tr class="memdesc:a20e29ed7a1c6f32702ce212241491c68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an option to the given command.  <a href="zclk_8h.html#a20e29ed7a1c6f32702ce212241491c68">More...</a><br /></td></tr>
+<tr class="separator:a20e29ed7a1c6f32702ce212241491c68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74094664f750529bca55ff2ed42aa6bb"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a74094664f750529bca55ff2ed42aa6bb">zclk_command_argument_add</a> (<a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, <a class="el" href="zclk_8h.html#a0486453d0ff8be439727b6559ae04d34">zclk_argument</a> *arg)</td></tr>
+<tr class="memdesc:a74094664f750529bca55ff2ed42aa6bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an argument to the given command.  <a href="zclk_8h.html#a74094664f750529bca55ff2ed42aa6bb">More...</a><br /></td></tr>
+<tr class="separator:a74094664f750529bca55ff2ed42aa6bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94b937ca05081ee1d4587481a1753501"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a94b937ca05081ee1d4587481a1753501">zclk_command_bool_option</a> (<a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, char *name, char *short_name, int val, int default_val, char *desc)</td></tr>
 <tr class="memdesc:a94b937ca05081ee1d4587481a1753501"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new boolean option and add it to the given command.  <a href="zclk_8h.html#a94b937ca05081ee1d4587481a1753501">More...</a><br /></td></tr>
 <tr class="separator:a94b937ca05081ee1d4587481a1753501"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -482,25 +482,25 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 <tr class="memitem:a2782844c0dc24bc9a9546abd3671e013"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a2782844c0dc24bc9a9546abd3671e013">zclk_command_flag_argument</a> (<a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, char *name, int val, int default_val, char *desc, int nargs)</td></tr>
 <tr class="memdesc:a2782844c0dc24bc9a9546abd3671e013"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new bool argument and add it to the given command.  <a href="zclk_8h.html#a2782844c0dc24bc9a9546abd3671e013">More...</a><br /></td></tr>
 <tr class="separator:a2782844c0dc24bc9a9546abd3671e013"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2974f9bac9e4bb8e40c008cc2d10f44"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#ac2974f9bac9e4bb8e40c008cc2d10f44">zclk_command_exec</a> (<a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, void *exec_args, int argc, char *argv[])</td></tr>
-<tr class="memdesc:ac2974f9bac9e4bb8e40c008cc2d10f44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the command with the given args.  <a href="zclk_8h.html#ac2974f9bac9e4bb8e40c008cc2d10f44">More...</a><br /></td></tr>
-<tr class="separator:ac2974f9bac9e4bb8e40c008cc2d10f44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d7aafdf8edf730e5d5a4686291a1fe4"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a7d7aafdf8edf730e5d5a4686291a1fe4">zclk_command_exec</a> (<a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, void *exec_args, int argc, char *argv[])</td></tr>
+<tr class="memdesc:a7d7aafdf8edf730e5d5a4686291a1fe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the command with the given args.  <a href="zclk_8h.html#a7d7aafdf8edf730e5d5a4686291a1fe4">More...</a><br /></td></tr>
+<tr class="separator:a7d7aafdf8edf730e5d5a4686291a1fe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18986f2ce55690b003e4cde4c6b29892"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a18986f2ce55690b003e4cde4c6b29892">free_command</a> (<a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *command)</td></tr>
 <tr class="separator:a18986f2ce55690b003e4cde4c6b29892"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03e8dd3ab99294a9bacb3bbe886f04c2"><td class="memItemLeft" align="right" valign="top">MODULE_API char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a03e8dd3ab99294a9bacb3bbe886f04c2">get_help_for_command</a> (arraylist *cmds_to_exec)</td></tr>
 <tr class="separator:a03e8dd3ab99294a9bacb3bbe886f04c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12e28b2098f8db7bf7fb0eebceb2cad3"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a12e28b2098f8db7bf7fb0eebceb2cad3">help_cmd_handler</a> (arraylist *commands, void *handler_args, int argc, char **argv, <a class="el" href="zclk_8h.html#af3ced625a9ac29ccddb1c2b5d4146411">zclk_command_output_handler</a> success_handler, <a class="el" href="zclk_8h.html#af3ced625a9ac29ccddb1c2b5d4146411">zclk_command_output_handler</a> error_handler)</td></tr>
-<tr class="separator:a12e28b2098f8db7bf7fb0eebceb2cad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93bf3e9058f0dc32d7ddb3ed8a62ea10"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a93bf3e9058f0dc32d7ddb3ed8a62ea10">get_help_for</a> (char **help_str, arraylist *commands, arraylist *arg_commands)</td></tr>
-<tr class="separator:a93bf3e9058f0dc32d7ddb3ed8a62ea10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96a60a393688b756ba4f7d95f1d4b58d"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a96a60a393688b756ba4f7d95f1d4b58d">exec_command</a> (arraylist *commands, void *handler_args, int argc, char **argv)</td></tr>
-<tr class="separator:a96a60a393688b756ba4f7d95f1d4b58d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33faf82a71505253821010d15d71b4d9"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a33faf82a71505253821010d15d71b4d9">help_cmd_handler</a> (arraylist *commands, void *handler_args, int argc, char **argv, <a class="el" href="zclk_8h.html#abb5485f43237c289bd3a3feed93ccf8a">zclk_command_output_handler</a> success_handler, <a class="el" href="zclk_8h.html#abb5485f43237c289bd3a3feed93ccf8a">zclk_command_output_handler</a> error_handler)</td></tr>
+<tr class="separator:a33faf82a71505253821010d15d71b4d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54d8a66a5b7a860bdcf9184337361a72"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a54d8a66a5b7a860bdcf9184337361a72">get_help_for</a> (char **help_str, arraylist *commands, arraylist *arg_commands)</td></tr>
+<tr class="separator:a54d8a66a5b7a860bdcf9184337361a72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a792e8cb0a43e176cc91b10b3a08da6a8"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a792e8cb0a43e176cc91b10b3a08da6a8">exec_command</a> (arraylist *commands, void *handler_args, int argc, char **argv)</td></tr>
+<tr class="separator:a792e8cb0a43e176cc91b10b3a08da6a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9caed1930c265ffb2e354ff0622cf0bf"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a9caed1930c265ffb2e354ff0622cf0bf">print_table_result</a> (void *result)</td></tr>
 <tr class="memdesc:a9caed1930c265ffb2e354ff0622cf0bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a tabular result object to the stdout.  <a href="zclk_8h.html#a9caed1930c265ffb2e354ff0622cf0bf">More...</a><br /></td></tr>
 <tr class="separator:a9caed1930c265ffb2e354ff0622cf0bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a105717eddc992d79185c01c0b59bd4ad"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a105717eddc992d79185c01c0b59bd4ad">print_handler</a> (<a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> result_flag, <a class="el" href="zclk_8h.html#a1228d6c253b585f9ae45a1538a1313e6">zclk_result_type</a> res_type, void *result)</td></tr>
-<tr class="memdesc:a105717eddc992d79185c01c0b59bd4ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Print handler prints the result of the command.  <a href="zclk_8h.html#a105717eddc992d79185c01c0b59bd4ad">More...</a><br /></td></tr>
-<tr class="separator:a105717eddc992d79185c01c0b59bd4ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a866ebb7a78cb75be2e7639df80ef27fa"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a866ebb7a78cb75be2e7639df80ef27fa">print_handler</a> (<a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a> result_flag, <a class="el" href="zclk_8h.html#a1228d6c253b585f9ae45a1538a1313e6">zclk_result_type</a> res_type, void *result)</td></tr>
+<tr class="memdesc:a866ebb7a78cb75be2e7639df80ef27fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Print handler prints the result of the command.  <a href="zclk_8h.html#a866ebb7a78cb75be2e7639df80ef27fa">More...</a><br /></td></tr>
+<tr class="separator:a866ebb7a78cb75be2e7639df80ef27fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Zclk main header file. Defines the Public API of zclk. </p>
@@ -1029,14 +1029,14 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 
 </div>
 </div>
-<a id="a96a60a393688b756ba4f7d95f1d4b58d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a96a60a393688b756ba4f7d95f1d4b58d">&#9670;&nbsp;</a></span>exec_command()</h2>
+<a id="a792e8cb0a43e176cc91b10b3a08da6a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a792e8cb0a43e176cc91b10b3a08da6a8">&#9670;&nbsp;</a></span>exec_command()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> exec_command </td>
+          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a> exec_command </td>
           <td>(</td>
           <td class="paramtype">arraylist *&#160;</td>
           <td class="paramname"><em>commands</em>, </td>
@@ -1161,14 +1161,14 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 
 </div>
 </div>
-<a id="a93bf3e9058f0dc32d7ddb3ed8a62ea10"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93bf3e9058f0dc32d7ddb3ed8a62ea10">&#9670;&nbsp;</a></span>get_help_for()</h2>
+<a id="a54d8a66a5b7a860bdcf9184337361a72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54d8a66a5b7a860bdcf9184337361a72">&#9670;&nbsp;</a></span>get_help_for()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> get_help_for </td>
+          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a> get_help_for </td>
           <td>(</td>
           <td class="paramtype">char **&#160;</td>
           <td class="paramname"><em>help_str</em>, </td>
@@ -1267,14 +1267,14 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 
 </div>
 </div>
-<a id="a12e28b2098f8db7bf7fb0eebceb2cad3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12e28b2098f8db7bf7fb0eebceb2cad3">&#9670;&nbsp;</a></span>help_cmd_handler()</h2>
+<a id="a33faf82a71505253821010d15d71b4d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33faf82a71505253821010d15d71b4d9">&#9670;&nbsp;</a></span>help_cmd_handler()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> help_cmd_handler </td>
+          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a> help_cmd_handler </td>
           <td>(</td>
           <td class="paramtype">arraylist *&#160;</td>
           <td class="paramname"><em>commands</em>, </td>
@@ -1300,13 +1300,13 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="zclk_8h.html#af3ced625a9ac29ccddb1c2b5d4146411">zclk_command_output_handler</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="zclk_8h.html#abb5485f43237c289bd3a3feed93ccf8a">zclk_command_output_handler</a>&#160;</td>
           <td class="paramname"><em>success_handler</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="zclk_8h.html#af3ced625a9ac29ccddb1c2b5d4146411">zclk_command_output_handler</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="zclk_8h.html#abb5485f43237c289bd3a3feed93ccf8a">zclk_command_output_handler</a>&#160;</td>
           <td class="paramname"><em>error_handler</em>&#160;</td>
         </tr>
         <tr>
@@ -1331,14 +1331,14 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 
 </div>
 </div>
-<a id="af4e7662373cad6d274876884b909a783"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4e7662373cad6d274876884b909a783">&#9670;&nbsp;</a></span>make_argument()</h2>
+<a id="a955fb8227e964aba820aec3846b5ea14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a955fb8227e964aba820aec3846b5ea14">&#9670;&nbsp;</a></span>make_argument()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> make_argument </td>
+          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a> make_argument </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="zclk_8h.html#a0486453d0ff8be439727b6559ae04d34">zclk_argument</a> **&#160;</td>
           <td class="paramname"><em>arg</em>, </td>
@@ -1390,14 +1390,14 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 
 </div>
 </div>
-<a id="a2e5a1fbc62fe29500a5f05b3a6587288"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e5a1fbc62fe29500a5f05b3a6587288">&#9670;&nbsp;</a></span>make_command()</h2>
+<a id="ab5af911fc4332896dcc97ed5f0a15ca2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5af911fc4332896dcc97ed5f0a15ca2">&#9670;&nbsp;</a></span>make_command()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> make_command </td>
+          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a> make_command </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> **&#160;</td>
           <td class="paramname"><em>command</em>, </td>
@@ -1423,7 +1423,7 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="zclk_8h.html#a78ac524d57a2d6bc1c7f96eb1b4dc65d">zclk_command_fn</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="zclk_8h.html#ab895ab5ad22c2207a026c9e3d90bc2de">zclk_command_fn</a>&#160;</td>
           <td class="paramname"><em>handler</em>&#160;</td>
         </tr>
         <tr>
@@ -1448,14 +1448,14 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 
 </div>
 </div>
-<a id="a3d15d4b6a81f391d538651a6ab927069"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d15d4b6a81f391d538651a6ab927069">&#9670;&nbsp;</a></span>make_option()</h2>
+<a id="a115aa9c21f2a5b25605458996763ccd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a115aa9c21f2a5b25605458996763ccd2">&#9670;&nbsp;</a></span>make_option()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> make_option </td>
+          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a> make_option </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="zclk_8h.html#a1ec5fa3fb569d9226cbfbcd3b5def231">zclk_option</a> **&#160;</td>
           <td class="paramname"><em>option</em>, </td>
@@ -1513,14 +1513,14 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 
 </div>
 </div>
-<a id="a919e5b9ad05e3c1d8998b52210329a61"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a919e5b9ad05e3c1d8998b52210329a61">&#9670;&nbsp;</a></span>make_zclk_val()</h2>
+<a id="a2d60475a9d4a52d05e76ec8cd330507c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d60475a9d4a52d05e76ec8cd330507c">&#9670;&nbsp;</a></span>make_zclk_val()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> make_zclk_val </td>
+          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a> make_zclk_val </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> **&#160;</td>
           <td class="paramname"><em>val</em>, </td>
@@ -1637,7 +1637,7 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="zclk_8h.html#a78ac524d57a2d6bc1c7f96eb1b4dc65d">zclk_command_fn</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="zclk_8h.html#ab895ab5ad22c2207a026c9e3d90bc2de">zclk_command_fn</a>&#160;</td>
           <td class="paramname"><em>handler</em>&#160;</td>
         </tr>
         <tr>
@@ -1649,7 +1649,7 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 </div><div class="memdoc">
 
 <p>Create a command object with automatic error handling. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="zclk_8h.html#a2e5a1fbc62fe29500a5f05b3a6587288">make_command</a></dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="zclk_8h.html#ab5af911fc4332896dcc97ed5f0a15ca2">make_command</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td></td></tr>
@@ -1858,14 +1858,14 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 
 </div>
 </div>
-<a id="a6d6995f7778acdebc699e004f700d8fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d6995f7778acdebc699e004f700d8fb">&#9670;&nbsp;</a></span>parse_zclk_val()</h2>
+<a id="a24154e04c5f9b82b7c1b9363f257777e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24154e04c5f9b82b7c1b9363f257777e">&#9670;&nbsp;</a></span>parse_zclk_val()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> parse_zclk_val </td>
+          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a> parse_zclk_val </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *&#160;</td>
           <td class="paramname"><em>val</em>, </td>
@@ -1895,16 +1895,16 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 
 </div>
 </div>
-<a id="a105717eddc992d79185c01c0b59bd4ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a105717eddc992d79185c01c0b59bd4ad">&#9670;&nbsp;</a></span>print_handler()</h2>
+<a id="a866ebb7a78cb75be2e7639df80ef27fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a866ebb7a78cb75be2e7639df80ef27fa">&#9670;&nbsp;</a></span>print_handler()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> print_handler </td>
+          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a> print_handler </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a>&#160;</td>
           <td class="paramname"><em>result_flag</em>, </td>
         </tr>
         <tr>
@@ -2004,14 +2004,14 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 
 </div>
 </div>
-<a id="a186aeb011610a39bdaa15434ce049927"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a186aeb011610a39bdaa15434ce049927">&#9670;&nbsp;</a></span>zclk_command_argument_add()</h2>
+<a id="a74094664f750529bca55ff2ed42aa6bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74094664f750529bca55ff2ed42aa6bb">&#9670;&nbsp;</a></span>zclk_command_argument_add()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> zclk_command_argument_add </td>
+          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a> zclk_command_argument_add </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *&#160;</td>
           <td class="paramname"><em>cmd</em>, </td>
@@ -2302,14 +2302,14 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 
 </div>
 </div>
-<a id="ac2974f9bac9e4bb8e40c008cc2d10f44"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2974f9bac9e4bb8e40c008cc2d10f44">&#9670;&nbsp;</a></span>zclk_command_exec()</h2>
+<a id="a7d7aafdf8edf730e5d5a4686291a1fe4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d7aafdf8edf730e5d5a4686291a1fe4">&#9670;&nbsp;</a></span>zclk_command_exec()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> zclk_command_exec </td>
+          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a> zclk_command_exec </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *&#160;</td>
           <td class="paramname"><em>cmd</em>, </td>
@@ -2614,14 +2614,14 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 
 </div>
 </div>
-<a id="a67097241a64589b80628661587c0e386"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a67097241a64589b80628661587c0e386">&#9670;&nbsp;</a></span>zclk_command_option_add()</h2>
+<a id="a20e29ed7a1c6f32702ce212241491c68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20e29ed7a1c6f32702ce212241491c68">&#9670;&nbsp;</a></span>zclk_command_option_add()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> zclk_command_option_add </td>
+          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a> zclk_command_option_add </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *&#160;</td>
           <td class="paramname"><em>cmd</em>, </td>
@@ -2782,14 +2782,14 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 
 </div>
 </div>
-<a id="ade64afbf79fd1579c733ee358581caf8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade64afbf79fd1579c733ee358581caf8">&#9670;&nbsp;</a></span>zclk_command_subcommand_add()</h2>
+<a id="aca24d38a4ab954e04bc878dac8d4eeb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca24d38a4ab954e04bc878dac8d4eeb6">&#9670;&nbsp;</a></span>zclk_command_subcommand_add()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a58084c85631e1befaf475b825ea86b07">zclk_cmd_err</a> zclk_command_subcommand_add </td>
+          <td class="memname">MODULE_API <a class="el" href="zclk_8h.html#a85c06910a7ad5fe5406076943afbd60b">zclk_res</a> zclk_command_subcommand_add </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *&#160;</td>
           <td class="paramname"><em>cmd</em>, </td>

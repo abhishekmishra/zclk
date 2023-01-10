@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['make_5fargument_22',['make_argument',['../zclk_8h.html#af4e7662373cad6d274876884b909a783',1,'zclk.c']]],
-  ['make_5fcommand_23',['make_command',['../zclk_8h.html#a2e5a1fbc62fe29500a5f05b3a6587288',1,'zclk.c']]],
-  ['make_5foption_24',['make_option',['../zclk_8h.html#a3d15d4b6a81f391d538651a6ab927069',1,'zclk.c']]],
-  ['make_5fzclk_5fval_25',['make_zclk_val',['../zclk_8h.html#a919e5b9ad05e3c1d8998b52210329a61',1,'zclk.c']]]
+  ['make_5fargument_22',['make_argument',['../zclk_8h.html#a955fb8227e964aba820aec3846b5ea14',1,'zclk.c']]],
+  ['make_5fcommand_23',['make_command',['../zclk_8h.html#ab5af911fc4332896dcc97ed5f0a15ca2',1,'zclk.c']]],
+  ['make_5foption_24',['make_option',['../zclk_8h.html#a115aa9c21f2a5b25605458996763ccd2',1,'zclk.c']]],
+  ['make_5fzclk_5fval_25',['make_zclk_val',['../zclk_8h.html#a2d60475a9d4a52d05e76ec8cd330507c',1,'zclk.c']]]
 ];
