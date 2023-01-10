@@ -1467,7 +1467,23 @@ zclk_res exec_command(arraylist *commands, void *handler_args,
 		size_t len_options = arraylist_length(cmd_to_exec->options);
 		for (int j = 0; j < len_options; j++)
 		{
-			arraylist_add(all_options, arraylist_get(cmd_to_exec->options, j));
+			zclk_option *opt_to_add = arraylist_get(cmd_to_exec->options, j);
+			size_t opt_len = arraylist_length(all_options);
+			int opt_exists = 0;
+			for (size_t k = 0; k < opt_len; k++)
+			{
+				zclk_option* opt_to_cmp = arraylist_get(all_options, k);
+				if (strcmp(zclk_option_get_name(opt_to_add), zclk_option_get_name(opt_to_cmp)) == 0
+					&& strcmp(zclk_option_get_short_name(opt_to_add), zclk_option_get_short_name(opt_to_cmp)) == 0)
+				{
+					opt_exists = 1;
+					printf("Option %s already exists.\n", zclk_option_get_name(opt_to_add));
+				}
+			}
+			if (opt_exists == 0)
+			{
+				arraylist_add(all_options, opt_to_add);
+			}
 		}
 		size_t len_args = arraylist_length(cmd_to_exec->args);
 		for (int j = 0; j < len_args; j++)
