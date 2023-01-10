@@ -37,15 +37,15 @@ extern "C" {
  */
 typedef enum
 {
-	ZCLK_COMMAND_IS_RUNNING = -1,
-	ZCLK_COMMAND_SUCCESS = 0,
-	ZCLK_COMMAND_ERR_UNKNOWN = 1,
-	ZCLK_COMMAND_ERR_ALLOC_FAILED = 2,
-	ZCLK_COMMAND_ERR_COMMAND_NOT_FOUND = 3,
-	ZCLK_COMMAND_ERR_OPTION_NOT_FOUND = 4,
-	ZCLK_COMMAND_ERR_ARG_NOT_FOUND = 5,
-	ZCLK_COMMAND_ERR_EXTRA_ARGS_FOUND = 6
-} zclk_cmd_err;
+	ZCLK_RES_IS_RUNNING = -1,
+	ZCLK_RES_SUCCESS = 0,
+	ZCLK_RES_ERR_UNKNOWN = 1,
+	ZCLK_RES_ERR_ALLOC_FAILED = 2,
+	ZCLK_RES_ERR_COMMAND_NOT_FOUND = 3,
+	ZCLK_RES_ERR_OPTION_NOT_FOUND = 4,
+	ZCLK_RES_ERR_ARG_NOT_FOUND = 5,
+	ZCLK_RES_ERR_EXTRA_ARGS_FOUND = 6
+} zclk_res;
 
 /**
  * @brief This enum defines the possible datatypes of 
@@ -370,7 +370,7 @@ MODULE_API void zclk_fill_options_in_list(arraylist* optlist, zclk_option* optio
 /**
  * @brief Defines a function to handle command output
  */
-typedef zclk_cmd_err(*zclk_command_output_handler)(zclk_cmd_err result_flag,
+typedef zclk_res(*zclk_command_output_handler)(zclk_res result_flag,
 	zclk_result_type result_type, void* result);
 
 // declration to assist in defining command fn
@@ -379,7 +379,7 @@ struct zclk_command_t;
 /**
  * @brief defines a function to run a command
  */
-typedef zclk_cmd_err(*zclk_command_fn)(struct zclk_command_t* cmd,
+typedef zclk_res(*zclk_command_fn)(struct zclk_command_t* cmd,
 										void* handler_args);
 
 /**
@@ -407,7 +407,7 @@ typedef struct zclk_command_t
  * \param type
  * \return error code
  */
-MODULE_API zclk_cmd_err make_zclk_val(zclk_val** val, zclk_type type);
+MODULE_API zclk_res make_zclk_val(zclk_val** val, zclk_type type);
 
 /**
  * Free the created value
@@ -437,7 +437,7 @@ MODULE_API void copy_zclk_val(zclk_val* to, zclk_val* from);
  * \param input string input
  * \return error code
  */
-MODULE_API zclk_cmd_err parse_zclk_val(zclk_val* val, char* input);
+MODULE_API zclk_res parse_zclk_val(zclk_val* val, char* input);
 
 /**
  * (Internal Use) Create a new option given a name and type.
@@ -450,7 +450,7 @@ MODULE_API zclk_cmd_err parse_zclk_val(zclk_val* val, char* input);
  * \param description
  * \return error code
  */
-MODULE_API zclk_cmd_err make_option(zclk_option** option, char* name, 
+MODULE_API zclk_res make_option(zclk_option** option, char* name, 
 	char* short_name, zclk_val* val, zclk_val* default_val, char* description);
 
 /**
@@ -529,7 +529,7 @@ MODULE_API zclk_option* get_option_by_name(arraylist* options, char* name);
  * \param desc
  * \return error code
  */
-MODULE_API zclk_cmd_err make_argument(zclk_argument** arg, char* name, 
+MODULE_API zclk_res make_argument(zclk_argument** arg, char* name, 
 	zclk_val* val, zclk_val* default_val, char* desc);
 
 /**
@@ -594,7 +594,7 @@ MODULE_API void free_argument(zclk_argument* arg);
  * \param handler function ptr to handler
  * \return error code
  */
-MODULE_API zclk_cmd_err make_command(zclk_command** command, char* name, 
+MODULE_API zclk_res make_command(zclk_command** command, char* name, 
 	char* short_name, char* description, zclk_command_fn handler);
 
 /**
@@ -621,7 +621,7 @@ MODULE_API zclk_command* new_zclk_command(
  * @param subcommand subcommand to add
  * @return error code
  */
-MODULE_API zclk_cmd_err zclk_command_subcommand_add(
+MODULE_API zclk_res zclk_command_subcommand_add(
 							zclk_command *cmd,
 							zclk_command *subcommand
 						);
@@ -633,7 +633,7 @@ MODULE_API zclk_cmd_err zclk_command_subcommand_add(
  * @param option option to add
  * @return error code
  */
-MODULE_API zclk_cmd_err zclk_command_option_add(
+MODULE_API zclk_res zclk_command_option_add(
 							zclk_command *cmd,
 							zclk_option* option
 						);
@@ -645,7 +645,7 @@ MODULE_API zclk_cmd_err zclk_command_option_add(
  * @param arg argument to add
  * @return error code
  */
-MODULE_API zclk_cmd_err zclk_command_argument_add(
+MODULE_API zclk_res zclk_command_argument_add(
 							zclk_command *cmd,
 							zclk_argument* arg
 						);
@@ -805,7 +805,7 @@ MODULE_API void zclk_command_flag_argument(zclk_command *cmd, char *name,
  * @param argv arg values
  * @return error code
  */
-MODULE_API zclk_cmd_err zclk_command_exec(
+MODULE_API zclk_res zclk_command_exec(
 	zclk_command *cmd,
 	void *exec_args,
 	int argc, char *argv[]);
@@ -833,7 +833,7 @@ MODULE_API char* get_help_for_command(arraylist* cmds_to_exec);
  * \param success_handler handle success results
  * \param error_handler handler error results
  */
-MODULE_API zclk_cmd_err help_cmd_handler(arraylist* commands, 
+MODULE_API zclk_res help_cmd_handler(arraylist* commands, 
 	void* handler_args,	int argc, char** argv, 
 	zclk_command_output_handler success_handler,
 	zclk_command_output_handler error_handler);
@@ -845,7 +845,7 @@ MODULE_API zclk_cmd_err help_cmd_handler(arraylist* commands,
  * \param arg_commands is a list of string
  * \return error code
  */
-MODULE_API zclk_cmd_err get_help_for(char** help_str, arraylist* commands,
+MODULE_API zclk_res get_help_for(char** help_str, arraylist* commands,
 	arraylist* arg_commands);
 
 /**
@@ -858,7 +858,7 @@ MODULE_API zclk_cmd_err get_help_for(char** help_str, arraylist* commands,
  * \param argc the number of tokens in the line
  * \param argv args as an array of strings
  */
-MODULE_API zclk_cmd_err exec_command(arraylist* commands, void* handler_args,
+MODULE_API zclk_res exec_command(arraylist* commands, void* handler_args,
 	int argc, char** argv);
 
 /**
@@ -876,7 +876,7 @@ MODULE_API void print_table_result(void* result);
  * @param result result object
  * @return error code
  */
-MODULE_API zclk_cmd_err print_handler(zclk_cmd_err result_flag, 
+MODULE_API zclk_res print_handler(zclk_res result_flag, 
 	zclk_result_type res_type,
     void* result);
 

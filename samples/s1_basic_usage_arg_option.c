@@ -1,7 +1,7 @@
 #include <zclk.h>
 #include <stdio.h>
 
-zclk_cmd_err basic_handler(zclk_command* cmd, void* handler_args)
+zclk_res basic_handler(zclk_command* cmd, void* handler_args)
 {
     printf("***************************************"
         "****************************\n");

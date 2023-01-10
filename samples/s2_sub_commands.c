@@ -1,13 +1,13 @@
 #include <zclk.h>
 #include <stdio.h>
 
-zclk_cmd_err main_command(zclk_command* cmd, void* handler_args)
+zclk_res main_command(zclk_command* cmd, void* handler_args)
 {
     printf("Main Command.\n");
     return 0;
 }
 
-zclk_cmd_err sub_command(zclk_command* cmd, void* handler_args)
+zclk_res sub_command(zclk_command* cmd, void* handler_args)
 {
     printf("Sub Command.\n");
     printf("\n** Options\n");

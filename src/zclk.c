@@ -24,22 +24,22 @@ void print_args(int argc, char **argv)
 	}
 }
 
-zclk_cmd_err make_zclk_val(zclk_val **val, zclk_type type)
+zclk_res make_zclk_val(zclk_val **val, zclk_type type)
 {
 	(*val) = (zclk_val *)calloc(1, sizeof(zclk_val));
 	if ((*val) == NULL)
 	{
-		return ZCLK_COMMAND_ERR_ALLOC_FAILED;
+		return ZCLK_RES_ERR_ALLOC_FAILED;
 	}
 	(*val)->type = type;
-	return ZCLK_COMMAND_SUCCESS;
+	return ZCLK_RES_SUCCESS;
 }
 
 zclk_val* new_zclk_val_bool(int bool_val)
 {
 	zclk_val *val;
-	zclk_cmd_err res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
-	if(res == ZCLK_COMMAND_SUCCESS)
+	zclk_res res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
+	if(res == ZCLK_RES_SUCCESS)
 	{
 		val->data.bool_value = bool_val;
 	}
@@ -49,8 +49,8 @@ zclk_val* new_zclk_val_bool(int bool_val)
 zclk_val* new_zclk_val_int(int int_val)
 {
 	zclk_val *val;
-	zclk_cmd_err res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
-	if(res == ZCLK_COMMAND_SUCCESS)
+	zclk_res res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
+	if(res == ZCLK_RES_SUCCESS)
 	{
 		val->data.int_value = int_val;
 	}
@@ -60,8 +60,8 @@ zclk_val* new_zclk_val_int(int int_val)
 zclk_val* new_zclk_val_double(double double_val)
 {
 	zclk_val *val;
-	zclk_cmd_err res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
-	if(res == ZCLK_COMMAND_SUCCESS)
+	zclk_res res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
+	if(res == ZCLK_RES_SUCCESS)
 	{
 		val->data.dbl_value = double_val;
 	}
@@ -71,8 +71,8 @@ zclk_val* new_zclk_val_double(double double_val)
 zclk_val* new_zclk_val_string(char* string_val)
 {
 	zclk_val *val;
-	zclk_cmd_err res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
-	if(res == ZCLK_COMMAND_SUCCESS)
+	zclk_res res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
+	if(res == ZCLK_RES_SUCCESS)
 	{
 		val->data.str_value = string_val;
 	}
@@ -82,8 +82,8 @@ zclk_val* new_zclk_val_string(char* string_val)
 zclk_val* new_zclk_val_flag(int flag_val)
 {
 	zclk_val *val;
-	zclk_cmd_err res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
-	if(res == ZCLK_COMMAND_SUCCESS)
+	zclk_res res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
+	if(res == ZCLK_RES_SUCCESS)
 	{
 		val->data.bool_value = flag_val;
 	}
@@ -99,7 +99,7 @@ int zclk_val_is_type(zclk_val *val, zclk_type type)
 	}
 	if(val->type == type)
 	{
-		return ZCLK_COMMAND_SUCCESS;
+		return ZCLK_RES_SUCCESS;
 	}
 	else
 	{
@@ -207,11 +207,11 @@ void copy_zclk_val(zclk_val *to, zclk_val *from)
 	}
 }
 
-zclk_cmd_err parse_zclk_val(zclk_val *val, char *input)
+zclk_res parse_zclk_val(zclk_val *val, char *input)
 {
 	if (input == NULL)
 	{
-		return ZCLK_COMMAND_ERR_UNKNOWN;
+		return ZCLK_RES_ERR_UNKNOWN;
 	}
 	else
 	{
@@ -242,9 +242,9 @@ zclk_cmd_err parse_zclk_val(zclk_val *val, char *input)
 			zclk_val_set_string(val, input);
 			break;
 		default:
-			return ZCLK_COMMAND_ERR_UNKNOWN;
+			return ZCLK_RES_ERR_UNKNOWN;
 		}
-		return ZCLK_COMMAND_SUCCESS;
+		return ZCLK_RES_SUCCESS;
 	}
 }
 
@@ -283,20 +283,20 @@ int zclk_val_to_lua(lua_State *L, zclk_val *val)
 	return 1;
 }
 
-zclk_cmd_err make_option(zclk_option **option, char *name, char *short_name,
+zclk_res make_option(zclk_option **option, char *name, char *short_name,
 	zclk_val* val, zclk_val* default_val, char *description)
 {
 	(*option) = (zclk_option *)calloc(1, sizeof(zclk_option));
 	if ((*option) == NULL)
 	{
-		return ZCLK_COMMAND_ERR_ALLOC_FAILED;
+		return ZCLK_RES_ERR_ALLOC_FAILED;
 	}
 	(*option)->name = name;
 	(*option)->short_name = short_name;
 	(*option)->description = description;
 	(*option)->val = val;
 	(*option)->default_val = default_val;
-	return ZCLK_COMMAND_SUCCESS;
+	return ZCLK_RES_SUCCESS;
 }
 
 zclk_option* new_zclk_option(char* name, char* short_name, zclk_val*val, zclk_val* default_val, char* desc) {
@@ -544,19 +544,19 @@ void zclk_fill_options_in_list(arraylist* optlist, zclk_option* options[]) {
 	}
 }
 
-zclk_cmd_err make_argument(zclk_argument **arg, char* name, zclk_val* val, zclk_val* default_val, char* description)
+zclk_res make_argument(zclk_argument **arg, char* name, zclk_val* val, zclk_val* default_val, char* description)
 {
 	(*arg) = (zclk_argument *)calloc(1, sizeof(zclk_argument));
 	if ((*arg) == NULL)
 	{
-		return ZCLK_COMMAND_ERR_ALLOC_FAILED;
+		return ZCLK_RES_ERR_ALLOC_FAILED;
 	}
 	(*arg)->name = name;
 	(*arg)->description = description;
 	(*arg)->optional = 0;
 	(*arg)->val = val;
 	(*arg)->default_val = default_val;
-	return ZCLK_COMMAND_SUCCESS;
+	return ZCLK_RES_SUCCESS;
 }
 
 zclk_argument* new_zclk_argument(char* name, zclk_val* val, 
@@ -763,13 +763,13 @@ void arraylist_zclk_argument_to_lua(lua_State *L, int index, void *data) {
 	zclk_argument_to_lua(L, (zclk_argument*) data);
 }
 
-zclk_cmd_err make_command(zclk_command **command, char *name, char *short_name,
+zclk_res make_command(zclk_command **command, char *name, char *short_name,
 						 char *description, zclk_command_fn handler)
 {
 	(*command) = (zclk_command *)calloc(1, sizeof(zclk_command));
 	if ((*command) == NULL)
 	{
-		return ZCLK_COMMAND_ERR_ALLOC_FAILED;
+		return ZCLK_RES_ERR_ALLOC_FAILED;
 	}
 	(*command)->name = name;
 	(*command)->short_name = short_name;
@@ -790,56 +790,56 @@ zclk_cmd_err make_command(zclk_command **command, char *name, char *short_name,
 					  ZCLK_OPTION_HELP_SHORT, zclk_flag(0),
 					  zclk_flag(0), ZCLK_OPTION_HELP_DESC));
 
-	return ZCLK_COMMAND_SUCCESS;
+	return ZCLK_RES_SUCCESS;
 }
 
 zclk_command* new_zclk_command(char* name, char* short_name,
 	char* description, zclk_command_fn handler) {
 	zclk_command* cmd;
-	if (make_command(&cmd, name, short_name, description, handler) == ZCLK_COMMAND_SUCCESS) {
+	if (make_command(&cmd, name, short_name, description, handler) == ZCLK_RES_SUCCESS) {
 		return cmd;
 	}
 	return NULL;
 }
 
-zclk_cmd_err zclk_command_subcommand_add(zclk_command *cmd, 
+zclk_res zclk_command_subcommand_add(zclk_command *cmd, 
 											zclk_command *subcommand)
 {
 	if(cmd == NULL || subcommand == NULL) 
 	{
-		return ZCLK_COMMAND_ERR_UNKNOWN;
+		return ZCLK_RES_ERR_UNKNOWN;
 	}
 
 	arraylist_add(cmd->sub_commands, subcommand);
-	return ZCLK_COMMAND_SUCCESS;
+	return ZCLK_RES_SUCCESS;
 }
 
-zclk_cmd_err zclk_command_option_add(
+zclk_res zclk_command_option_add(
 							zclk_command *cmd,
 							zclk_option* option
 						)
 {
 	if(cmd == NULL || option == NULL) 
 	{
-		return ZCLK_COMMAND_ERR_UNKNOWN;
+		return ZCLK_RES_ERR_UNKNOWN;
 	}
 
 	arraylist_add(cmd->options, option);
-	return ZCLK_COMMAND_SUCCESS;
+	return ZCLK_RES_SUCCESS;
 }
 
-zclk_cmd_err zclk_command_argument_add(
+zclk_res zclk_command_argument_add(
 							zclk_command *cmd,
 							zclk_argument* arg
 						)
 {
 	if(cmd == NULL || arg == NULL) 
 	{
-		return ZCLK_COMMAND_ERR_UNKNOWN;
+		return ZCLK_RES_ERR_UNKNOWN;
 	}
 
 	arraylist_add(cmd->args, arg);
-	return ZCLK_COMMAND_SUCCESS;
+	return ZCLK_RES_SUCCESS;
 }
 
 void zclk_command_bool_option(zclk_command *cmd, char *name, 
@@ -973,15 +973,15 @@ void zclk_command_flag_argument(zclk_command *cmd, char *name,
 				nargs));
 }
 
-zclk_cmd_err zclk_command_exec(zclk_command* cmd, 
+zclk_res zclk_command_exec(zclk_command* cmd, 
 	void* exec_args, int argc, char* argv[])
 {
 	arraylist *toplevel_commands;
 	arraylist_new(&toplevel_commands, NULL);
 	arraylist_add(toplevel_commands, cmd);
-	zclk_cmd_err err = exec_command(toplevel_commands, 
+	zclk_res err = exec_command(toplevel_commands, 
 										exec_args, argc, argv);
-	if (err != ZCLK_COMMAND_SUCCESS)
+	if (err != ZCLK_RES_SUCCESS)
 	{
 		printf("Error: invalid command.\n");
 	}
@@ -1250,7 +1250,7 @@ arraylist *get_command_to_exec(arraylist *commands, int *argc,
 	return cmds_to_exec;
 }
 
-zclk_cmd_err help_cmd_handler(arraylist *commands, void *handler_args,
+zclk_res help_cmd_handler(arraylist *commands, void *handler_args,
 							 int argc, char **argv, zclk_command_output_handler success_handler,
 							 zclk_command_output_handler error_handler)
 {
@@ -1261,18 +1261,18 @@ zclk_cmd_err help_cmd_handler(arraylist *commands, void *handler_args,
 		zclk_command *cmd_to_exec = arraylist_get(cmds_to_exec, arraylist_length(cmds_to_exec) - 1);
 		if (cmd_to_exec == NULL)
 		{
-			error_handler(ZCLK_COMMAND_ERR_COMMAND_NOT_FOUND, ZCLK_RESULT_STRING,
+			error_handler(ZCLK_RES_ERR_COMMAND_NOT_FOUND, ZCLK_RESULT_STRING,
 						  "No valid command found. Type help to get more help\n");
-			return ZCLK_COMMAND_ERR_COMMAND_NOT_FOUND;
+			return ZCLK_RES_ERR_COMMAND_NOT_FOUND;
 		}
 
 		char *help_str = cmd_to_exec->description;
-		success_handler(ZCLK_COMMAND_SUCCESS, ZCLK_RESULT_STRING, help_str);
+		success_handler(ZCLK_RES_SUCCESS, ZCLK_RESULT_STRING, help_str);
 	}
-	return ZCLK_COMMAND_SUCCESS;
+	return ZCLK_RES_SUCCESS;
 }
 
-zclk_cmd_err get_help_for(char **help_str, arraylist *commands,
+zclk_res get_help_for(char **help_str, arraylist *commands,
 						 arraylist *arg_commands)
 {
 	arraylist *cmd_list = commands;
@@ -1295,18 +1295,18 @@ zclk_cmd_err get_help_for(char **help_str, arraylist *commands,
 			}
 			if (found_cmd == 0)
 			{
-				return ZCLK_COMMAND_ERR_COMMAND_NOT_FOUND;
+				return ZCLK_RES_ERR_COMMAND_NOT_FOUND;
 			}
 		}
 		else
 		{
-			return ZCLK_COMMAND_ERR_COMMAND_NOT_FOUND;
+			return ZCLK_RES_ERR_COMMAND_NOT_FOUND;
 		}
 	}
-	return ZCLK_COMMAND_ERR_UNKNOWN;
+	return ZCLK_RES_ERR_UNKNOWN;
 }
 
-zclk_cmd_err parse_options(arraylist *options, int *argc, char **argv)
+zclk_res parse_options(arraylist *options, int *argc, char **argv)
 {
 	while (1)
 	{
@@ -1351,7 +1351,7 @@ zclk_cmd_err parse_options(arraylist *options, int *argc, char **argv)
 				if (found == NULL)
 				{
 					printf("Unknown option %s\n.", option);
-					return ZCLK_COMMAND_ERR_OPTION_NOT_FOUND;
+					return ZCLK_RES_ERR_OPTION_NOT_FOUND;
 				}
 				else
 				{
@@ -1367,7 +1367,7 @@ zclk_cmd_err parse_options(arraylist *options, int *argc, char **argv)
 						if (i == (*argc - 1))
 						{
 							printf("Value missing for option %s.\n", option);
-							return ZCLK_COMMAND_ERR_OPTION_NOT_FOUND;
+							return ZCLK_RES_ERR_OPTION_NOT_FOUND;
 						}
 						else
 						{
@@ -1393,10 +1393,10 @@ zclk_cmd_err parse_options(arraylist *options, int *argc, char **argv)
 		}
 	}
 
-	return ZCLK_COMMAND_SUCCESS;
+	return ZCLK_RES_SUCCESS;
 }
 
-zclk_cmd_err parse_args(arraylist *args, int *argc, char **argv)
+zclk_res parse_args(arraylist *args, int *argc, char **argv)
 {
 	size_t args_len = arraylist_length(args);
 	//	printf("args len %d\n", args_len);
@@ -1413,14 +1413,14 @@ zclk_cmd_err parse_args(arraylist *args, int *argc, char **argv)
 	}
 	else
 	{
-		return ZCLK_COMMAND_ERR_ARG_NOT_FOUND;
+		return ZCLK_RES_ERR_ARG_NOT_FOUND;
 	}
 	for (int i = 0; i < args_len; i++)
 	{
 		(*argc) = gobble((*argc), &argv, 0);
 		//		printf("new argc = %d\n", (*argc));
 	}
-	return ZCLK_COMMAND_SUCCESS;
+	return ZCLK_RES_SUCCESS;
 }
 
 void print_options(arraylist *options)
@@ -1447,10 +1447,10 @@ void print_options(arraylist *options)
 	}
 }
 
-zclk_cmd_err exec_command(arraylist *commands, void *handler_args,
+zclk_res exec_command(arraylist *commands, void *handler_args,
 						 int argc, char **argv)
 {
-	zclk_cmd_err err = ZCLK_COMMAND_SUCCESS;
+	zclk_res err = ZCLK_RES_SUCCESS;
 
 	//First read all commands
 	arraylist *cmds_to_exec = get_command_to_exec(commands, &argc, argv);
@@ -1480,7 +1480,7 @@ zclk_cmd_err exec_command(arraylist *commands, void *handler_args,
 
 	//Then read all options
 	err = parse_options(all_options, &argc, argv);
-	if (err != ZCLK_COMMAND_SUCCESS)
+	if (err != ZCLK_RES_SUCCESS)
 	{
 		return err;
 	}
@@ -1493,11 +1493,11 @@ zclk_cmd_err exec_command(arraylist *commands, void *handler_args,
 		char *help_str = get_help_for_command(cmds_to_exec);
 		if (help_str == NULL)
 		{
-			print_handler(ZCLK_COMMAND_ERR_COMMAND_NOT_FOUND, ZCLK_RESULT_STRING,
+			print_handler(ZCLK_RES_ERR_COMMAND_NOT_FOUND, ZCLK_RESULT_STRING,
 						  "No valid command found. Type help to get more help\n");
-			return ZCLK_COMMAND_ERR_COMMAND_NOT_FOUND;
+			return ZCLK_RES_ERR_COMMAND_NOT_FOUND;
 		}
-		print_handler(ZCLK_COMMAND_SUCCESS, ZCLK_RESULT_STRING, help_str);
+		print_handler(ZCLK_RES_SUCCESS, ZCLK_RESULT_STRING, help_str);
 	}
 	else
 	{
@@ -1507,7 +1507,7 @@ zclk_cmd_err exec_command(arraylist *commands, void *handler_args,
 			if (cmd_to_exec == NULL)
 			{
 				printf("No valid command found. Type help to get more help\n");
-				return ZCLK_COMMAND_ERR_COMMAND_NOT_FOUND;
+				return ZCLK_RES_ERR_COMMAND_NOT_FOUND;
 			}
 
 			// for the last command in the chain, it can have args
@@ -1515,7 +1515,7 @@ zclk_cmd_err exec_command(arraylist *commands, void *handler_args,
 			{
 				//Now read all arguments
 				err = parse_args(cmd_to_exec->args, &argc, argv);
-				if (err != ZCLK_COMMAND_SUCCESS)
+				if (err != ZCLK_RES_SUCCESS)
 				{
 					return err;
 				}
@@ -1524,7 +1524,7 @@ zclk_cmd_err exec_command(arraylist *commands, void *handler_args,
 				if (argc > 0)
 				{
 					printf("%d extra arguments found.\n", argc);
-					return ZCLK_COMMAND_ERR_EXTRA_ARGS_FOUND;
+					return ZCLK_RES_ERR_EXTRA_ARGS_FOUND;
 				}
 			}
 
@@ -1623,7 +1623,7 @@ void print_table_result(void* result)
 	}
 }
 
-zclk_cmd_err print_handler(zclk_cmd_err result_flag, zclk_result_type res_type,
+zclk_res print_handler(zclk_res result_flag, zclk_result_type res_type,
 	void* result)
 {
 	if (res_type == ZCLK_RESULT_STRING)
@@ -1674,5 +1674,5 @@ zclk_cmd_err print_handler(zclk_cmd_err result_flag, zclk_result_type res_type,
 	{
 		printf("This result type is not handled %d\n", res_type);
 	}
-	return ZCLK_COMMAND_SUCCESS;
+	return ZCLK_RES_SUCCESS;
 }
