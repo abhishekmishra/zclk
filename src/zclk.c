@@ -1477,7 +1477,7 @@ zclk_res exec_command(arraylist *commands, void *handler_args,
 					&& strcmp(zclk_option_get_short_name(opt_to_add), zclk_option_get_short_name(opt_to_cmp)) == 0)
 				{
 					opt_exists = 1;
-					printf("Option %s already exists.\n", zclk_option_get_name(opt_to_add));
+					//printf("Option %s already exists.\n", zclk_option_get_name(opt_to_add));
 				}
 			}
 			if (opt_exists == 0)
