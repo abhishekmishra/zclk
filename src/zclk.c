@@ -38,7 +38,7 @@ zclk_res make_zclk_val(zclk_val **val, zclk_type type)
 zclk_val* new_zclk_val_bool(int bool_val)
 {
 	zclk_val *val;
-	zclk_res res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
+	zclk_res res = make_zclk_val(&val, ZCLK_TYPE_BOOLEAN);
 	if(res == ZCLK_RES_SUCCESS)
 	{
 		val->data.bool_value = bool_val;
@@ -49,7 +49,7 @@ zclk_val* new_zclk_val_bool(int bool_val)
 zclk_val* new_zclk_val_int(int int_val)
 {
 	zclk_val *val;
-	zclk_res res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
+	zclk_res res = make_zclk_val(&val, ZCLK_TYPE_INT);
 	if(res == ZCLK_RES_SUCCESS)
 	{
 		val->data.int_value = int_val;
@@ -60,7 +60,7 @@ zclk_val* new_zclk_val_int(int int_val)
 zclk_val* new_zclk_val_double(double double_val)
 {
 	zclk_val *val;
-	zclk_res res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
+	zclk_res res = make_zclk_val(&val, ZCLK_TYPE_DOUBLE);
 	if(res == ZCLK_RES_SUCCESS)
 	{
 		val->data.dbl_value = double_val;
@@ -71,7 +71,7 @@ zclk_val* new_zclk_val_double(double double_val)
 zclk_val* new_zclk_val_string(char* string_val)
 {
 	zclk_val *val;
-	zclk_res res = make_zclk_val(&val, ZCLK_TYPE_FLAG);
+	zclk_res res = make_zclk_val(&val, ZCLK_TYPE_STRING);
 	if(res == ZCLK_RES_SUCCESS)
 	{
 		val->data.str_value = string_val;
