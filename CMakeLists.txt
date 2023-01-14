@@ -10,11 +10,13 @@ set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS 1)
 set( ZCLK_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR} )
 set( ZCLK_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR} )
 
-# It's useful to setup the current version of our code in the build system
-# using a `semver` style
-set ( ZCLK_VERSION_MAJOR 0 )
-set ( ZCLK_VERSION_MINOR 1 )
-set ( ZCLK_VERSION_PATCH 0 )
+# version numbers in semver style
+# matching the release tag version
+set ( ZCLK_VERSION_MAJOR "0" )
+set ( ZCLK_VERSION_MINOR "1" )
+set ( ZCLK_VERSION_PATCH "0" )
+set ( ZCLK_VERSION_PRERELEASE "-alpha.0" )
+set ( ZCLK_VERSION_STR ${ZCLK_VERSION_MAJOR}.${ZCLK_VERSION_MINOR}.${ZCLK_VERSION_PATCH}${ZCLK_VERSION_PRERELEASE})
 
 # https://stackoverflow.com/a/47260387/9483968
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)

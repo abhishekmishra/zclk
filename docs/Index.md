@@ -1,8 +1,10 @@
-# Zclk Documentation                {#mainpage}
+# ZClk Documentation                {#mainpage}
+
+[TOC]
 
 **NOTE: This library is still under development. The public API is unstable till the library reaches beta status. There will be breaking changes in public API if needed.**
 
-**ZCLK** is a C library to build command line interfaces aka CLI programs.
+**ZClk** is a C library to build command line interfaces aka CLI programs.
 
 # Getting Started
 

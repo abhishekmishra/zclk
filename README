@@ -1,1 +1,12 @@
-Refer to documentation at https://abhishekmishra.github.io/zclk
+ZClk:               C library for building CLI programs
+License:            See LICENSE file
+Release/Version:    See CHANGELOG.md
+Author:             Abhishek Mishra
+
+Documentation:
+
+Web: https://abhishekmishra.github.io/zclk
+
+Local: To generate docs locally run "mkdir build; make docs" in the root 
+folder of the source code. The documentation files will be generated in 
+the build/docs folder.
