@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['zclk_20documentation_46',['Zclk Documentation',['../index.html',1,'']]],
+  ['zclk_20documentation_46',['ZClk Documentation',['../index.html',1,'']]],
   ['zclk_2eh_47',['zclk.h',['../zclk_8h.html',1,'']]],
   ['zclk_5fargument_48',['zclk_argument',['../zclk_8h.html#a0486453d0ff8be439727b6559ae04d34',1,'zclk.h']]],
   ['zclk_5fargument_5ft_49',['zclk_argument_t',['../structzclk__argument__t.html',1,'']]],
