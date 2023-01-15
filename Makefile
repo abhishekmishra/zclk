@@ -33,7 +33,7 @@ build:
 
 buildrelease:
 ifeq ($(OSFLAG),WIN32)
-	cmake --build $(CMAKE_BUILD_DIR) --config Release
+	cmake --build ./build --config Release
 else
 	echo "buildrelease make target is only supported on multi-config project types."
 endif
