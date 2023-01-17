@@ -248,10 +248,7 @@ zclk_res parse_zclk_val(zclk_val *val, char *input)
 			}
 			break;
 		case ZCLK_TYPE_STRING:
-			if (n == 1)
-			{
-				zclk_val_set_string(val, input);
-			}
+			zclk_val_set_string(val, input);
 			break;
 		default:
 			return ZCLK_RES_ERR_UNKNOWN;
