@@ -977,6 +977,43 @@ void zclk_command_flag_argument(zclk_command *cmd, const char *name,
 				nargs));
 }
 
+zclk_option* zclk_command_get_option(zclk_command *cmd, const char *name)
+{
+	if(cmd != NULL && name != NULL)
+	{
+		size_t opt_len = arraylist_length(cmd->options);
+		for (size_t i = 0; i < opt_len; i++)
+		{
+			zclk_option *x = arraylist_get(cmd->options, i);
+			if ((x->name != NULL && strcmp(x->name, name) == 0) 
+				|| (x->short_name != NULL 
+						&& strcmp(x->short_name, name) == 0))
+			{
+				return x;
+			}
+		}
+	}
+	return NULL;
+}
+
+zclk_argument* zclk_command_get_argument(zclk_command *cmd, const char *name)
+{
+	if(cmd != NULL && name != NULL)
+	{
+		size_t opt_len = arraylist_length(cmd->args);
+		for (size_t i = 0; i < opt_len; i++)
+		{
+			zclk_argument *x = arraylist_get(cmd->args, i);
+			if (x->name != NULL && strcmp(x->name, name) == 0)
+			{
+				return x;
+			}
+		}
+	}
+	return NULL;
+}
+
+
 zclk_res zclk_command_exec(zclk_command* cmd, 
 	void* exec_args, int argc, char* argv[])
 {

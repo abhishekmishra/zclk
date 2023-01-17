@@ -785,6 +785,26 @@ MODULE_API void zclk_command_string_argument(zclk_command *cmd, const char *name
 MODULE_API void zclk_command_flag_argument(zclk_command *cmd, const char *name, 
 				int val, int default_val, const char *desc, int nargs);
 
+/**
+ * @brief Get the option object corresponding to given name
+ * 
+ * @param cmd command object
+ * @param name name of the option
+ * @return zclk_option option if found, NULL otherwise
+ */
+MODULE_API zclk_option* zclk_command_get_option(zclk_command *cmd,
+	const char *name);
+
+/**
+ * @brief Get the argument object corresponding to given name
+ * 
+ * @param cmd command object
+ * @param name name of the argument
+ * @return zclk_argument argument if found, NULL otherwise
+ */
+MODULE_API zclk_argument* zclk_command_get_argument(zclk_command *cmd,
+	const char *name);
+
 #define zclk_command_option_foreach(cmd, opt)     							\
 		zclk_option *opt = NULL;                      						\
 		size_t len##opt = arraylist_length(cmd->options);					\
