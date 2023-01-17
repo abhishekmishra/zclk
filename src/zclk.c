@@ -215,31 +215,43 @@ zclk_res parse_zclk_val(zclk_val *val, char *input)
 	}
 	else
 	{
-		int v;
+		int v, n;
 		double d;
 		switch (val->type)
 		{
 		case ZCLK_TYPE_BOOLEAN:
-			sscanf(input, "%d", &v);
-			if (v > 0)
+			n = sscanf(input, "%d", &v);
+			if (n == 1)
 			{
-				zclk_val_set_bool(val, 1);
-			}
-			else
-			{
-				zclk_val_set_bool(val, 0);
+				if (v > 0)
+				{
+					zclk_val_set_bool(val, 1);
+				}
+				else
+				{
+					zclk_val_set_bool(val, 0);
+				}
 			}
 			break;
 		case ZCLK_TYPE_INT:
-			sscanf(input, "%d", &v);
-			zclk_val_set_int(val, v);
+			n = sscanf(input, "%d", &v);
+			if (n == 1)
+			{
+				zclk_val_set_int(val, v);
+			}
 			break;
 		case ZCLK_TYPE_DOUBLE:
-			sscanf(input, "%lf", &d);
-			zclk_val_set_dobule(val, d);
+			n = sscanf(input, "%lf", &d);
+			if (n == 1)
+			{
+				zclk_val_set_dobule(val, d);
+			}
 			break;
 		case ZCLK_TYPE_STRING:
-			zclk_val_set_string(val, input);
+			if (n == 1)
+			{
+				zclk_val_set_string(val, input);
+			}
 			break;
 		default:
 			return ZCLK_RES_ERR_UNKNOWN;
@@ -1643,10 +1655,16 @@ void print_table_result(void* result)
 			col_width = max_width;
 		}
 		char* fmtspec = (char*)calloc(16, sizeof(char));
-		sprintf(fmtspec, "%%-%lu.%zus", (col_width + 1), col_width);
-		col_widths[i] = col_width;
-		col_fmtspec[i] = fmtspec;
-		//printf("%d and %s\n", col_width, fmtspec);
+		if (fmtspec != NULL)
+		{
+			sprintf(fmtspec, "%%-%zu.%zus", (col_width + 1), col_width);
+			col_widths[i] = col_width;
+			col_fmtspec[i] = fmtspec;
+		}
+		else
+		{
+			col_fmtspec[i] = "fatal error creating format specifiers";
+		}
 	}
 
 	printf("\n");
