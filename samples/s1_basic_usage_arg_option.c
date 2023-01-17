@@ -3,12 +3,8 @@
 
 zclk_res basic_handler(zclk_command* cmd, void* handler_args)
 {
-    printf("***************************************"
-        "****************************\n");
     printf("Sample#1: Basic Usage of CLIUTILS with "
         "One Argument and One Option.\n");
-    printf("***************************************"
-        "****************************\n");
 
     printf("\n** Options\n");
 
@@ -24,8 +20,6 @@ zclk_res basic_handler(zclk_command* cmd, void* handler_args)
         printf("\targument: %s=%s\n", argument->name, zclk_argument_get_val_string(argument));
     }
 
-    printf("***************************************"
-        "****************************\n");
     return 0;
 }
 

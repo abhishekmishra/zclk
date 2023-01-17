@@ -1312,7 +1312,7 @@ zclk_res help_cmd_handler(arraylist *commands, void *handler_args,
 		if (cmd_to_exec == NULL)
 		{
 			error_handler(ZCLK_RES_ERR_COMMAND_NOT_FOUND, ZCLK_RESULT_STRING,
-						  "No valid command found. Type help to get more help\n");
+						  "No valid command found. Run again with --help to see usage.\n");
 			return ZCLK_RES_ERR_COMMAND_NOT_FOUND;
 		}
 
@@ -1450,7 +1450,7 @@ zclk_res parse_args(arraylist *args, int *argc, char **argv)
 {
 	size_t args_len = arraylist_length(args);
 	//	printf("args len %d\n", args_len);
-	if (args_len == *argc)
+	if (args_len <= *argc)
 	{
 		for (int i = 0; i < args_len; i++)
 		{
@@ -1569,7 +1569,7 @@ zclk_res exec_command(arraylist *commands, void *handler_args,
 		if (help_str == NULL)
 		{
 			print_handler(ZCLK_RES_ERR_COMMAND_NOT_FOUND, ZCLK_RESULT_STRING,
-						  "No valid command found. Type help to get more help\n");
+						  "No valid command found. Run again with --help to see usage.\n");
 			return ZCLK_RES_ERR_COMMAND_NOT_FOUND;
 		}
 		print_handler(ZCLK_RES_SUCCESS, ZCLK_RESULT_STRING, help_str);
@@ -1581,7 +1581,7 @@ zclk_res exec_command(arraylist *commands, void *handler_args,
 			zclk_command *cmd_to_exec = arraylist_get(cmds_to_exec, i);
 			if (cmd_to_exec == NULL)
 			{
-				printf("No valid command found. Type help to get more help\n");
+				printf("No valid command found. Run again with --help to see usage.\n");
 				return ZCLK_RES_ERR_COMMAND_NOT_FOUND;
 			}
 
