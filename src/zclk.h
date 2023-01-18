@@ -474,16 +474,16 @@ MODULE_API zclk_option* new_zclk_option(const char* name,
 	const char* desc);
 
 MODULE_API zclk_option *new_zclk_option_bool(const char *name, 
-	const char *short_name, int val, int default_val, const char *desc);
+	const char *short_name, int default_val, const char *desc);
 MODULE_API zclk_option *new_zclk_option_int(const char *name, 
-	const char *short_name, int val, int default_val, const char *desc);
+	const char *short_name, int default_val, const char *desc);
 MODULE_API zclk_option *new_zclk_option_double(const char *name, 
-	const char *short_name, double val, double default_val, const char *desc);
+	const char *short_name, double default_val, const char *desc);
 MODULE_API zclk_option *new_zclk_option_string(const char *name, 
-	const char *short_name, const char* val, const char* default_val, 
+	const char *short_name, const char* default_val, 
 	const char *desc);
 MODULE_API zclk_option *new_zclk_option_flag(const char *name, 
-	const char *short_name, int val, int default_val, const char *desc);
+	const char *short_name, int default_val, const char *desc);
 
 MODULE_API const char *zclk_option_get_name(zclk_option *opt);
 MODULE_API const char *zclk_option_get_short_name(zclk_option *opt);
@@ -555,15 +555,15 @@ MODULE_API zclk_argument* new_zclk_argument(const char* name, zclk_val* val,
 	zclk_val* default_val, const char* desc, int nargs);
 
 MODULE_API zclk_argument *new_zclk_argument_bool(const char *name, 
-	int val, int default_val, const char *desc, int nargs);
+	int default_val, const char *desc, int nargs);
 MODULE_API zclk_argument *new_zclk_argument_int(const char *name, 
-	int val, int default_val, const char *desc, int nargs);
+	int default_val, const char *desc, int nargs);
 MODULE_API zclk_argument *new_zclk_argument_double(const char *name, 
-	double val, double default_val, const char *desc, int nargs);
+	double default_val, const char *desc, int nargs);
 MODULE_API zclk_argument *new_zclk_argument_string(const char *name, 
-	const char* val, const char* default_val, const char *desc, int nargs);
+	const char* default_val, const char *desc, int nargs);
 MODULE_API zclk_argument *new_zclk_argument_flag(const char *name, 
-	int val, int default_val, const char *desc, int nargs);
+	int default_val, const char *desc, int nargs);
 
 MODULE_API const char *zclk_argument_get_name(zclk_argument *opt);
 MODULE_API const char *zclk_argument_get_desc(zclk_argument *opt);
@@ -660,12 +660,11 @@ MODULE_API zclk_res zclk_command_argument_add(
  * @param cmd command object
  * @param name name of the option
  * @param short_name short name of the option
- * @param val value
  * @param default_val default value
  * @param desc text description
  */
 MODULE_API void zclk_command_bool_option(zclk_command *cmd, const char *name, 
-				char* short_name, int val, int default_val, const char *desc);
+				char* short_name, int default_val, const char *desc);
 
 /**
  * @brief Create a new int option and add it to the given command
@@ -673,12 +672,11 @@ MODULE_API void zclk_command_bool_option(zclk_command *cmd, const char *name,
  * @param cmd command object
  * @param name name of the option
  * @param short_name short name of the option
- * @param val value
  * @param default_val default value
  * @param desc text description
  */
 MODULE_API void zclk_command_int_option(zclk_command *cmd, const char *name, 
-				char* short_name, int val, int default_val, const char *desc);
+				char* short_name, int default_val, const char *desc);
 
 /**
  * @brief Create a new double option and add it to the given command
@@ -686,12 +684,11 @@ MODULE_API void zclk_command_int_option(zclk_command *cmd, const char *name,
  * @param cmd command object
  * @param name name of the option
  * @param short_name short name of the option
- * @param val value
  * @param default_val default value
  * @param desc text description
  */
 MODULE_API void zclk_command_double_option(zclk_command *cmd, const char *name, 
-				char* short_name, double val, double default_val, const char *desc);
+				char* short_name, double default_val, const char *desc);
 
 /**
  * @brief Create a new string option and add it to the given command
@@ -699,13 +696,12 @@ MODULE_API void zclk_command_double_option(zclk_command *cmd, const char *name,
  * @param cmd command object
  * @param name name of the option
  * @param short_name short name of the option
- * @param val value
  * @param default_val default value
  * @param desc text description
  */
 MODULE_API void zclk_command_string_option(zclk_command *cmd, const char *name, 
-				const char* short_name, const char* val, 
-				const char* default_val, const char *desc);
+				const char* short_name, const char* default_val, 
+				const char *desc);
 
 /**
  * @brief Create a new flag option and add it to the given command
@@ -713,77 +709,71 @@ MODULE_API void zclk_command_string_option(zclk_command *cmd, const char *name,
  * @param cmd command object
  * @param name name of the option
  * @param short_name short name of the option
- * @param val value
  * @param default_val default value
  * @param desc text description
  */
 MODULE_API void zclk_command_flag_option(zclk_command *cmd, const char *name, 
-				char* short_name, int val, int default_val, const char *desc);
+				char* short_name, int default_val, const char *desc);
 
 /**
  * @brief Create a new bool argument and add it to the given command
  * 
  * @param cmd command object
  * @param name name of the argument
- * @param val value
  * @param default_val default value
  * @param desc text description
  * @param nargs number of occurences (-1 means unlimited occurences)
  */
 MODULE_API void zclk_command_bool_argument(zclk_command *cmd, const char *name, 
-				int val, int default_val, const char *desc, int nargs);
+				int default_val, const char *desc, int nargs);
 
 /**
  * @brief Create a new bool argument and add it to the given command
  * 
  * @param cmd command object
  * @param name name of the argument
- * @param val value
  * @param default_val default value
  * @param desc text description
  * @param nargs number of occurences (-1 means unlimited occurences)
  */
 MODULE_API void zclk_command_int_argument(zclk_command *cmd, const char *name, 
-				int val, int default_val, const char *desc, int nargs);
+				int default_val, const char *desc, int nargs);
 
 /**
  * @brief Create a new bool argument and add it to the given command
  * 
  * @param cmd command object
  * @param name name of the argument
- * @param val value
  * @param default_val default value
  * @param desc text description
  * @param nargs number of occurences (-1 means unlimited occurences)
  */
 MODULE_API void zclk_command_double_argument(zclk_command *cmd, const char *name, 
-				double val, double default_val, const char *desc, int nargs);
+				double default_val, const char *desc, int nargs);
 
 /**
  * @brief Create a new bool argument and add it to the given command
  * 
  * @param cmd command object
  * @param name name of the argument
- * @param val value
  * @param default_val default value
  * @param desc text description
  * @param nargs number of occurences (-1 means unlimited occurences)
  */
 MODULE_API void zclk_command_string_argument(zclk_command *cmd, const char *name, 
-				const char* val, const char* default_val, const char *desc, int nargs);
+				const char* default_val, const char *desc, int nargs);
 
 /**
  * @brief Create a new bool argument and add it to the given command
  * 
  * @param cmd command object
  * @param name name of the argument
- * @param val value
  * @param default_val default value
  * @param desc text description
  * @param nargs number of occurences (-1 means unlimited occurences)
  */
 MODULE_API void zclk_command_flag_argument(zclk_command *cmd, const char *name, 
-				int val, int default_val, const char *desc, int nargs);
+				int default_val, const char *desc, int nargs);
 
 /**
  * @brief Get the option object corresponding to given name

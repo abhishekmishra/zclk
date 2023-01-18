@@ -41,7 +41,6 @@ int main(int argc, char* argv[])
         sub_cmd,
         "option-one",
         "o", 
-        ZCLK_FLAG_OFF,
         ZCLK_FLAG_OFF, 
         "Option One"
     );

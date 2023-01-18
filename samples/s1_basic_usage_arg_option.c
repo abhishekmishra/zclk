@@ -32,7 +32,6 @@ int main(int argc, char* argv[])
         cmd,
         "option-one",
         "o", 
-        ZCLK_FLAG_OFF,
         ZCLK_FLAG_OFF, 
         "Option One"
     );
@@ -40,7 +39,6 @@ int main(int argc, char* argv[])
     zclk_command_string_argument(
         cmd,
         "arg-one",
-        "blah",
         "blah",
         "Argument One",
         1
