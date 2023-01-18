@@ -16,6 +16,8 @@ static char help_str[ZCLK_SIZE_OF_HELP_STR];
 static char progname_str[ZCLK_SIZE_OF_PROGNAME_STR];
 static char short_progname_str[ZCLK_SIZE_OF_PROGNAME_STR];
 
+static char error_message_str[ZCLK_SIZE_OF_HELP_STR];
+
 void print_args(int argc, char **argv)
 {
 	for (int i = 0; i < argc; i++)
@@ -498,7 +500,8 @@ zclk_option *get_option_by_name(arraylist *options, const char *name)
 		for (size_t i = 0; i < opt_len; i++)
 		{
 			zclk_option *x = arraylist_get(options, i);
-			if ((x->name != NULL && strcmp(x->name, name) == 0) || (x->short_name != NULL && strcmp(x->short_name, name) == 0))
+			if ((x->name != NULL && strcmp(x->name, name) == 0) ||
+			 (x->short_name != NULL && strcmp(x->short_name, name) == 0))
 			{
 				return x;
 			}
@@ -584,14 +587,16 @@ zclk_argument *new_zclk_argument_bool(const char *name,
 	int default_val, const char *desc, int nargs)
 {
 	return new_zclk_argument(name, 
-		new_zclk_val_bool(default_val), new_zclk_val_bool(default_val), desc, nargs);
+		new_zclk_val_bool(default_val), 
+			new_zclk_val_bool(default_val), desc, nargs);
 }
 
 zclk_argument *new_zclk_argument_int(const char *name, 
 	int default_val, const char *desc, int nargs)
 {
 	return new_zclk_argument(name, 
-		new_zclk_val_int(default_val), new_zclk_val_int(default_val), desc, nargs);
+		new_zclk_val_int(default_val), 
+			new_zclk_val_int(default_val), desc, nargs);
 }
 
 zclk_argument *new_zclk_argument_double(const char *name, 
@@ -614,7 +619,8 @@ zclk_argument *new_zclk_argument_flag(const char *name,
 	int default_val, const char *desc, int nargs)
 {
 	return new_zclk_argument(name, 
-		new_zclk_val_flag(default_val), new_zclk_val_flag(default_val), desc, nargs);
+		new_zclk_val_flag(default_val), 
+			new_zclk_val_flag(default_val), desc, nargs);
 }
 
 
@@ -1025,7 +1031,15 @@ zclk_res zclk_command_exec(zclk_command* cmd,
 										exec_args, argc, argv);
 	if (err != ZCLK_RES_SUCCESS)
 	{
-		printf("Error: invalid command.\n");
+		//printf("Error: invalid command. Error code: %d\n", err);
+		printf("Error: ");
+		printf(error_message_str);
+		printf("\n\n");
+		if(err != ZCLK_RES_ERR_COMMAND_NOT_FOUND)
+		{
+			char* help_message_str = get_help_for_command(toplevel_commands);
+			printf(help_message_str);
+		}
 	}
 	return err;
 }
@@ -1099,7 +1113,8 @@ char *get_help_for_command(arraylist *cmds_to_exec)
 {
 	if (arraylist_length(cmds_to_exec) > 0)
 	{
-		zclk_command *command = arraylist_get(cmds_to_exec, arraylist_length(cmds_to_exec) - 1);
+		zclk_command *command = arraylist_get(cmds_to_exec, 
+			arraylist_length(cmds_to_exec) - 1);
 
 		memset(help_str, 0, ZCLK_SIZE_OF_HELP_STR);
 		sprintf(help_str, "Usage: %s", get_program_name(cmds_to_exec));
@@ -1263,7 +1278,8 @@ arraylist *get_command_to_exec(arraylist *commands, int *argc,
 				{
 					zclk_command *cmd = (zclk_command *)arraylist_get(cmd_list,
 																	j);
-					if (strcmp(cmd_name, cmd->name) == 0 || strcmp(cmd_name, cmd->short_name) == 0)
+					if (strcmp(cmd_name, cmd->name) == 0 
+						|| strcmp(cmd_name, cmd->short_name) == 0)
 					{
 						found = 1;
 						cmd_list = cmd->sub_commands;
@@ -1293,18 +1309,21 @@ arraylist *get_command_to_exec(arraylist *commands, int *argc,
 }
 
 zclk_res help_cmd_handler(arraylist *commands, void *handler_args,
-							 int argc, char **argv, zclk_command_output_handler success_handler,
-							 zclk_command_output_handler error_handler)
+		int argc, char **argv, zclk_command_output_handler success_handler,
+		zclk_command_output_handler error_handler)
 {
 	//First read all commands
 	arraylist *cmds_to_exec = get_command_to_exec(commands, &argc, argv);
 	if (arraylist_length(cmds_to_exec) > 0)
 	{
-		zclk_command *cmd_to_exec = arraylist_get(cmds_to_exec, arraylist_length(cmds_to_exec) - 1);
+		zclk_command *cmd_to_exec = 
+			arraylist_get(cmds_to_exec, arraylist_length(cmds_to_exec) - 1);
 		if (cmd_to_exec == NULL)
 		{
 			error_handler(ZCLK_RES_ERR_COMMAND_NOT_FOUND, ZCLK_RESULT_STRING,
-						  "No valid command found. Run again with --help to see usage.\n");
+				"No valid command found. Run again with" \
+				" --help to see usage.\n");
+			
 			return ZCLK_RES_ERR_COMMAND_NOT_FOUND;
 		}
 
@@ -1392,7 +1411,8 @@ zclk_res parse_options(arraylist *options, int *argc, char **argv)
 				}
 				if (found == NULL)
 				{
-					printf("Unknown option %s\n.", option);
+					snprintf(error_message_str, ZCLK_SIZE_OF_HELP_STR,
+						"Unknown option %s.", option);
 					return ZCLK_RES_ERR_OPTION_NOT_FOUND;
 				}
 				else
@@ -1408,7 +1428,8 @@ zclk_res parse_options(arraylist *options, int *argc, char **argv)
 					{
 						if (i == (*argc - 1))
 						{
-							printf("Value missing for option %s.\n", option);
+							snprintf(error_message_str, ZCLK_SIZE_OF_HELP_STR,
+								"Value missing for option %s.", option);
 							return ZCLK_RES_ERR_OPTION_NOT_FOUND;
 						}
 						else
@@ -1455,6 +1476,8 @@ zclk_res parse_args(arraylist *args, int *argc, char **argv)
 	}
 	else
 	{
+		snprintf(error_message_str, ZCLK_SIZE_OF_HELP_STR,
+			"Required arguments missing.");
 		return ZCLK_RES_ERR_ARG_NOT_FOUND;
 	}
 	for (int i = 0; i < args_len; i++)
@@ -1476,22 +1499,28 @@ void print_options(arraylist *options)
 			switch (o->val->type)
 			{
 			case ZCLK_TYPE_BOOLEAN:
-				printf("Options%d %s, %s = %d\n", i, o->name, o->short_name, zclk_val_get_bool(o->val));
+				printf("Options%d %s, %s = %d\n", i, o->name, 
+					o->short_name, zclk_val_get_bool(o->val));
 				break;
 			case ZCLK_TYPE_FLAG:
-				printf("Options%d %s, %s = %d\n", i, o->name, o->short_name, zclk_val_get_bool(o->val));
+				printf("Options%d %s, %s = %d\n", i, o->name, 
+					o->short_name, zclk_val_get_bool(o->val));
 				break;
 			case ZCLK_TYPE_STRING:
-				printf("Options%d %s, %s = %s\n", i, o->name, o->short_name, zclk_val_get_string(o->val));
+				printf("Options%d %s, %s = %s\n", i, o->name, 
+					o->short_name, zclk_val_get_string(o->val));
 				break;
 			case ZCLK_TYPE_INT:
-				printf("Options%d %s, %s = %d\n", i, o->name, o->short_name, zclk_val_get_int(o->val));
+				printf("Options%d %s, %s = %d\n", i, o->name, 
+					o->short_name, zclk_val_get_int(o->val));
 				break;
 			case ZCLK_TYPE_DOUBLE:
-				printf("Options%d %s, %s = %g\n", i, o->name, o->short_name, zclk_val_get_double(o->val));
+				printf("Options%d %s, %s = %g\n", i, o->name, 
+					o->short_name, zclk_val_get_double(o->val));
 				break;
 			default:
-				printf("Options%d %s, %s has unknown type\n", i, o->name, o->short_name);
+				printf("Options%d %s, %s has unknown type\n", i, 
+					o->name, o->short_name);
 				break;
 			}
 		}
@@ -1524,8 +1553,10 @@ zclk_res exec_command(arraylist *commands, void *handler_args,
 			for (size_t k = 0; k < opt_len; k++)
 			{
 				zclk_option* opt_to_cmp = arraylist_get(all_options, k);
-				if (strcmp(zclk_option_get_name(opt_to_add), zclk_option_get_name(opt_to_cmp)) == 0
-					&& strcmp(zclk_option_get_short_name(opt_to_add), zclk_option_get_short_name(opt_to_cmp)) == 0)
+				if (strcmp(zclk_option_get_name(opt_to_add), 
+						zclk_option_get_name(opt_to_cmp)) == 0
+					&& strcmp(zclk_option_get_short_name(opt_to_add), 
+						zclk_option_get_short_name(opt_to_cmp)) == 0)
 				{
 					opt_exists = 1;
 					//printf("Option %s already exists.\n", zclk_option_get_name(opt_to_add));
@@ -1560,8 +1591,15 @@ zclk_res exec_command(arraylist *commands, void *handler_args,
 		char *help_str = get_help_for_command(cmds_to_exec);
 		if (help_str == NULL)
 		{
-			print_handler(ZCLK_RES_ERR_COMMAND_NOT_FOUND, ZCLK_RESULT_STRING,
-						  "No valid command found. Run again with --help to see usage.\n");
+			// print_handler(ZCLK_RES_ERR_COMMAND_NOT_FOUND, 
+			//				ZCLK_RESULT_STRING,
+			// 			  	"No valid command found. "\
+			//				"Run again with --help to see usage.\n");
+
+			snprintf(error_message_str, ZCLK_SIZE_OF_HELP_STR,
+				"No valid sub-command found. Run main command with --help" \
+				" for a list of available sub-commands.");
+
 			return ZCLK_RES_ERR_COMMAND_NOT_FOUND;
 		}
 		print_handler(ZCLK_RES_SUCCESS, ZCLK_RESULT_STRING, help_str);
@@ -1573,7 +1611,9 @@ zclk_res exec_command(arraylist *commands, void *handler_args,
 			zclk_command *cmd_to_exec = arraylist_get(cmds_to_exec, i);
 			if (cmd_to_exec == NULL)
 			{
-				printf("No valid command found. Run again with --help to see usage.\n");
+				snprintf(error_message_str, ZCLK_SIZE_OF_HELP_STR,
+					"No valid sub-command found. Run main command with" \
+					" --help for a list of available sub-commands.");
 				return ZCLK_RES_ERR_COMMAND_NOT_FOUND;
 			}
 
@@ -1590,7 +1630,8 @@ zclk_res exec_command(arraylist *commands, void *handler_args,
 				//anything leftover
 				if (argc > 0)
 				{
-					printf("%d extra arguments found.\n", argc);
+					snprintf(error_message_str, ZCLK_SIZE_OF_HELP_STR,
+						"%d extra arguments found.\n", argc);
 					return ZCLK_RES_ERR_EXTRA_ARGS_FOUND;
 				}
 			}
