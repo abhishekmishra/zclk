@@ -1033,12 +1033,12 @@ zclk_res zclk_command_exec(zclk_command* cmd,
 	{
 		//printf("Error: invalid command. Error code: %d\n", err);
 		printf("Error: ");
-		printf(error_message_str);
+		printf("%s", error_message_str);
 		printf("\n\n");
 		if(err != ZCLK_RES_ERR_COMMAND_NOT_FOUND)
 		{
 			char* help_message_str = get_help_for_command(toplevel_commands);
-			printf(help_message_str);
+			printf("%s", help_message_str);
 		}
 	}
 	return err;
