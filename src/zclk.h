@@ -403,9 +403,9 @@ typedef struct zclk_command_t
 /**
  * Create a new value object of given type.
  *
- * \param val object to create
- * \param type
- * \return error code
+ * @param val object to create
+ * @param type
+ * @return error code
  */
 MODULE_API zclk_res make_zclk_val(zclk_val** val, zclk_type type);
 
@@ -423,8 +423,8 @@ MODULE_API void clear_zclk_val(zclk_val* val);
  * Copy values from 'from' to 'to'.
  * Can be used to reset to defaults.
  *
- * \param to val to set
- * \param from val to read from
+ * @param to val to set
+ * @param from val to read from
  */
 MODULE_API void copy_zclk_val(zclk_val* to, zclk_val* from);
 
@@ -433,22 +433,22 @@ MODULE_API void copy_zclk_val(zclk_val* to, zclk_val* from);
  * (Should not be called when the values is a flag.)
  * The value should be set as soon as the argument/option is seen
  *
- * \param val object whose value will be set
- * \param input string input
- * \return error code
+ * @param val object whose value will be set
+ * @param input string input
+ * @return error code
  */
 MODULE_API zclk_res parse_zclk_val(zclk_val* val, char* input);
 
 /**
  * (Internal Use) Create a new option given a name and type.
  *
- * \param option object to create
- * \param name
- * \param short_name
- * \param val
- * \param default_val
- * \param description
- * \return error code
+ * @param option object to create
+ * @param name
+ * @param short_name
+ * @param val
+ * @param default_val
+ * @param description
+ * @return error code
  */
 MODULE_API zclk_res make_option(zclk_option** option, const char* name, 
 	const char* short_name, zclk_val* val, zclk_val* default_val, 
@@ -526,12 +526,12 @@ MODULE_API zclk_option* get_option_by_name(arraylist* options,
  * called \c new_zclk_argument_<type>() . Here type can be one of bool, int
  * flag, double or string.
  * 
- * \param arg object to create
- * \param name
- * \param val
- * \param default_val
- * \param desc
- * \return error code
+ * @param arg object to create
+ * @param name
+ * @param val
+ * @param default_val
+ * @param desc
+ * @return error code
  */
 MODULE_API zclk_res make_argument(zclk_argument** arg, const char* name, 
 	zclk_val* val, zclk_val* default_val, const char* desc);
@@ -591,12 +591,12 @@ MODULE_API void free_argument(zclk_argument* arg);
  * The sub-commands, arguments and options lists will be initialized,
  * so one just needs to add items using the arraylist add function.
  *
- * \param command obj to be created
- * \param name
- * \param short_name
- * \param description
- * \param handler function ptr to handler
- * \return error code
+ * @param command obj to be created
+ * @param name
+ * @param short_name
+ * @param description
+ * @param handler function ptr to handler
+ * @return error code
  */
 MODULE_API zclk_res make_command(zclk_command** command, const char* name, 
 	const char* short_name, const char* description, zclk_command_fn handler);
@@ -827,26 +827,28 @@ MODULE_API zclk_res zclk_command_exec(
 
 /**
  * Free a command object
+ * 
+ * @param command command object to free
  */
 MODULE_API void free_command(zclk_command* command);
 
 /**
 * Get help for a command
-* \param cmds_to_exec the list of commands and subcommands parsed
-* \return string with command help
+* @param cmds_to_exec the list of commands and subcommands parsed
+* @return string with command help
 */
 MODULE_API char* get_help_for_command(arraylist* cmds_to_exec);
 
 /**
  * Run the help command for all commands or single command
  *
- * \param commands the list of commands registered 
+ * @param commands the list of commands registered 
  * 						(this is a list of zclk_command*)
- * \param handler_args an args value to be passed to the command handler
- * \param argc the number of tokens in the line
- * \param argv args as an array of strings
- * \param success_handler handle success results
- * \param error_handler handler error results
+ * @param handler_args an args value to be passed to the command handler
+ * @param argc the number of tokens in the line
+ * @param argv args as an array of strings
+ * @param success_handler handle success results
+ * @param error_handler handler error results
  */
 MODULE_API zclk_res help_cmd_handler(arraylist* commands, 
 	void* handler_args,	int argc, char** argv, 
@@ -855,10 +857,10 @@ MODULE_API zclk_res help_cmd_handler(arraylist* commands,
 
 /**
  * Get the help string for the arg_commands from the registered commands list.
- * \param help_str the help string to return
- * \param commands is the configured list of commands
- * \param arg_commands is a list of string
- * \return error code
+ * @param help_str the help string to return
+ * @param commands is the configured list of commands
+ * @param arg_commands is a list of string
+ * @return error code
  */
 MODULE_API zclk_res get_help_for(char** help_str, arraylist* commands,
 	arraylist* arg_commands);
@@ -867,11 +869,11 @@ MODULE_API zclk_res get_help_for(char** help_str, arraylist* commands,
  * Execute a single line containing one top-level command.
  * All output is written to stdout, all errors to stderr
  *
- * \param commands the list of commands registered 
+ * @param commands the list of commands registered 
  * 						(this is a list of zclk_command*)
- * \param handler_args an args value to be passed to the command handler
- * \param argc the number of tokens in the line
- * \param argv args as an array of strings
+ * @param handler_args an args value to be passed to the command handler
+ * @param argc the number of tokens in the line
+ * @param argv args as an array of strings
  */
 MODULE_API zclk_res exec_command(arraylist* commands, void* handler_args,
 	int argc, char** argv);
