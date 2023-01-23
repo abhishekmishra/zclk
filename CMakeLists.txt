@@ -33,12 +33,14 @@ set( ZCLK_SOURCES
   src/zclk_table.c
   src/zclk_dict.c
   src/zclk_progress.c
+  src/zclk_lua.c
 
   src/zclk.h
   src/zclk_common.h
   src/zclk_table.h
   src/zclk_dict.h
   src/zclk_progress.h
+  src/zclk_lua.h
 )
 
 add_library( ${PROJECT_NAME} SHARED ${ZCLK_SOURCES} )
