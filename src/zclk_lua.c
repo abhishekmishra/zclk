@@ -10,13 +10,18 @@ static int zclk_command_free(lua_State *L)
 
 static int zclk_command_new(lua_State *L)
 {
-    char* name = luaL_checkstring(L, lua_gettop(L));
+    char* desc = luaL_checkstring(L, lua_gettop(L));
     lua_pop(L, 1);
     char* short_name = luaL_checkstring(L, lua_gettop(L));
     lua_pop(L, 1);
-    char* desc = luaL_checkstring(L, lua_gettop(L));
+    char* name = luaL_checkstring(L, lua_gettop(L));
     lua_pop(L, 1);
-    
+
+    int ref = luaL_ref(L, LUA_REGISTRYINDEX);
+
+
+    printf("name = %s, short = %s, desc = %s\n", name, short_name, desc);
+
     //TODO: get lua command handler function and use it here.
     zclk_command *cmd = new_zclk_command(name, short_name, desc, NULL);
     
@@ -56,4 +61,6 @@ int luaopen_zclk(lua_State* L)
     
     // register functions - only turtle.new
     luaL_newlib(L, ZclkCommand_funcs);
+
+    return 1;
 }
