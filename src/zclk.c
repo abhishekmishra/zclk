@@ -1046,19 +1046,22 @@ zclk_res zclk_command_exec(zclk_command* cmd,
 
 void free_command(zclk_command *command)
 {
-	if (command->short_name)
+	if(command != NULL)
 	{
-		free(command->short_name);
+		if (command->short_name)
+		{
+			free(command->short_name);
+		}
+		if (command->description)
+		{
+			free(command->description);
+		}
+		free(command->name);
+		arraylist_free(command->options);
+		arraylist_free(command->sub_commands);
+		arraylist_free(command->args);
+		free(command);
 	}
-	if (command->description)
-	{
-		free(command->description);
-	}
-	free(command->name);
-	arraylist_free(command->options);
-	arraylist_free(command->sub_commands);
-	arraylist_free(command->args);
-	free(command);
 }
 
 char *get_program_name(arraylist *cmds_to_exec)

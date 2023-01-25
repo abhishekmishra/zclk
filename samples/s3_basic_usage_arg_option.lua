@@ -5,3 +5,4 @@ function cmd_handler()
 end
 
 local cmd = zclk.new('BasicCommand', 'cmd', 'A basic lua command', cmd_handler)
+print(cmd)

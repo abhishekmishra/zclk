@@ -398,6 +398,7 @@ typedef struct zclk_command_t
 		error_handler;				///< error handler for the command
 	zclk_command_output_handler
 		success_handler;			///< success handler for the command
+	int lua_handler_ref;			///< lua ref for handler
 } zclk_command;
 
 /**
