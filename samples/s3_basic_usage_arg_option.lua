@@ -1,6 +1,6 @@
 local zclk = require 'zclk'
 
-function cmd_handler()
+local function cmd_handler()
     print('command handler')
 end
 
