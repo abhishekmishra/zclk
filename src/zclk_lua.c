@@ -52,8 +52,21 @@ static zclk_command *zclk_command_getobj(lua_State *L)
 static zclk_res lua_cmd_handler(zclk_command* cmd, void* handler_args)
 {
     printf("command %s\n", cmd->name);
+    lua_State *L = (lua_State *)handler_args;
 
-    return ZCLK_RES_SUCCESS;
+    /* get the lua command handler from cmd object */
+    lua_rawgeti(L, LUA_REGISTRYINDEX, cmd->lua_handler_ref);
+
+    /* get the lua userdata for the cmd object */
+    lua_rawgeti(L, LUA_REGISTRYINDEX, cmd->lua_udata_ref);
+
+    // Call the handler with 1 arguments, returning 1 result
+    lua_call(L, 1, 1);
+    // Get the result
+    int res = (int)lua_tointeger(L, -1);
+    lua_pop(L, 1);
+
+    return res;
 }
 
 static int zclk_command_free(lua_State *L)
@@ -65,7 +78,7 @@ static int zclk_command_free(lua_State *L)
 
 static int zclk_command_new(lua_State *L)
 {
-    int ref = luaL_ref(L, LUA_REGISTRYINDEX);
+    int handler_ref = luaL_ref(L, LUA_REGISTRYINDEX);
     const char* desc = luaL_checkstring(L, lua_gettop(L));
     lua_pop(L, 1);
     const char* short_name = luaL_checkstring(L, lua_gettop(L));
@@ -73,16 +86,20 @@ static int zclk_command_new(lua_State *L)
     const char* name = luaL_checkstring(L, lua_gettop(L));
     lua_pop(L, 1);
 
-    //printf("name = %s, short = %s, desc = %s, handler fn ref = %d\n", 
-    //name, short_name, desc, ref);
+    //printf("name = %s, short = %s, desc = %s, handler fn handler_ref = %d\n", 
+    //name, short_name, desc, handler_ref);
 
     //TODO: get lua command handler function and use it here.
     zclk_command *cmd = new_zclk_command(name, short_name, desc, &lua_cmd_handler);
-    cmd->lua_handler_ref = ref;
+    cmd->lua_handler_ref = handler_ref;
     
     zclk_command** cmdptr = lua_newuserdata(L, sizeof(zclk_command*));
     (*cmdptr) = cmd;
-    
+    cmd->lua_udata_ref = luaL_ref(L, LUA_REGISTRYINDEX);
+
+    lua_rawgeti(L, LUA_REGISTRYINDEX, cmd->lua_udata_ref);
+    _stack_dump(L);
+
     // set metatable of zclk_command object
     luaL_getmetatable(L, LUA_ZCLK_COMMAND_OBJECT);
     lua_setmetatable(L, -2);
@@ -144,7 +161,7 @@ static int zclk_command_lua_exec(lua_State *L)
         //     printf("arg[%2d] = %s\n", i, lua_argv[i]);
         // }
 
-        zclk_command_exec(cmd, NULL, arglen, lua_argv);
+        zclk_command_exec(cmd, L, arglen, lua_argv);
 
         return 0;
     }
