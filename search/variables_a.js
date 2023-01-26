@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['type_193',['type',['../structzclk__val__t.html#a776e6322ace81d920707602667c292ba',1,'zclk_val_t']]]
+  ['type_195',['type',['../structzclk__val__t.html#a776e6322ace81d920707602667c292ba',1,'zclk_val_t']]]
 ];
