@@ -1,6 +1,18 @@
 #include "zclk_lua.h"
 #include "zclk.h"
 
+static zclk_command *zclk_command_getobj(lua_State *L)
+{
+    int top = lua_gettop(L);
+    zclk_command *cmd = *((zclk_command**)luaL_checkudata(L, 1, LUA_ZCLK_COMMAND_OBJECT));
+    if (cmd == NULL)
+    {
+        luaL_typeerror(L, top, LUA_ZCLK_COMMAND_OBJECT);
+    }
+    lua_pop(L, 1);
+    return cmd;
+}
+
 static zclk_res lua_cmd_handler(zclk_command* cmd, void* handler_args)
 {
     printf("command %s\n", cmd->name);
@@ -41,6 +53,13 @@ static int zclk_command_new(lua_State *L)
     return 1;
 }
 
+static int zclk_command_lua_exec(lua_State *L)
+{
+    zclk_command *cmd = zclk_command_getobj(L);
+    printf("Exec command: %s\n", cmd->name);
+    return 0;
+}
+
 static const luaL_Reg ZclkCommand_funcs[] =
 {
     {"new", zclk_command_new},
@@ -50,6 +69,7 @@ static const luaL_Reg ZclkCommand_funcs[] =
 static const luaL_Reg ZclkCommand_meths[] =
 {
     {"__gc", zclk_command_free},
+    {"exec", zclk_command_lua_exec},
     {NULL, NULL}
 };
 
