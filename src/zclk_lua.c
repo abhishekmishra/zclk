@@ -73,7 +73,8 @@ static int zclk_command_new(lua_State *L)
     const char* name = luaL_checkstring(L, lua_gettop(L));
     lua_pop(L, 1);
 
-    printf("name = %s, short = %s, desc = %s, handler fn ref = %d\n", name, short_name, desc, ref);
+    //printf("name = %s, short = %s, desc = %s, handler fn ref = %d\n", 
+    //name, short_name, desc, ref);
 
     //TODO: get lua command handler function and use it here.
     zclk_command *cmd = new_zclk_command(name, short_name, desc, &lua_cmd_handler);
@@ -91,7 +92,6 @@ static int zclk_command_new(lua_State *L)
 
 static int zclk_command_lua_exec(lua_State *L)
 {
-    _stack_dump(L);
     if(lua_istable(L, lua_gettop(L))) {
         int arglen = luaL_len(L, lua_gettop(L)) + 1;
         char **lua_argv;
@@ -100,22 +100,20 @@ static int zclk_command_lua_exec(lua_State *L)
         {
             return luaL_error(L, "Error allocating array of arg values.\n");
         }
-        printf("num args = %d\n", arglen);
+
         /* table is in the stack at index 't' */
         lua_pushnil(L);  /* first key */
-        _stack_dump(L);
 
         for (int i = 1; i < arglen; i++)
         {
             if (lua_next(L, -2) != 0)
             {
                 /* uses 'key' (at index -2) and 'value' (at index -1) */
-                printf("%s - %s\n",
-                       lua_typename(L, lua_type(L, -2)),
-                       lua_typename(L, lua_type(L, -1)));
+                // printf("%s - %s\n",
+                //        lua_typename(L, lua_type(L, -2)),
+                //        lua_typename(L, lua_type(L, -1)));
 
                 const char *arg_val = luaL_checkstring(L, -1);
-                printf("arg val = %s\n", arg_val);
                 lua_argv[i] = (char *)arg_val;
                 /* removes 'value'; keeps 'key' for next iteration */
                 lua_pop(L, 1);
@@ -129,9 +127,7 @@ static int zclk_command_lua_exec(lua_State *L)
         /* pop the index for the lua_next call*/
         lua_pop(L, 1);
 
-        _stack_dump(L);
-        printf("arg is still on top %d\n", lua_istable(L, lua_gettop(L)));
-
+        /* get the 0th value i.e. name of the script */
         lua_geti(L, lua_gettop(L), 0);
         const char *arg_val = luaL_checkstring(L, lua_gettop(L));
         lua_argv[0] = (char *)arg_val;
@@ -141,14 +137,12 @@ static int zclk_command_lua_exec(lua_State *L)
         /* pop the arg table */
         lua_pop(L, 1);
 
-        _stack_dump(L);
-
         zclk_command *cmd = zclk_command_getobj(L);
-        printf("Exec command: %s\n", cmd->name);
-        for (int i = 0; i < arglen; i++)
-        {
-            printf("arg[%2d] = %s\n", i, lua_argv[i]);
-        }
+        // printf("Exec command: %s\n", cmd->name);
+        // for (int i = 0; i < arglen; i++)
+        // {
+        //     printf("arg[%2d] = %s\n", i, lua_argv[i]);
+        // }
 
         zclk_command_exec(cmd, NULL, arglen, lua_argv);
 
