@@ -7,4 +7,9 @@ end
 local cmd = zclk.new('BasicCommand', 'cmd', 'A basic lua command', cmd_handler)
 print(cmd)
 
-cmd:exec()
+for k, v in pairs(arg) do
+    print(k)
+    print(v)
+end
+
+cmd:exec(arg)
