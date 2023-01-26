@@ -4,6 +4,8 @@
 static zclk_res lua_cmd_handler(zclk_command* cmd, void* handler_args)
 {
     printf("command %s\n", cmd->name);
+
+    return ZCLK_RES_SUCCESS;
 }
 
 static int zclk_command_free(lua_State *L)
