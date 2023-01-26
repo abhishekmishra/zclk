@@ -7,5 +7,6 @@ local function cmd_handler(cmd)
 end
 
 local cmd = zclk.new(arg[0], 'cmd', 'A basic lua command', cmd_handler)
+cmd:flag_option("option-one", "o", 0, "dummy test option one")
 
 cmd:exec(arg)

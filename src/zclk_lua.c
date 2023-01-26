@@ -170,6 +170,33 @@ static int zclk_command_lua_exec(lua_State *L)
     }
 }
 
+static int zclk_command_lua_flag_option(lua_State *L)
+{
+    const char *desc = luaL_checkstring(L, lua_gettop(L));
+    lua_pop(L, 1);
+
+    int default_val = lua_toboolean(L, lua_gettop(L));
+    lua_pop(L, 1);
+    
+    const char *short_name = luaL_checkstring(L, lua_gettop(L));
+    lua_pop(L, 1);
+
+    const char *name = luaL_checkstring(L, lua_gettop(L));
+    lua_pop(L, 1);
+
+    zclk_command *cmd = zclk_command_getobj(L);
+    
+    zclk_command_flag_option(
+        cmd,
+        name,
+        short_name, 
+        default_val, 
+        desc
+    );
+    
+    return 0;
+}
+
 static const luaL_Reg ZclkCommand_funcs[] =
 {
     {"new", zclk_command_new},
@@ -180,6 +207,11 @@ static const luaL_Reg ZclkCommand_meths[] =
 {
     {"__gc", zclk_command_free},
     {"exec", zclk_command_lua_exec},
+//     {"bool_option", zclk_command_lua_bool_option},
+//     {"int_option", zclk_command_lua_int_option},
+//     {"double_option", zclk_command_lua_double_option},
+//     {"string_option", zclk_command_lua_string_option},
+    {"flag_option", zclk_command_lua_flag_option},
     {NULL, NULL}
 };
 
