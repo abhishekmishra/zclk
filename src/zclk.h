@@ -666,7 +666,7 @@ MODULE_API zclk_res zclk_command_argument_add(
  * @param desc text description
  */
 MODULE_API void zclk_command_bool_option(zclk_command *cmd, const char *name, 
-				char* short_name, int default_val, const char *desc);
+				const char* short_name, int default_val, const char *desc);
 
 /**
  * @brief Create a new int option and add it to the given command
@@ -678,7 +678,7 @@ MODULE_API void zclk_command_bool_option(zclk_command *cmd, const char *name,
  * @param desc text description
  */
 MODULE_API void zclk_command_int_option(zclk_command *cmd, const char *name, 
-				char* short_name, int default_val, const char *desc);
+				const char* short_name, int default_val, const char *desc);
 
 /**
  * @brief Create a new double option and add it to the given command
@@ -690,7 +690,7 @@ MODULE_API void zclk_command_int_option(zclk_command *cmd, const char *name,
  * @param desc text description
  */
 MODULE_API void zclk_command_double_option(zclk_command *cmd, const char *name, 
-				char* short_name, double default_val, const char *desc);
+				const char* short_name, double default_val, const char *desc);
 
 /**
  * @brief Create a new string option and add it to the given command
@@ -715,7 +715,7 @@ MODULE_API void zclk_command_string_option(zclk_command *cmd, const char *name,
  * @param desc text description
  */
 MODULE_API void zclk_command_flag_option(zclk_command *cmd, const char *name, 
-				char* short_name, int default_val, const char *desc);
+				const char* short_name, int default_val, const char *desc);
 
 /**
  * @brief Create a new bool argument and add it to the given command

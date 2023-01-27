@@ -863,7 +863,7 @@ zclk_res zclk_command_argument_add(
 }
 
 void zclk_command_bool_option(zclk_command *cmd, const char *name, 
-				char* short_name, int default_val, const char *desc)
+				const char* short_name, int default_val, const char *desc)
 {
 	zclk_command_option_add(cmd, 
 			new_zclk_option_bool(
@@ -875,7 +875,7 @@ void zclk_command_bool_option(zclk_command *cmd, const char *name,
 }
 
 void zclk_command_int_option(zclk_command *cmd, const char *name, 
-				char* short_name, int default_val, const char *desc)
+				const char* short_name, int default_val, const char *desc)
 {
 	zclk_command_option_add(cmd, 
 			new_zclk_option_int(
@@ -888,7 +888,7 @@ void zclk_command_int_option(zclk_command *cmd, const char *name,
 
 
 void zclk_command_double_option(zclk_command *cmd, const char *name, 
-				char* short_name, double default_val, const char *desc)
+				const char* short_name, double default_val, const char *desc)
 {
 	zclk_command_option_add(cmd, 
 			new_zclk_option_double(
@@ -914,7 +914,7 @@ void zclk_command_string_option(zclk_command *cmd, const char *name,
 }
 
 void zclk_command_flag_option(zclk_command *cmd, const char *name, 
-				char* short_name, int default_val, const char *desc)
+				const char* short_name, int default_val, const char *desc)
 {
 	zclk_command_option_add(cmd, 
 			new_zclk_option_flag(
