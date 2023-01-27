@@ -715,7 +715,7 @@ MODULE_API void zclk_command_string_option(zclk_command *cmd, const char *name,
  * @param desc text description
  */
 MODULE_API void zclk_command_flag_option(zclk_command *cmd, const char *name, 
-				char* short_name, int default_val, const char *desc);
+				const char* short_name, int default_val, const char *desc);
 
 /**
  * @brief Create a new bool argument and add it to the given command
