@@ -562,6 +562,7 @@ static int zclk_argument_value(lua_State *L)
 {
     zclk_argument *arg = zclk_argument_getobj(L);
     zclk_val *val = arg->val;
+
     if (zclk_val_is_bool(val))
     {
         lua_pushboolean(L, zclk_val_get_bool(val));

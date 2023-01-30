@@ -96,17 +96,15 @@ int zclk_val_is_type(zclk_val *val, zclk_type type)
 {
 	if (val == NULL)
 	{
-		//TODO: create error code
-		return -1;
+		return 0;
 	}
 	if(val->type == type)
 	{
-		return ZCLK_RES_SUCCESS;
+		return 1;
 	}
 	else
 	{
-		//TODO: create error code
-		return 1;
+		return 0;
 	}
 }
 
