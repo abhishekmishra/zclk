@@ -49,6 +49,30 @@ static zclk_command *zclk_command_getobj(lua_State *L)
     return cmd;
 }
 
+static zclk_command *zclk_option_getobj(lua_State *L)
+{
+    int top = lua_gettop(L);
+    zclk_option *opt = *((zclk_option**)luaL_checkudata(L, 1, LUA_ZCLK_OPTION_OBJECT));
+    if (opt == NULL)
+    {
+        luaL_typeerror(L, top, LUA_ZCLK_OPTION_OBJECT);
+    }
+    lua_pop(L, 1);
+    return opt;
+}
+
+static zclk_command *zclk_argument_getobj(lua_State *L)
+{
+    int top = lua_gettop(L);
+    zclk_argument *arg = *((zclk_argument**)luaL_checkudata(L, 1, LUA_ZCLK_ARGUMENT_OBJECT));
+    if (arg == NULL)
+    {
+        luaL_typeerror(L, top, LUA_ZCLK_ARGUMENT_OBJECT);
+    }
+    lua_pop(L, 1);
+    return arg;
+}
+
 static zclk_res lua_cmd_handler(zclk_command* cmd, void* handler_args)
 {
     printf("command %s\n", cmd->name);
@@ -73,6 +97,20 @@ static int zclk_command_free(lua_State *L)
 {
     zclk_command *cmd = *((zclk_command**)luaL_checkudata(L, 1, LUA_ZCLK_COMMAND_OBJECT));
     free_command(cmd);
+    return 0;
+}
+
+static int zclk_option_free(lua_State *L)
+{
+    zclk_option *opt = *((zclk_option**)luaL_checkudata(L, 1, LUA_ZCLK_OPTION_OBJECT));
+    free_option(opt);
+    return 0;
+}
+
+static int zclk_argument_free(lua_State *L)
+{
+    zclk_argument *arg = *((zclk_argument**)luaL_checkudata(L, 1, LUA_ZCLK_ARGUMENT_OBJECT));
+    free_argument(arg);
     return 0;
 }
 
@@ -430,7 +468,7 @@ static const luaL_Reg ZclkCommand_funcs[] =
     {NULL, NULL}
 };
 
-static const luaL_Reg ZclkCommand_meths[] =
+static const luaL_Reg zclk_command_meths[] =
 {
     {"__gc", zclk_command_free},
     {"exec", zclk_command_lua_exec},
@@ -447,9 +485,21 @@ static const luaL_Reg ZclkCommand_meths[] =
     {NULL, NULL}
 };
 
-int luaopen_zclk(lua_State* L)
+static const luaL_Reg zclk_option_meths[] =
 {
-    // create turtle metatable
+    {"__gc", zclk_option_free},
+    {NULL, NULL}
+};
+
+static const luaL_Reg zclk_argument_meths[] =
+{
+    {"__gc", zclk_argument_free},
+    {NULL, NULL}
+};
+
+int luaopen_zclk(lua_State *L)
+{
+    // create zclk metatable
     luaL_newmetatable(L, LUA_ZCLK_COMMAND_OBJECT);
 
     // metatable.__index = metatable
@@ -457,9 +507,29 @@ int luaopen_zclk(lua_State* L)
     lua_setfield(L, -2, "__index");
 
     // register methods
-    luaL_setfuncs(L, ZclkCommand_meths, 0);
-    
-    // register functions - only turtle.new
+    luaL_setfuncs(L, zclk_command_meths, 0);
+
+    // create zclk option metatable
+    luaL_newmetatable(L, LUA_ZCLK_OPTION_OBJECT);
+
+    // metatable.__index = metatable
+    lua_pushvalue(L, -1);
+    lua_setfield(L, -2, "__index");
+
+    // register methods
+    luaL_setfuncs(L, zclk_option_meths, 0);
+
+    // create zclk argument metatable
+    luaL_newmetatable(L, LUA_ZCLK_ARGUMENT_OBJECT);
+
+    // metatable.__index = metatable
+    lua_pushvalue(L, -1);
+    lua_setfield(L, -2, "__index");
+
+    // register methods
+    luaL_setfuncs(L, zclk_argument_meths, 0);
+
+    // register functions - only zclk.new
     luaL_newlib(L, ZclkCommand_funcs);
 
     return 1;
