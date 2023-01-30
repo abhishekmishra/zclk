@@ -3,6 +3,10 @@ local zclk = require 'zclk'
 local function cmd_handler(cmd)
     print('lua command handler for ' .. tostring(cmd))
 
+    local opt_one = cmd:get_option('option-one')
+    print(opt_one)
+    print('opt value = ' .. tostring(opt_one:value()))
+    print('opt type  = ' .. opt_one:type())
     return 0
 end
 

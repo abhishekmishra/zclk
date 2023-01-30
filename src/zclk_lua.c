@@ -49,7 +49,7 @@ static zclk_command *zclk_command_getobj(lua_State *L)
     return cmd;
 }
 
-static zclk_command *zclk_option_getobj(lua_State *L)
+static zclk_option *zclk_option_getobj(lua_State *L)
 {
     int top = lua_gettop(L);
     zclk_option *opt = *((zclk_option**)luaL_checkudata(L, 1, LUA_ZCLK_OPTION_OBJECT));
@@ -61,7 +61,7 @@ static zclk_command *zclk_option_getobj(lua_State *L)
     return opt;
 }
 
-static zclk_command *zclk_argument_getobj(lua_State *L)
+static zclk_argument *zclk_argument_getobj(lua_State *L)
 {
     int top = lua_gettop(L);
     zclk_argument *arg = *((zclk_argument**)luaL_checkudata(L, 1, LUA_ZCLK_ARGUMENT_OBJECT));
@@ -100,19 +100,19 @@ static int zclk_command_free(lua_State *L)
     return 0;
 }
 
-static int zclk_option_free(lua_State *L)
-{
-    zclk_option *opt = *((zclk_option**)luaL_checkudata(L, 1, LUA_ZCLK_OPTION_OBJECT));
-    free_option(opt);
-    return 0;
-}
+// static int zclk_option_free(lua_State *L)
+// {
+//     zclk_option *opt = *((zclk_option**)luaL_checkudata(L, 1, LUA_ZCLK_OPTION_OBJECT));
+//     free_option(opt);
+//     return 0;
+// }
 
-static int zclk_argument_free(lua_State *L)
-{
-    zclk_argument *arg = *((zclk_argument**)luaL_checkudata(L, 1, LUA_ZCLK_ARGUMENT_OBJECT));
-    free_argument(arg);
-    return 0;
-}
+// static int zclk_argument_free(lua_State *L)
+// {
+//     zclk_argument *arg = *((zclk_argument**)luaL_checkudata(L, 1, LUA_ZCLK_ARGUMENT_OBJECT));
+//     free_argument(arg);
+//     return 0;
+// }
 
 static int zclk_command_new(lua_State *L)
 {
@@ -462,6 +462,90 @@ static int zclk_command_lua_flag_argument(lua_State *L)
     return 0;
 }
 
+static int zclk_command_lua_get_option(lua_State *L)
+{
+    const char *name = luaL_checkstring(L, lua_gettop(L));
+    lua_pop(L, 1);
+
+    zclk_command *cmd = zclk_command_getobj(L);
+
+    zclk_option *opt = zclk_command_get_option(cmd, name);
+
+    /* create new userdata from opt and assign the metatable */
+    *(zclk_option**)(lua_newuserdata(L, sizeof(zclk_option *))) = opt;
+    luaL_getmetatable(L, LUA_ZCLK_OPTION_OBJECT);
+    lua_setmetatable(L, -2);
+
+    return 1;
+}
+
+static int zclk_command_lua_get_argument(lua_State *L)
+{
+    return 0;
+}
+
+static int zclk_option_value(lua_State *L)
+{
+    zclk_option *opt = zclk_option_getobj(L);
+    zclk_val *val = opt->val;
+    if (zclk_val_is_bool(val))
+    {
+        lua_pushboolean(L, zclk_val_get_bool(val));
+        return 1;
+    }
+    else if(zclk_val_is_int(val))
+	{
+        lua_pushinteger(L, zclk_val_get_int(val));
+        return 1;
+	}
+	else if(zclk_val_is_double(val))
+	{
+        lua_pushnumber(L, zclk_val_get_double(val));
+        return 1;
+	}
+	else if(zclk_val_is_string(val))
+	{
+        lua_pushstring(L, zclk_val_get_string(val));
+        return 1;
+	}
+	else if(zclk_val_is_flag(val))
+	{
+        lua_pushboolean(L, zclk_val_get_bool(val));
+        return 1;
+	}
+    else
+    {
+        return 0;
+    }
+}
+
+static int zclk_option_type(lua_State *L)
+{
+    zclk_option *opt = zclk_option_getobj(L);
+    zclk_type typ = opt->val->type;
+    switch(typ)
+    {
+        case ZCLK_TYPE_BOOLEAN:
+            lua_pushstring(L, "boolean");
+            return 1;
+        case ZCLK_TYPE_INT:
+            lua_pushstring(L, "integer");
+            return 1;
+        case ZCLK_TYPE_DOUBLE:
+            lua_pushstring(L, "double");
+            return 1;
+        case ZCLK_TYPE_STRING:
+            lua_pushstring(L, "string");
+            return 1;
+        case ZCLK_TYPE_FLAG:
+            lua_pushstring(L, "flag");
+            return 1;
+        default:
+            lua_pushstring(L, "unknown");
+            return 1;
+    }
+}
+
 static const luaL_Reg ZclkCommand_funcs[] =
 {
     {"new", zclk_command_new},
@@ -482,18 +566,24 @@ static const luaL_Reg zclk_command_meths[] =
     {"double_argument", zclk_command_lua_double_argument},
     {"string_argument", zclk_command_lua_string_argument},
     {"flag_argument", zclk_command_lua_flag_argument},
+    {"get_option", zclk_command_lua_get_option},
+    {"get_argument", zclk_command_lua_get_argument},
     {NULL, NULL}
 };
 
+/* does not need gc, as the object is freed by corresponding parent cmd */
 static const luaL_Reg zclk_option_meths[] =
 {
-    {"__gc", zclk_option_free},
+    // {"__gc", zclk_option_free},
+    {"value", zclk_option_value},
+    {"type", zclk_option_type},
     {NULL, NULL}
 };
 
+/* does not need gc, as the object is freed by corresponding parent cmd */
 static const luaL_Reg zclk_argument_meths[] =
 {
-    {"__gc", zclk_argument_free},
+    // {"__gc", zclk_argument_free},
     {NULL, NULL}
 };
 
