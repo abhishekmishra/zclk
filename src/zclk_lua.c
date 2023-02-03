@@ -40,7 +40,7 @@ static void _stack_dump(lua_State *L)
 static zclk_command *zclk_command_getobj(lua_State *L)
 {
     int top = lua_gettop(L);
-    zclk_command *cmd = *((zclk_command**)luaL_checkudata(L, 1, LUA_ZCLK_COMMAND_OBJECT));
+    zclk_command *cmd = *((zclk_command**)luaL_checkudata(L, top, LUA_ZCLK_COMMAND_OBJECT));
     if (cmd == NULL)
     {
         luaL_typeerror(L, top, LUA_ZCLK_COMMAND_OBJECT);
@@ -52,7 +52,7 @@ static zclk_command *zclk_command_getobj(lua_State *L)
 static zclk_option *zclk_option_getobj(lua_State *L)
 {
     int top = lua_gettop(L);
-    zclk_option *opt = *((zclk_option**)luaL_checkudata(L, 1, LUA_ZCLK_OPTION_OBJECT));
+    zclk_option *opt = *((zclk_option**)luaL_checkudata(L, top, LUA_ZCLK_OPTION_OBJECT));
     if (opt == NULL)
     {
         luaL_typeerror(L, top, LUA_ZCLK_OPTION_OBJECT);
@@ -64,7 +64,7 @@ static zclk_option *zclk_option_getobj(lua_State *L)
 static zclk_argument *zclk_argument_getobj(lua_State *L)
 {
     int top = lua_gettop(L);
-    zclk_argument *arg = *((zclk_argument**)luaL_checkudata(L, 1, LUA_ZCLK_ARGUMENT_OBJECT));
+    zclk_argument *arg = *((zclk_argument**)luaL_checkudata(L, top, LUA_ZCLK_ARGUMENT_OBJECT));
     if (arg == NULL)
     {
         luaL_typeerror(L, top, LUA_ZCLK_ARGUMENT_OBJECT);
@@ -75,7 +75,6 @@ static zclk_argument *zclk_argument_getobj(lua_State *L)
 
 static zclk_res lua_cmd_handler(zclk_command* cmd, void* handler_args)
 {
-    printf("command %s\n", cmd->name);
     lua_State *L = (lua_State *)handler_args;
 
     /* get the lua command handler from cmd object */
@@ -103,7 +102,6 @@ static int zclk_command_free(lua_State *L)
 static int zclk_command_lua_name_get(lua_State *L)
 {
     zclk_command *cmd = zclk_command_getobj(L);
-    printf("name ka idx -> %d\n", cmd->lua_udata_ref);
     lua_pushstring(L, cmd->name);
     return 1;
 }
@@ -144,8 +142,6 @@ static int zclk_command_new(lua_State *L)
     cmd->lua_udata_ref = luaL_ref(L, LUA_REGISTRYINDEX);
 
     lua_rawgeti(L, LUA_REGISTRYINDEX, cmd->lua_udata_ref);
-
-    printf("new cmd object ref -> %d\n", cmd->lua_udata_ref);
 
     // set metatable of zclk_command object
     luaL_getmetatable(L, LUA_ZCLK_COMMAND_OBJECT);
@@ -507,18 +503,12 @@ static int zclk_command_lua_get_argument(lua_State *L)
 
 static int zclk_command_lua_subcommand_add(lua_State *L)
 {
-    _stack_dump(L);
     zclk_command *subcmd = zclk_command_getobj(L);
-    printf("subcmd name -> %s, %d\n", subcmd->name, subcmd->lua_udata_ref);
-    _stack_dump(L);
     zclk_command *cmd = zclk_command_getobj(L);
-    printf("cmd name -> %s, %d\n", cmd->name, cmd->lua_udata_ref);
-    _stack_dump(L);
 
     zclk_res err = zclk_command_subcommand_add(cmd, subcmd);
 
     lua_pushinteger(L, err);
-    _stack_dump(L);
     return 1;
 }
 
