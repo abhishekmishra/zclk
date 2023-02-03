@@ -100,6 +100,14 @@ static int zclk_command_free(lua_State *L)
     return 0;
 }
 
+static int zclk_command_lua_name_get(lua_State *L)
+{
+    zclk_command *cmd = zclk_command_getobj(L);
+    printf("name ka idx -> %d\n", cmd->lua_udata_ref);
+    lua_pushstring(L, cmd->name);
+    return 1;
+}
+
 // static int zclk_option_free(lua_State *L)
 // {
 //     zclk_option *opt = *((zclk_option**)luaL_checkudata(L, 1, LUA_ZCLK_OPTION_OBJECT));
@@ -136,7 +144,8 @@ static int zclk_command_new(lua_State *L)
     cmd->lua_udata_ref = luaL_ref(L, LUA_REGISTRYINDEX);
 
     lua_rawgeti(L, LUA_REGISTRYINDEX, cmd->lua_udata_ref);
-    _stack_dump(L);
+
+    printf("new cmd object ref -> %d\n", cmd->lua_udata_ref);
 
     // set metatable of zclk_command object
     luaL_getmetatable(L, LUA_ZCLK_COMMAND_OBJECT);
@@ -496,6 +505,23 @@ static int zclk_command_lua_get_argument(lua_State *L)
     return 1;
 }
 
+static int zclk_command_lua_subcommand_add(lua_State *L)
+{
+    _stack_dump(L);
+    zclk_command *subcmd = zclk_command_getobj(L);
+    printf("subcmd name -> %s, %d\n", subcmd->name, subcmd->lua_udata_ref);
+    _stack_dump(L);
+    zclk_command *cmd = zclk_command_getobj(L);
+    printf("cmd name -> %s, %d\n", cmd->name, cmd->lua_udata_ref);
+    _stack_dump(L);
+
+    zclk_res err = zclk_command_subcommand_add(cmd, subcmd);
+
+    lua_pushinteger(L, err);
+    _stack_dump(L);
+    return 1;
+}
+
 static int zclk_option_value(lua_State *L)
 {
     zclk_option *opt = zclk_option_getobj(L);
@@ -630,6 +656,7 @@ static const luaL_Reg ZclkCommand_funcs[] =
 static const luaL_Reg zclk_command_meths[] =
 {
     {"__gc", zclk_command_free},
+    {"name", zclk_command_lua_name_get},
     {"exec", zclk_command_lua_exec},
     {"bool_option", zclk_command_lua_bool_option},
     {"int_option", zclk_command_lua_int_option},
@@ -643,6 +670,7 @@ static const luaL_Reg zclk_command_meths[] =
     {"flag_argument", zclk_command_lua_flag_argument},
     {"get_option", zclk_command_lua_get_option},
     {"get_argument", zclk_command_lua_get_argument},
+    {"subcommand", zclk_command_lua_subcommand_add},
     {NULL, NULL}
 };
 

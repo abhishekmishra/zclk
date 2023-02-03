@@ -798,7 +798,12 @@ zclk_res make_command(zclk_command **command, const char *name, const char *shor
 
 	arraylist_new(&((*command)->options), (void (*)(void *)) & free_option);
 	set_lua_convertor((*command)->options, &arraylist_zclk_option_to_lua);
-	arraylist_new(&((*command)->sub_commands), (void (*)(void *)) & free_command);
+	//arraylist_new(&((*command)->sub_commands), (void (*)(void *)) & free_command);
+	// sub-commands are to be freed individually as this works with the lua
+	// automatic garbage collection model.
+	// otherwise if sub-commands are freed by command gc call,
+	// then sub-command free fails with dangling pointer...
+	arraylist_new(&((*command)->sub_commands), NULL);
 	arraylist_new(&((*command)->args), (void (*)(void *)) & free_argument);
 	set_lua_convertor((*command)->args, &arraylist_zclk_argument_to_lua);
 
