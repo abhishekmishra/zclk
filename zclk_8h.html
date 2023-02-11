@@ -464,9 +464,9 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 <tr class="memitem:aea5a6a014773554cec9b7b87e85dd7f6"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#aea5a6a014773554cec9b7b87e85dd7f6">zclk_command_string_option</a> (<a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, const char *name, const char *short_name, const char *default_val, const char *desc)</td></tr>
 <tr class="memdesc:aea5a6a014773554cec9b7b87e85dd7f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new string option and add it to the given command.  <a href="zclk_8h.html#aea5a6a014773554cec9b7b87e85dd7f6">More...</a><br /></td></tr>
 <tr class="separator:aea5a6a014773554cec9b7b87e85dd7f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a178d44e9347e458b3edc90054d760cbc"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a178d44e9347e458b3edc90054d760cbc">zclk_command_flag_option</a> (<a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, const char *name, const char *short_name, int default_val, const char *desc)</td></tr>
-<tr class="memdesc:a178d44e9347e458b3edc90054d760cbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new flag option and add it to the given command.  <a href="zclk_8h.html#a178d44e9347e458b3edc90054d760cbc">More...</a><br /></td></tr>
-<tr class="separator:a178d44e9347e458b3edc90054d760cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a013f388ff3a0b17ec19eb21c61b8d6d1"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a013f388ff3a0b17ec19eb21c61b8d6d1">zclk_command_flag_option</a> (<a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, const char *name, const char *short_name, const char *desc)</td></tr>
+<tr class="memdesc:a013f388ff3a0b17ec19eb21c61b8d6d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new flag option and add it to the given command.  <a href="zclk_8h.html#a013f388ff3a0b17ec19eb21c61b8d6d1">More...</a><br /></td></tr>
+<tr class="separator:a013f388ff3a0b17ec19eb21c61b8d6d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe75858cb5b476522703f674dff48742"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#abe75858cb5b476522703f674dff48742">zclk_command_bool_argument</a> (<a class="el" href="zclk_8h.html#afb15e975d81227700ed1d84df15eaee6">zclk_command</a> *cmd, const char *name, int default_val, const char *desc, int nargs)</td></tr>
 <tr class="memdesc:abe75858cb5b476522703f674dff48742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new bool argument and add it to the given command.  <a href="zclk_8h.html#abe75858cb5b476522703f674dff48742">More...</a><br /></td></tr>
 <tr class="separator:abe75858cb5b476522703f674dff48742"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2396,8 +2396,8 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 
 </div>
 </div>
-<a id="a178d44e9347e458b3edc90054d760cbc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a178d44e9347e458b3edc90054d760cbc">&#9670;&nbsp;</a></span>zclk_command_flag_option()</h2>
+<a id="a013f388ff3a0b17ec19eb21c61b8d6d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a013f388ff3a0b17ec19eb21c61b8d6d1">&#9670;&nbsp;</a></span>zclk_command_flag_option()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2423,12 +2423,6 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>default_val</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>desc</em>&#160;</td>
         </tr>
@@ -2446,7 +2440,6 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
     <tr><td class="paramname">cmd</td><td>command object </td></tr>
     <tr><td class="paramname">name</td><td>name of the option </td></tr>
     <tr><td class="paramname">short_name</td><td>short name of the option </td></tr>
-    <tr><td class="paramname">default_val</td><td>default value </td></tr>
     <tr><td class="paramname">desc</td><td>text description </td></tr>
   </table>
   </dd>
