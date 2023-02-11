@@ -917,13 +917,13 @@ void zclk_command_string_option(zclk_command *cmd, const char *name,
 }
 
 void zclk_command_flag_option(zclk_command *cmd, const char *name, 
-				const char* short_name, int default_val, const char *desc)
+				const char* short_name, const char *desc)
 {
 	zclk_command_option_add(cmd, 
 			new_zclk_option_flag(
 					name,
 					short_name,
-					default_val,
+					0,
 					desc
 				));
 }

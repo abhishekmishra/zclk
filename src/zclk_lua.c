@@ -338,9 +338,6 @@ static int zclk_command_lua_flag_option(lua_State *L)
 {
     const char *desc = luaL_checkstring(L, lua_gettop(L));
     lua_pop(L, 1);
-
-    int default_val = lua_toboolean(L, lua_gettop(L));
-    lua_pop(L, 1);
     
     const char *short_name = luaL_checkstring(L, lua_gettop(L));
     lua_pop(L, 1);
@@ -354,7 +351,6 @@ static int zclk_command_lua_flag_option(lua_State *L)
         cmd,
         name,
         short_name, 
-        default_val, 
         desc
     );
     
