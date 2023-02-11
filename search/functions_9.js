@@ -3,7 +3,7 @@ var searchData=
   ['zclk_5fargument_5fto_5flua_147',['zclk_argument_to_lua',['../zclk_8h.html#a8266c711ab5d5212d4e8a7d9d3f29913',1,'zclk.c']]],
   ['zclk_5fcommand_5fargument_5fadd_148',['zclk_command_argument_add',['../zclk_8h.html#a74094664f750529bca55ff2ed42aa6bb',1,'zclk.c']]],
   ['zclk_5fcommand_5fbool_5fargument_149',['zclk_command_bool_argument',['../zclk_8h.html#abe75858cb5b476522703f674dff48742',1,'zclk.c']]],
-  ['zclk_5fcommand_5fbool_5foption_150',['zclk_command_bool_option',['../zclk_8h.html#a4dc5afdc5447f80a075c42a35f6a75d2',1,'zclk.c']]],
+  ['zclk_5fcommand_5fbool_5foption_150',['zclk_command_bool_option',['../zclk_8h.html#a9466395e5699f67274bdb8ffd1af1a49',1,'zclk.c']]],
   ['zclk_5fcommand_5fdouble_5fargument_151',['zclk_command_double_argument',['../zclk_8h.html#acf982ea1f2da879fd2e6e1a88a0aad98',1,'zclk.c']]],
   ['zclk_5fcommand_5fdouble_5foption_152',['zclk_command_double_option',['../zclk_8h.html#aa3a34a00b543b31adbe4ddb8579c109c',1,'zclk.c']]],
   ['zclk_5fcommand_5fexec_153',['zclk_command_exec',['../zclk_8h.html#a7d7aafdf8edf730e5d5a4686291a1fe4',1,'zclk.c']]],
