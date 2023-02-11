@@ -866,13 +866,13 @@ zclk_res zclk_command_argument_add(
 }
 
 void zclk_command_bool_option(zclk_command *cmd, const char *name, 
-				const char* short_name, int default_val, const char *desc)
+				const char* short_name, const char *desc)
 {
 	zclk_command_option_add(cmd, 
 			new_zclk_option_bool(
 					name,
 					short_name,
-					default_val,
+					0,
 					desc
 				));
 }

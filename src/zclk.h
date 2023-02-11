@@ -662,11 +662,10 @@ MODULE_API zclk_res zclk_command_argument_add(
  * @param cmd command object
  * @param name name of the option
  * @param short_name short name of the option
- * @param default_val default value
  * @param desc text description
  */
 MODULE_API void zclk_command_bool_option(zclk_command *cmd, const char *name, 
-				const char* short_name, int default_val, const char *desc);
+				const char* short_name, const char *desc);
 
 /**
  * @brief Create a new int option and add it to the given command
