@@ -1246,6 +1246,7 @@ int gobble(int argc, char **argv, int at_pos)
 	{
 		for (int i = at_pos; i < argc; i++)
 		{
+			// printf("--\t %d, %d, %s\n", i, at_pos, argv[i]);
 			if (i == argc)
 			{
 				argv[i] = NULL;
@@ -1468,7 +1469,7 @@ zclk_res parse_options(arraylist *options, int *argc, char **argv)
 zclk_res parse_args(arraylist *args, int *argc, char **argv)
 {
 	size_t args_len = arraylist_length(args);
-	//	printf("args len %d\n", args_len);
+	// printf("args len %d\n", args_len);
 	if (args_len <= *argc)
 	{
 		for (int i = 0; i < args_len; i++)
@@ -1477,19 +1478,33 @@ zclk_res parse_args(arraylist *args, int *argc, char **argv)
 			char *argval = argv[i];
 			//check if we have
 			parse_zclk_val(arg->val, argval);
-			//			printf("Argval %s\n", argval);
+			// printf("Argval %s\n", argval);
+		}
+		for (int i = 0; i < args_len; i++)
+		{
+			*argc = gobble(*argc, argv, 0);
+			// printf("new argc = %d, %p\n", *argc, argc);
 		}
 	}
 	else
 	{
-		snprintf(error_message_str, ZCLK_SIZE_OF_HELP_STR,
-			"Required arguments missing.");
-		return ZCLK_RES_ERR_ARG_NOT_FOUND;
-	}
-	for (int i = 0; i < args_len; i++)
-	{
-		(*argc) = gobble((*argc), &argv, 0);
-		//		printf("new argc = %d\n", (*argc));
+		// snprintf(error_message_str, ZCLK_SIZE_OF_HELP_STR,
+		// 	"Required arguments missing.");
+		// return ZCLK_RES_ERR_ARG_NOT_FOUND;
+		for (int i = 0; i < *argc; i++)
+		{
+			zclk_argument *arg = arraylist_get(args, i);
+			char *argval = argv[i];
+			//check if we have
+			parse_zclk_val(arg->val, argval);
+			//			printf("Argval %s\n", argval);
+		}
+		int tmp_argc = *argc;
+		for (int i = 0; i < tmp_argc; i++)
+		{
+			*argc = gobble(*argc, argv, 0);
+			// printf("new argc = %d\n", *argc);
+		}
 	}
 	return ZCLK_RES_SUCCESS;
 }
