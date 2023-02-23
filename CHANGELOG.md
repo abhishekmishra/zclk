@@ -1,5 +1,15 @@
 # CHANGELOG
-This file documents major changes in every release of the project. The project follows [Semantic Versioning](https://semver.org/). There is a section for each release - which lists major changes made in the release.
+This file documents major changes in every release of the project. The project
+follows [Semantic Versioning](https://semver.org/). There is a section for each
+release - which lists major changes made in the release.
+
+**0.1.0-alpha.3**  2023-02-23 Abhishek Mishra  <abhishekmishra3@gmail.com>
+
+- Bug fix in argument parsing. Arguments are parsed from left to right and
+  missing args are given default values. It is the responsibility of the
+  program to deal with missing arguments (assigned to default values).
+  If there are more arguments passed than the command requires, an error is
+  displayed and program fails.
 
 **0.1.0-alpha.2**  2023-02-21 Abhishek Mishra  <abhishekmishra3@gmail.com>
 
