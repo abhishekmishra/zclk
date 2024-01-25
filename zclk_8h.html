@@ -171,9 +171,11 @@ Macros</h2></td></tr>
 <tr class="memitem:a22f8dff13bea09c62ce08f5de5270f31"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a22f8dff13bea09c62ce08f5de5270f31">zclk_string</a>(v)&#160;&#160;&#160;<a class="el" href="zclk_8h.html#a392a0ef60ab02f897dbbb1bd75b42f16">new_zclk_val_string</a>(v)</td></tr>
 <tr class="memdesc:a22f8dff13bea09c62ce08f5de5270f31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new string cli value.  <a href="zclk_8h.html#a22f8dff13bea09c62ce08f5de5270f31">More...</a><br /></td></tr>
 <tr class="separator:a22f8dff13bea09c62ce08f5de5270f31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afced8ba1628ec3429146053ba922d737"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_command_option_foreach</b>(cmd,  opt)</td></tr>
+<tr class="memitem:afced8ba1628ec3429146053ba922d737"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#afced8ba1628ec3429146053ba922d737">zclk_command_option_foreach</a>(cmd,  opt)</td></tr>
+<tr class="memdesc:afced8ba1628ec3429146053ba922d737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for options of the given command.  <a href="zclk_8h.html#afced8ba1628ec3429146053ba922d737">More...</a><br /></td></tr>
 <tr class="separator:afced8ba1628ec3429146053ba922d737"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92cef2d30ed718301377433b1e5b1a43"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_command_argument_foreach</b>(cmd,  arg)</td></tr>
+<tr class="memitem:a92cef2d30ed718301377433b1e5b1a43"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a92cef2d30ed718301377433b1e5b1a43">zclk_command_argument_foreach</a>(cmd,  arg)</td></tr>
+<tr class="memdesc:a92cef2d30ed718301377433b1e5b1a43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterator for arguments of the given command.  <a href="zclk_8h.html#a92cef2d30ed718301377433b1e5b1a43">More...</a><br /></td></tr>
 <tr class="separator:a92cef2d30ed718301377433b1e5b1a43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
@@ -568,8 +570,17 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 <div class="line">                            (arg = arraylist_get(cmd-&gt;args, i))             \</div>
 <div class="line">                            : 0);                                           \</div>
 <div class="line">                    i++)</div>
-<div class="ttc" id="astructzclk__argument__t_html"><div class="ttname"><a href="structzclk__argument__t.html">zclk_argument_t</a></div><div class="ttdoc">CLI Argument object.</div><div class="ttdef"><b>Definition:</b> zclk.h:336</div></div>
+<div class="ttc" id="astructzclk__argument__t_html"><div class="ttname"><a href="structzclk__argument__t.html">zclk_argument_t</a></div><div class="ttdoc">CLI Argument object.</div><div class="ttdef"><b>Definition:</b> zclk.h:335</div></div>
 </div><!-- fragment -->
+<p>Iterator for arguments of the given command. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>command object </td></tr>
+    <tr><td class="paramname">arg</td><td>name of the argument which will contain an argument in every iteration. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="afced8ba1628ec3429146053ba922d737"></a>
@@ -603,8 +614,17 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 <div class="line">                            (opt = arraylist_get(cmd-&gt;options, i))          \</div>
 <div class="line">                            : 0);                                           \</div>
 <div class="line">                    i++)</div>
-<div class="ttc" id="astructzclk__option__t_html"><div class="ttname"><a href="structzclk__option__t.html">zclk_option_t</a></div><div class="ttdoc">CLI Option Object.</div><div class="ttdef"><b>Definition:</b> zclk.h:306</div></div>
+<div class="ttc" id="astructzclk__option__t_html"><div class="ttname"><a href="structzclk__option__t.html">zclk_option_t</a></div><div class="ttdoc">CLI Option Object.</div><div class="ttdef"><b>Definition:</b> zclk.h:305</div></div>
 </div><!-- fragment -->
+<p>Iterator for options of the given command. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>command object </td></tr>
+    <tr><td class="paramname">opt</td><td>name of the argument which will contain an option in every iteration. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a0c2d959f50cdd2202be79b40be6b04da"></a>
