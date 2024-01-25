@@ -77,7 +77,6 @@ typedef enum
 	ZCLK_RESULT_PROGRESS = 3
 } zclk_result_type;
 
-//TODO add defaults
 /**
  * @brief This struct holds the value of the argument or option.
  * 
@@ -795,6 +794,14 @@ MODULE_API zclk_option* zclk_command_get_option(zclk_command *cmd,
 MODULE_API zclk_argument* zclk_command_get_argument(zclk_command *cmd,
 	const char *name);
 
+/**
+ * @def zclk_command_option_foreach(cmd, opt)
+ * @brief Iterator for options of the given command.
+ * 
+ * @param cmd command object
+ * @param opt name of the argument which will contain
+ * 				an option in every iteration.
+ */
 #define zclk_command_option_foreach(cmd, opt)     							\
 		zclk_option *opt = NULL;                      						\
 		size_t len##opt = arraylist_length(cmd->options);					\
@@ -803,6 +810,14 @@ MODULE_API zclk_argument* zclk_command_get_argument(zclk_command *cmd,
 							: 0);											\
 					i++)
 
+/**
+ * @def zclk_command_argument_foreach(cmd, arg)
+ * @brief Iterator for arguments of the given command.
+ * 
+ * @param cmd command object
+ * @param arg name of the argument which will contain
+ * 				an argument in every iteration.
+ */
 #define zclk_command_argument_foreach(cmd, arg)    							\
 		zclk_argument *arg = NULL;                     						\
 		size_t len##arg = arraylist_length(cmd->args);						\
