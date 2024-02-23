@@ -20,7 +20,7 @@ all: clean build run
 
 genbuild:
 ifeq ($(OSFLAG),WIN32)
-	cmake . -B ./build -DCMAKE_TOOLCHAIN_FILE=D:/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_INSTALL_PREFIX=./install -DENABLE_TESTS=On
+	cmake . -B ./build -DCMAKE_TOOLCHAIN_FILE=${VCPKG_HOME}/scripts/buildsystems/vcpkg.cmake -DCMAKE_INSTALL_PREFIX=./install -DENABLE_TESTS=On
 else
 	cmake . -B ./build -DCMAKE_TOOLCHAIN_FILE=${VCPKG_HOME}/scripts/buildsystems/vcpkg.cmake -DCMAKE_INSTALL_PREFIX=./install -DENABLE_TESTS=On
 endif
