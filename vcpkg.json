@@ -1,0 +1,10 @@
+{
+  "dependencies": [
+    {
+      "name": "lua",
+      "features": [
+        "tools"
+      ]
+    }
+  ]
+}
