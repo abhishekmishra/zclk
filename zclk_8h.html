@@ -567,7 +567,8 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 <b>Value:</b><div class="fragment"><div class="line">        <a class="code" href="structzclk__argument__t.html">zclk_argument</a> *arg = NULL;                                          \</div>
 <div class="line">        size_t len##arg = arraylist_length(cmd-&gt;args);                      \</div>
 <div class="line">        for (<span class="keywordtype">size_t</span> i = 0; ((i &lt; len##arg)?                                 \</div>
-<div class="line">                            (arg = arraylist_get(cmd-&gt;args, i))             \</div>
+<div class="line">                            (arg = (<a class="code" href="structzclk__argument__t.html">zclk_argument</a> *)                        \</div>
+<div class="line">                                (arraylist_get(cmd-&gt;args, i)))              \</div>
 <div class="line">                            : 0);                                           \</div>
 <div class="line">                    i++)</div>
 <div class="ttc" id="astructzclk__argument__t_html"><div class="ttname"><a href="structzclk__argument__t.html">zclk_argument_t</a></div><div class="ttdoc">CLI Argument object.</div><div class="ttdef"><b>Definition:</b> zclk.h:335</div></div>
@@ -611,7 +612,8 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 <b>Value:</b><div class="fragment"><div class="line">        <a class="code" href="structzclk__option__t.html">zclk_option</a> *opt = NULL;                                            \</div>
 <div class="line">        size_t len##opt = arraylist_length(cmd-&gt;options);                   \</div>
 <div class="line">        for (<span class="keywordtype">size_t</span> i = 0; ((i &lt; len##opt)?                                 \</div>
-<div class="line">                            (opt = arraylist_get(cmd-&gt;options, i))          \</div>
+<div class="line">                            (opt = (<a class="code" href="structzclk__option__t.html">zclk_option</a> *)                          \</div>
+<div class="line">                                (arraylist_get(cmd-&gt;options, i)))           \</div>
 <div class="line">                            : 0);                                           \</div>
 <div class="line">                    i++)</div>
 <div class="ttc" id="astructzclk__option__t_html"><div class="ttname"><a href="structzclk__option__t.html">zclk_option_t</a></div><div class="ttdoc">CLI Option Object.</div><div class="ttdef"><b>Definition:</b> zclk.h:305</div></div>
