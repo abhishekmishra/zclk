@@ -806,7 +806,8 @@ MODULE_API zclk_argument* zclk_command_get_argument(zclk_command *cmd,
 		zclk_option *opt = NULL;                      						\
 		size_t len##opt = arraylist_length(cmd->options);					\
 		for (size_t i = 0; ((i < len##opt)?									\
-							(opt = arraylist_get(cmd->options, i))			\
+							(opt = (zclk_option *)							\
+								(arraylist_get(cmd->options, i)))			\
 							: 0);											\
 					i++)
 
@@ -822,7 +823,8 @@ MODULE_API zclk_argument* zclk_command_get_argument(zclk_command *cmd,
 		zclk_argument *arg = NULL;                     						\
 		size_t len##arg = arraylist_length(cmd->args);						\
 		for (size_t i = 0; ((i < len##arg)? 								\
-							(arg = arraylist_get(cmd->args, i))				\
+							(arg = (zclk_argument *)						\
+								(arraylist_get(cmd->args, i)))				\
 							: 0);											\
 					i++)
 
