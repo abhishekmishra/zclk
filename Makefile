@@ -20,9 +20,9 @@ all: clean build run
 
 genbuild:
 ifeq ($(OSFLAG),WIN32)
-	cmake . -B ./build -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake -DCMAKE_INSTALL_PREFIX=./install -DENABLE_TESTS=On
+	cmake . -B ./build -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake -DCMAKE_INSTALL_PREFIX=./install -DENABLE_TESTS=On -DENABLE_LUA=On
 else
-	cmake . -B ./build -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake -DCMAKE_INSTALL_PREFIX=./install -DENABLE_TESTS=On
+	cmake . -B ./build -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake -DCMAKE_INSTALL_PREFIX=./install -DENABLE_TESTS=On -DENABLE_LUA=On
 endif
 
 delbuild:

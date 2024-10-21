@@ -257,6 +257,7 @@ zclk_res parse_zclk_val(zclk_val *val, char *input)
 	}
 }
 
+#ifdef LUA_ENABLED
 int zclk_val_to_lua(lua_State *L, zclk_val *val)
 {
 	if (val == NULL)
@@ -291,6 +292,7 @@ int zclk_val_to_lua(lua_State *L, zclk_val *val)
 	}
 	return 1;
 }
+#endif //LUA_ENABLED
 
 zclk_res make_option(zclk_option **option, const char *name, const char *short_name,
 	zclk_val* val, zclk_val* default_val, const char *description)
@@ -508,6 +510,7 @@ zclk_option *get_option_by_name(arraylist *options, const char *name)
 	return NULL;
 }
 
+#ifdef LUA_ENABLED
 int zclk_option_to_lua(lua_State *L, zclk_option *option)
 {
 	lua_createtable(L, 0, 5);
@@ -546,6 +549,7 @@ int zclk_option_to_lua(lua_State *L, zclk_option *option)
 void arraylist_zclk_option_to_lua(lua_State *L, int index, void *data) {
 	zclk_option_to_lua(L, (zclk_option*) data);
 }
+#endif //LUA_ENABLED
 
 void zclk_fill_options_in_list(arraylist* optlist, zclk_option* options[]) {
 	if (options != NULL && optlist != NULL) {
@@ -747,6 +751,7 @@ void free_argument(zclk_argument *arg)
 	free(arg);
 }
 
+#ifdef LUA_ENABLED
 int zclk_argument_to_lua(lua_State *L, zclk_argument* arg)
 {
 	lua_createtable(L, 0, 5);
@@ -780,6 +785,7 @@ int zclk_argument_to_lua(lua_State *L, zclk_argument* arg)
 void arraylist_zclk_argument_to_lua(lua_State *L, int index, void *data) {
 	zclk_argument_to_lua(L, (zclk_argument*) data);
 }
+#endif //LUA_ENABLED
 
 zclk_res make_command(zclk_command **command, const char *name, const char *short_name,
 						 const char *description, zclk_command_fn handler)
@@ -797,7 +803,9 @@ zclk_res make_command(zclk_command **command, const char *name, const char *shor
 	(*command)->success_handler = (zclk_command_output_handler)&print_handler;
 
 	arraylist_new(&((*command)->options), (void (*)(void *)) & free_option);
-	set_lua_convertor((*command)->options, &arraylist_zclk_option_to_lua);
+	#ifdef LUA_ENABLED
+		set_lua_convertor((*command)->options, &arraylist_zclk_option_to_lua);
+	#endif //LUA_ENABLED
 	//arraylist_new(&((*command)->sub_commands), (void (*)(void *)) & free_command);
 	// sub-commands are to be freed individually as this works with the lua
 	// automatic garbage collection model.
@@ -805,7 +813,10 @@ zclk_res make_command(zclk_command **command, const char *name, const char *shor
 	// then sub-command free fails with dangling pointer...
 	arraylist_new(&((*command)->sub_commands), NULL);
 	arraylist_new(&((*command)->args), (void (*)(void *)) & free_argument);
-	set_lua_convertor((*command)->args, &arraylist_zclk_argument_to_lua);
+
+	#ifdef LUA_ENABLED
+		set_lua_convertor((*command)->args, &arraylist_zclk_argument_to_lua);
+	#endif //LUA_ENABLED
 
 	zclk_command_option_add(
 		(*command),
@@ -1558,9 +1569,13 @@ zclk_res exec_command(arraylist *commands, void *handler_args,
 	size_t len_cmds = arraylist_length(cmds_to_exec);
 	arraylist *all_options, *all_args;
 	arraylist_new(&all_options, NULL);
-	set_lua_convertor(all_options, &arraylist_zclk_option_to_lua);
+	#ifdef LUA_ENABLED
+		set_lua_convertor(all_options, &arraylist_zclk_option_to_lua);
+	#endif //LUA_ENABLED
 	arraylist_new(&all_args, NULL);
-	set_lua_convertor(all_args, &arraylist_zclk_argument_to_lua);
+	#ifdef LUA_ENABLED
+		set_lua_convertor(all_args, &arraylist_zclk_argument_to_lua);
+	#endif //LUA_ENABLED
 
 	for (int i = 0; i < len_cmds; i++)
 	{

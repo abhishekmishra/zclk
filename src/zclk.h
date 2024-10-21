@@ -14,8 +14,12 @@
 #include "zclk_common.h"
 
 #include <coll_arraylist.h>
+
+#ifdef LUA_ENABLED
 #include <lua.h>
 #include <lauxlib.h>
+#endif //LUA_ENABLED
+
 #include "zclk_table.h"
 #include "zclk_dict.h"
 #include "zclk_progress.h"
@@ -214,6 +218,7 @@ MODULE_API void zclk_val_set_string(zclk_val *val, const char* sval);
  */
 MODULE_API void zclk_val_set_flag(zclk_val *val, int fval);
 
+#ifdef LUA_ENABLED
 /**
  * @brief Convert a cli value to its lua value
  * 
@@ -222,6 +227,7 @@ MODULE_API void zclk_val_set_flag(zclk_val *val, int fval);
  * @return int indicating error
  */
 MODULE_API int zclk_val_to_lua(lua_State *L, zclk_val* val);
+#endif //LUA_ENABLED
 
 /**
  * @brief Create a new boolean value.
@@ -310,6 +316,7 @@ typedef struct zclk_option_t
 	char* description;		///< textural description of the option
 } zclk_option;
 
+#ifdef LUA_ENABLED
 /**
  * @brief Convert the cli option to a lua value
  * 
@@ -327,6 +334,7 @@ MODULE_API int zclk_option_to_lua(lua_State *L, zclk_option* option);
  * @param data must be a zclk_option*
  */
 MODULE_API void arraylist_zclk_option_to_lua(lua_State *L, int index, void *data);
+#endif //LUA_ENABLED
 
 /**
  * @brief CLI Argument object
@@ -340,6 +348,7 @@ typedef struct zclk_argument_t
 	int optional;			///< flag indicating if argument is optional
 } zclk_argument;
 
+#ifdef LUA_ENABLED
 /**
  * @brief Convert a cli argument to a lua object
  * 
@@ -357,6 +366,7 @@ MODULE_API int zclk_argument_to_lua(lua_State *L, zclk_argument* arg);
  * @param data must be a zclk_argument*
  */
 MODULE_API void arraylist_zclk_argument_to_lua(lua_State *L, int index, void *data);
+#endif //LUA_ENABLED
 
 /**
  * @brief Fill the entries in the given option array into an arraylist
