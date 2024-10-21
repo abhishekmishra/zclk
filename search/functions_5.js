@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['help_5fcmd_5fhandler_133',['help_cmd_handler',['../zclk_8h.html#a33faf82a71505253821010d15d71b4d9',1,'zclk.c']]]
+  ['make_5fargument_127',['make_argument',['../zclk_8h.html#a8206d6a7a02fce3d98c04018a92ad1e3',1,'zclk.c']]],
+  ['make_5fcommand_128',['make_command',['../zclk_8h.html#a2b74596f515023a06cdcd33040f7b466',1,'zclk.c']]],
+  ['make_5foption_129',['make_option',['../zclk_8h.html#aad3cdfd20188bbe849a9a32c08727646',1,'zclk.c']]],
+  ['make_5fzclk_5fval_130',['make_zclk_val',['../zclk_8h.html#a2d60475a9d4a52d05e76ec8cd330507c',1,'zclk.c']]]
 ];

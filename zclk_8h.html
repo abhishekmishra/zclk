@@ -82,8 +82,6 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;zclk_common.h&quot;</code><br />
 <code>#include &lt;coll_arraylist.h&gt;</code><br />
-<code>#include &lt;lua.h&gt;</code><br />
-<code>#include &lt;lauxlib.h&gt;</code><br />
 <code>#include &quot;zclk_table.h&quot;</code><br />
 <code>#include &quot;zclk_dict.h&quot;</code><br />
 <code>#include &quot;zclk_progress.h&quot;</code><br />
@@ -92,11 +90,9 @@ Include dependency graph for zclk.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="zclk_8h__incl.png" border="0" usemap="#asrc_2zclk_8h" alt=""/></div>
 <map name="asrc_2zclk_8h" id="asrc_2zclk_8h">
-<area shape="rect" title="Zclk main header file. Defines the Public API of zclk." alt="" coords="331,5,414,32"/>
+<area shape="rect" title="Zclk main header file. Defines the Public API of zclk." alt="" coords="201,5,283,32"/>
 <area shape="rect" href="zclk__common_8h_source.html" title=" " alt="" coords="93,155,217,181"/>
 <area shape="rect" title=" " alt="" coords="313,155,432,181"/>
-<area shape="rect" title=" " alt="" coords="493,80,548,107"/>
-<area shape="rect" title=" " alt="" coords="572,80,651,107"/>
 <area shape="rect" href="zclk__table_8h_source.html" title=" " alt="" coords="5,80,105,107"/>
 <area shape="rect" href="zclk__dict_8h_source.html" title=" " alt="" coords="327,80,418,107"/>
 <area shape="rect" href="zclk__progress_8h_source.html" title=" " alt="" coords="181,80,303,107"/>
@@ -275,9 +271,6 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_val_is
 <tr class="memitem:a13d759374b746add9e04981ed9b7b1d9"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a13d759374b746add9e04981ed9b7b1d9">zclk_val_set_flag</a> (<a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *val, int fval)</td></tr>
 <tr class="memdesc:a13d759374b746add9e04981ed9b7b1d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the flag value  <a href="zclk_8h.html#a13d759374b746add9e04981ed9b7b1d9">More...</a><br /></td></tr>
 <tr class="separator:a13d759374b746add9e04981ed9b7b1d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a362d14ce7f39a149535755603e560a62"><td class="memItemLeft" align="right" valign="top">MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a362d14ce7f39a149535755603e560a62">zclk_val_to_lua</a> (lua_State *L, <a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *val)</td></tr>
-<tr class="memdesc:a362d14ce7f39a149535755603e560a62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a cli value to its lua value.  <a href="zclk_8h.html#a362d14ce7f39a149535755603e560a62">More...</a><br /></td></tr>
-<tr class="separator:a362d14ce7f39a149535755603e560a62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a638cb0c332e56f170032db98a634ea9e"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a638cb0c332e56f170032db98a634ea9e">new_zclk_val_bool</a> (int bool_val)</td></tr>
 <tr class="memdesc:a638cb0c332e56f170032db98a634ea9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new boolean value.  <a href="zclk_8h.html#a638cb0c332e56f170032db98a634ea9e">More...</a><br /></td></tr>
 <tr class="separator:a638cb0c332e56f170032db98a634ea9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -293,18 +286,6 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_val_is
 <tr class="memitem:aec67ae1a98b89686dc877b2ddd8d37e4"><td class="memItemLeft" align="right" valign="top">MODULE_API <a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#aec67ae1a98b89686dc877b2ddd8d37e4">new_zclk_val_flag</a> (int flag_val)</td></tr>
 <tr class="memdesc:aec67ae1a98b89686dc877b2ddd8d37e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new flag value.  <a href="zclk_8h.html#aec67ae1a98b89686dc877b2ddd8d37e4">More...</a><br /></td></tr>
 <tr class="separator:aec67ae1a98b89686dc877b2ddd8d37e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae32d4f21f0ec2dc4d1647f374e054e0b"><td class="memItemLeft" align="right" valign="top">MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#ae32d4f21f0ec2dc4d1647f374e054e0b">zclk_option_to_lua</a> (lua_State *L, <a class="el" href="zclk_8h.html#a1ec5fa3fb569d9226cbfbcd3b5def231">zclk_option</a> *option)</td></tr>
-<tr class="memdesc:ae32d4f21f0ec2dc4d1647f374e054e0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the cli option to a lua value.  <a href="zclk_8h.html#ae32d4f21f0ec2dc4d1647f374e054e0b">More...</a><br /></td></tr>
-<tr class="separator:ae32d4f21f0ec2dc4d1647f374e054e0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b3ae0d377c32dbb1eabe73f6057fe5c"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a7b3ae0d377c32dbb1eabe73f6057fe5c">arraylist_zclk_option_to_lua</a> (lua_State *L, int index, void *data)</td></tr>
-<tr class="memdesc:a7b3ae0d377c32dbb1eabe73f6057fe5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility conversion function passed to arraylist to convert all entries to lua options.  <a href="zclk_8h.html#a7b3ae0d377c32dbb1eabe73f6057fe5c">More...</a><br /></td></tr>
-<tr class="separator:a7b3ae0d377c32dbb1eabe73f6057fe5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8266c711ab5d5212d4e8a7d9d3f29913"><td class="memItemLeft" align="right" valign="top">MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#a8266c711ab5d5212d4e8a7d9d3f29913">zclk_argument_to_lua</a> (lua_State *L, <a class="el" href="zclk_8h.html#a0486453d0ff8be439727b6559ae04d34">zclk_argument</a> *arg)</td></tr>
-<tr class="memdesc:a8266c711ab5d5212d4e8a7d9d3f29913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a cli argument to a lua object.  <a href="zclk_8h.html#a8266c711ab5d5212d4e8a7d9d3f29913">More...</a><br /></td></tr>
-<tr class="separator:a8266c711ab5d5212d4e8a7d9d3f29913"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4a9c40ba34e7ce4a0e47af0d01ac6d3"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#af4a9c40ba34e7ce4a0e47af0d01ac6d3">arraylist_zclk_argument_to_lua</a> (lua_State *L, int index, void *data)</td></tr>
-<tr class="memdesc:af4a9c40ba34e7ce4a0e47af0d01ac6d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility conversion function passed to arraylist to convert all entries to lua.  <a href="zclk_8h.html#af4a9c40ba34e7ce4a0e47af0d01ac6d3">More...</a><br /></td></tr>
-<tr class="separator:af4a9c40ba34e7ce4a0e47af0d01ac6d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab62c4eeb0b92095d30590d42f0399455"><td class="memItemLeft" align="right" valign="top">MODULE_API void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zclk_8h.html#ab62c4eeb0b92095d30590d42f0399455">zclk_fill_options_in_list</a> (arraylist *optlist, <a class="el" href="zclk_8h.html#a1ec5fa3fb569d9226cbfbcd3b5def231">zclk_option</a> *options[])</td></tr>
 <tr class="memdesc:ab62c4eeb0b92095d30590d42f0399455"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill the entries in the given option array into an arraylist.  <a href="zclk_8h.html#ab62c4eeb0b92095d30590d42f0399455">More...</a><br /></td></tr>
 <tr class="separator:ab62c4eeb0b92095d30590d42f0399455"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -571,7 +552,7 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 <div class="line">                                (arraylist_get(cmd-&gt;args, i)))              \</div>
 <div class="line">                            : 0);                                           \</div>
 <div class="line">                    i++)</div>
-<div class="ttc" id="astructzclk__argument__t_html"><div class="ttname"><a href="structzclk__argument__t.html">zclk_argument_t</a></div><div class="ttdoc">CLI Argument object.</div><div class="ttdef"><b>Definition:</b> zclk.h:335</div></div>
+<div class="ttc" id="astructzclk__argument__t_html"><div class="ttname"><a href="structzclk__argument__t.html">zclk_argument_t</a></div><div class="ttdoc">CLI Argument object.</div><div class="ttdef"><b>Definition:</b> zclk.h:343</div></div>
 </div><!-- fragment -->
 <p>Iterator for arguments of the given command. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -616,7 +597,7 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 <div class="line">                                (arraylist_get(cmd-&gt;options, i)))           \</div>
 <div class="line">                            : 0);                                           \</div>
 <div class="line">                    i++)</div>
-<div class="ttc" id="astructzclk__option__t_html"><div class="ttname"><a href="structzclk__option__t.html">zclk_option_t</a></div><div class="ttdoc">CLI Option Object.</div><div class="ttdef"><b>Definition:</b> zclk.h:305</div></div>
+<div class="ttc" id="astructzclk__option__t_html"><div class="ttname"><a href="structzclk__option__t.html">zclk_option_t</a></div><div class="ttdoc">CLI Option Object.</div><div class="ttdef"><b>Definition:</b> zclk.h:311</div></div>
 </div><!-- fragment -->
 <p>Iterator for options of the given command. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -914,94 +895,6 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="af4a9c40ba34e7ce4a0e47af0d01ac6d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4a9c40ba34e7ce4a0e47af0d01ac6d3">&#9670;&nbsp;</a></span>arraylist_zclk_argument_to_lua()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MODULE_API void arraylist_zclk_argument_to_lua </td>
-          <td>(</td>
-          <td class="paramtype">lua_State *&#160;</td>
-          <td class="paramname"><em>L</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Utility conversion function passed to arraylist to convert all entries to lua. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">L</td><td>lua state </td></tr>
-    <tr><td class="paramname">index</td><td></td></tr>
-    <tr><td class="paramname">data</td><td>must be a zclk_argument* </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a7b3ae0d377c32dbb1eabe73f6057fe5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7b3ae0d377c32dbb1eabe73f6057fe5c">&#9670;&nbsp;</a></span>arraylist_zclk_option_to_lua()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MODULE_API void arraylist_zclk_option_to_lua </td>
-          <td>(</td>
-          <td class="paramtype">lua_State *&#160;</td>
-          <td class="paramname"><em>L</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Utility conversion function passed to arraylist to convert all entries to lua options. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">L</td><td>lua state </td></tr>
-    <tr><td class="paramname">index</td><td></td></tr>
-    <tr><td class="paramname">data</td><td>must be a zclk_option* </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a2479a7abac483f13065fbc278eae3bbd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2479a7abac483f13065fbc278eae3bbd">&#9670;&nbsp;</a></span>clear_zclk_val()</h2>
 
@@ -2000,44 +1893,6 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 
 </div>
 </div>
-<a id="a8266c711ab5d5212d4e8a7d9d3f29913"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8266c711ab5d5212d4e8a7d9d3f29913">&#9670;&nbsp;</a></span>zclk_argument_to_lua()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MODULE_API int zclk_argument_to_lua </td>
-          <td>(</td>
-          <td class="paramtype">lua_State *&#160;</td>
-          <td class="paramname"><em>L</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="zclk_8h.html#a0486453d0ff8be439727b6559ae04d34">zclk_argument</a> *&#160;</td>
-          <td class="paramname"><em>arg</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Convert a cli argument to a lua object. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">L</td><td>lua state </td></tr>
-    <tr><td class="paramname">arg</td><td>cli argument </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>int error code </dd></dl>
-
-</div>
-</div>
 <a id="a74094664f750529bca55ff2ed42aa6bb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a74094664f750529bca55ff2ed42aa6bb">&#9670;&nbsp;</a></span>zclk_command_argument_add()</h2>
 
@@ -2883,44 +2738,6 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
 
 </div>
 </div>
-<a id="ae32d4f21f0ec2dc4d1647f374e054e0b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae32d4f21f0ec2dc4d1647f374e054e0b">&#9670;&nbsp;</a></span>zclk_option_to_lua()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MODULE_API int zclk_option_to_lua </td>
-          <td>(</td>
-          <td class="paramtype">lua_State *&#160;</td>
-          <td class="paramname"><em>L</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="zclk_8h.html#a1ec5fa3fb569d9226cbfbcd3b5def231">zclk_option</a> *&#160;</td>
-          <td class="paramname"><em>option</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Convert the cli option to a lua value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">L</td><td>lua state </td></tr>
-    <tr><td class="paramname">option</td><td>option object </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>int error code </dd></dl>
-
-</div>
-</div>
 <a id="aa6670ac052a85fa28409fa0ef6b0ffac"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa6670ac052a85fa28409fa0ef6b0ffac">&#9670;&nbsp;</a></span>zclk_val_get_bool()</h2>
 
@@ -3238,44 +3055,6 @@ MODULE_API int&#160;</td><td class="memItemRight" valign="bottom"><b>zclk_argume
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a362d14ce7f39a149535755603e560a62"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a362d14ce7f39a149535755603e560a62">&#9670;&nbsp;</a></span>zclk_val_to_lua()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MODULE_API int zclk_val_to_lua </td>
-          <td>(</td>
-          <td class="paramtype">lua_State *&#160;</td>
-          <td class="paramname"><em>L</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="zclk_8h.html#a82db2338d4dae78363f2a7e67ef37fb8">zclk_val</a> *&#160;</td>
-          <td class="paramname"><em>val</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Convert a cli value to its lua value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">L</td><td>Lua state </td></tr>
-    <tr><td class="paramname">val</td><td>value </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>int indicating error </dd></dl>
 
 </div>
 </div>

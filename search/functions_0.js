@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['arraylist_5fzclk_5fargument_5fto_5flua_121',['arraylist_zclk_argument_to_lua',['../zclk_8h.html#af4a9c40ba34e7ce4a0e47af0d01ac6d3',1,'zclk.c']]],
-  ['arraylist_5fzclk_5foption_5fto_5flua_122',['arraylist_zclk_option_to_lua',['../zclk_8h.html#a7b3ae0d377c32dbb1eabe73f6057fe5c',1,'zclk.c']]]
+  ['clear_5fzclk_5fval_116',['clear_zclk_val',['../zclk_8h.html#a2479a7abac483f13065fbc278eae3bbd',1,'zclk.h']]],
+  ['copy_5fzclk_5fval_117',['copy_zclk_val',['../zclk_8h.html#a002b0bdb28d6352f3e12f8471c73c644',1,'zclk.c']]]
 ];
